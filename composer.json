@@ -1,0 +1,121 @@
+{
+	"name": "greenpeace/planet4-base",
+	"version": "1.14",
+
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		},
+		{
+			"type": "composer",
+			"url": "https://packagist.org"
+		}
+	],
+
+	"require": {
+		"composer/installers": "~1.0",
+		"greenpeace/planet4-content-default": "0.2.*",
+		"greenpeace/planet4-master-theme" : "1.4",
+		"greenpeace/planet4-plugin-blocks" : "1.4",
+		"leafo/scssphp": "^0.7.4",
+		"matthiasmullie/minify": "^1.3",
+		"wikimedia/composer-merge-plugin": "1.4.1",
+		"wpackagist-plugin/akismet": "4.0.3",
+		"wpackagist-plugin/cmb2": "2.3.0",
+		"wpackagist-plugin/elasticpress": "^2.4",
+		"wpackagist-plugin/google-apps-login": "3.2",
+		"wpackagist-plugin/nginx-helper": "^1.9",
+		"wpackagist-plugin/redirection": "3.2",
+		"wpackagist-plugin/shortcode-ui": "0.7.3",
+		"wpackagist-plugin/wordfence": "^7.1.3",
+		"wpackagist-plugin/wp-redis": "0.7.0",
+		"wpackagist-plugin/wp-stateless": "^2.1.4"
+	},
+
+	"config": {
+		"secure-http": false,
+		"github-protocols": ["https"]
+	},
+
+	"extra": {
+		"installer-paths": {
+			"vendor/plugins/{$name}/": ["type:wordpress-plugin"],
+			"vendor/themes/{$name}/": ["type:wordpress-theme"]
+		},
+		"merge-plugin": {
+			"require": "",
+			"recurse": true,
+			"replace": true,
+			"ignore-duplicates": false,
+			"merge-dev": true,
+			"merge-extra": false,
+			"merge-extra-deep": false,
+			"merge-scripts": true
+		}
+	},
+
+	"scripts": {
+		"site-install": [
+			"@reset:public", "@download:wordpress", "@copy:health-check",
+			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:assets", "@copy:plugins",
+			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
+			"@download:searchwp", "@install:searchwp",
+			"@core:initial-content", "@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
+			"@core:style", "@core:js", "@core:js-minify", "@site:custom"
+		],
+
+		"site-update": [
+			"@download:wordpress", "@copy:health-check",
+			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:assets", "@copy:plugins",
+			"@core:updatedb", "@plugin:activate", "@theme:activate",
+			"@download:searchwp", "@install:searchwp",
+			"@core:add-contributor-capabilities", "@redis:enable", "@core:style", "@core:js", "@core:js-minify", "@site:custom"
+		],
+
+		"docker-site-install": [
+			"@download:wordpress", "@copy:health-check",
+			"@reset:themes", "@copy:themes", "@copy:assets", "@copy:plugins",
+			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
+			"@download:searchwp", "@install:searchwp",
+			"@core:initial-content", "@core:style", "@core:js", "@core:js-minify", "@site:custom"
+		],
+
+		"theme:install": ["@copy:theme", "@theme:activate"],
+		"plugin:install": ["@copy:plugin", "@plugin:activate"],
+
+		"reset:public" : "rm -rf public; mkdir public",
+		"reset:themes" : "rm -rf public/wp-content/themes",
+		"reset:plugins" : "rm -rf public/wp-content/plugins",
+
+		"download:wordpress": "wp core download --version=4.9.5 --path=public --force",
+		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
+		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
+		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
+
+		"download:searchwp": "curl -o searchwp-2.9.12.zip https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.12.zip",
+		"install:searchwp": "wp plugin install searchwp-2.9.12.zip --activate",
+
+		"redis:enable" : "wp redis enable",
+
+		"core:config": "wp core config --force",
+		"core:install": "wp core install",
+		"core:updatedb": "wp core update-db",
+		"core:initial-content": "composer run-script content-default -d vendor/greenpeace/planet4-content-default ",
+		"core:add-author-capabilities": "wp cap add author edit_others_posts; wp cap add author delete_others_posts; wp cap add author delete_private_posts;wp cap add author edit_private_posts;wp cap add author read_private_posts;",
+		"core:add-contributor-capabilities": "wp cap add contributor upload_files",
+
+		"core:style" : "pscss -f=compressed public/wp-content/themes/planet4-master-theme/assets/scss/style.scss > public/wp-content/themes/planet4-master-theme/style.css",
+		"core:js" : "cat public/wp-content/themes/planet4-master-theme/assets/js/partials/*.js > public/wp-content/themes/planet4-master-theme/assets/js/custom.js",
+		"core:js-minify" : "minifyjs public/wp-content/themes/planet4-master-theme/assets/js/custom.js > public/wp-content/themes/planet4-master-theme/assets/js/main.js",
+
+		"plugin:deactivate": "wp plugin deactivate --all",
+		"plugin:activate": "wp plugin activate --all",
+		"plugin:activate-only-inactive": "inactive_plugins=$(wp plugin list --field=name --status=inactive --format=csv); wp plugin activate $inactive_plugins;",
+		"theme:activate": "wp theme activate",
+
+		"server": "php -S 127.0.0.1:9191 -t public",
+		"site:custom" : ""
+
+	}
+}
