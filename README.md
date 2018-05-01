@@ -1,6 +1,6 @@
 # Greenpeace Planet 4
 
- [![CircleCI](https://circleci.com/gh/greenpeace/planet4-base/tree/master.svg?style=shield)](https://circleci.com/gh/greenpeace/planet4-docker/tree/master)
+ [![CircleCI](https://circleci.com/gh/greenpeace/planet4-base-fork/tree/develop.svg?style=shield)](https://circleci.com/gh/greenpeace/planet4-base-fork/tree/develop)
 
 Testing.
 
