@@ -44,7 +44,7 @@
 			"vendor/themes/{$name}/": ["type:wordpress-theme"]
 		},
 		"merge-plugin": {
-			"require": "",
+			"require": "composer-local.json",
 			"recurse": true,
 			"replace": true,
 			"ignore-duplicates": false,
