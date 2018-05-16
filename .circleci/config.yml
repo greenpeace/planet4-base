@@ -64,8 +64,8 @@ jobs:
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
-      WP_DB_NAME: planet4-nl_wordpress_develop
-      WP_TITLE: Greenpeace base Development
+      WP_DB_NAME: planet4-base_wordpress
+      WP_TITLE: Greenpeace Base Development
     steps:
       - attach_workspace:
           at: /tmp/workspace
