@@ -23,7 +23,7 @@
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.0.3",
 		"wpackagist-plugin/cmb2": "2.3.0",
-		"wpackagist-plugin/elasticpress": "2.5.1",
+		"wpackagist-plugin/elasticpress": "2.5.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/nginx-helper": "1.9.11",
 		"wpackagist-plugin/redirection": "3.2",
