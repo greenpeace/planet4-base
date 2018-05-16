@@ -1,10 +1,4 @@
 defaults: &defaults
-  environment:
-    GOOGLE_PROJECT_ID: planet-4-151612
-    INFRA_VERSION: develop
-    CONTAINER_PREFIX: planet4-base
-    APP_HOSTPATH: base
-    BUILD_FLAGS: -r
   docker:
     - image: gcr.io/planet-4-151612/p4-builder:develop
   working_directory:  /home/circleci/
@@ -12,8 +6,17 @@ defaults: &defaults
 version: 2
 
 jobs:
-  build:
+  build-develop:
     <<: *defaults
+    environment:
+      APP_HOSTNAME: k8s.p4.greenpeace.org
+      APP_HOSTPATH: base
+      CLOUDSQL_INSTANCE: p4-develop-k8s
+      CONTAINER_PREFIX: planet4-base
+      GOOGLE_PROJECT_ID: planet-4-151612
+      HELM_NAMESPACE: develop
+      WP_DB_NAME: planet4-base_wordpress
+      WP_TITLE: Greenpeace Base Development
     steps:
       - setup_remote_docker
 
@@ -28,7 +31,13 @@ jobs:
           name: Build
           working_directory: /home/circleci
           command: |
-            make
+            if make
+            then
+              TYPE="Build" ${HOME}/scripts/notify-job-success.sh
+            else
+              TYPE="Build" ${HOME}/scripts/notify-job-failure.sh
+              exit 1
+            fi
 
       - persist_to_workspace:
           root: /tmp/workspace
@@ -48,12 +57,16 @@ jobs:
 
   deploy-develop:
     <<: *defaults
+    environment:
+      APP_HOSTNAME: k8s.p4.greenpeace.org
+      APP_HOSTPATH: base
+      CLOUDSQL_INSTANCE: p4-develop-k8s
+      CONTAINER_PREFIX: planet4-base
+      GOOGLE_PROJECT_ID: planet-4-151612
+      HELM_NAMESPACE: develop
+      WP_DB_NAME: planet4-nl_wordpress_develop
+      WP_TITLE: Greenpeace base Development
     steps:
-      # - checkout
-      #
-      # - setup_remote_docker
-      #
-
       - attach_workspace:
           at: /tmp/workspace
 
@@ -65,69 +78,27 @@ jobs:
       - run:
           name: Deploy new containers
           environment:
-            NEWRELIC_APPNAME: P4 Base Development
+            NEWRELIC_APPNAME: P4 base Development
           command: |
-            if [[ -z "${CIRCLE_TAG}" ]]
-            then
-              export BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num)
-            else
-              export BUILD_TAG=${CIRCLE_TAG}
-            fi
+            BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)" \
             make deploy
-
 
 workflows:
   version: 2
-  branch:
+  develop:
     jobs:
-      - build:
-          context: org-global
-          filters:
-            tags:
-              ignore: /^v.*/
+    - build-develop:
+        context: org-global
+        filters:
+          branches:
+            only: develop
+          tags:
+            ignore: /^v.*/
 
-      - deploy-develop:
-          context: org-global
-          requires:
-            - build
-          filters:
-            branches:
-              only: develop
-
-      # - test:
-      #     requires:
-      #       - build
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      # Only run deploy job for tagged releases on master
-
-  tag:
-    jobs:
-      - build:
-          context: org-global
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
-
-      - hold-production:
-          type: approval
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
-          requires:
-            - build
-
-      - deploy-production:
-          context: org-global
-          requires:
-            - hold-production
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
+    - deploy-develop:
+        context: org-global
+        requires:
+          - build-develop
+        filters:
+          branches:
+            only: develop
