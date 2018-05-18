@@ -88,13 +88,13 @@
 		"reset:themes" : "rm -rf public/wp-content/themes",
 		"reset:plugins" : "rm -rf public/wp-content/plugins",
 
-		"download:wordpress": "wp core download --version=4.9.5 --path=public --force",
+		"download:wordpress": "wp core download --version=4.9.6 --path=public --force",
 		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
 		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
 
-		"download:searchwp": "curl -o searchwp-2.9.12.zip https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.12.zip",
-		"install:searchwp": "wp plugin install searchwp-2.9.12.zip --activate",
+		"download:searchwp": "curl -o searchwp-2.9.13.zip https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.13.zip",
+		"install:searchwp": "wp plugin install searchwp-2.9.13.zip --activate",
 
 		"redis:enable" : "wp redis enable",
 
