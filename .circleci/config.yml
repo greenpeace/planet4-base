@@ -58,8 +58,8 @@ jobs:
       - run:
           name: Start docker-compose
           command: |
-            sudo echo "127.0.0.1  test.planet4.dev" >> /etc/hosts
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
+            echo '127.0.0.1  test.planet4.dev' | sudo tee --append /etc/hosts
             git clone https://github.com/greenpeace/planet4-docker-compose
             pushd planet4-docker-compose
             APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG} \
