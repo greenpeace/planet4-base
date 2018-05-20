@@ -47,6 +47,9 @@ jobs:
   test-selenium:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
       - run:
           name: Checkout Selenium Tests
           command: |
@@ -56,10 +59,11 @@ jobs:
           name: Start docker-compose
           command: |
             sudo echo "127.0.0.1  test.planet4.dev" >> /etc/hosts
+            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             git clone https://github.com/greenpeace/planet4-docker-compose
             pushd planet4-docker-compose
-            APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:build-${CIRCLE_BUILD_NUM} \
-            OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:build-${CIRCLE_BUILD_NUM} \
+            APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG} \
+            OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG} \
             docker-compose -f docker-compose.stateless.yml up -d
             popd
 
