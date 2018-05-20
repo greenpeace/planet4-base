@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: gcr.io/planet-4-151612/p4-builder:v0.9.1
+    - image: gcr.io/planet-4-151612/p4-builder:develop
   working_directory:  /home/circleci/
 
 version: 2
@@ -44,16 +44,64 @@ jobs:
           paths:
             - var
 
-  # test:
-  #   <<: *defaults
-  #   steps:
-  #     - run:
-  #         name: Placeholder
-  #         command: |
-  #           echo "Branch: ${CIRCLE_BRANCH}"
-  #           echo "Build:  ${CIRCLE_BUILD_NUM}"
-  #           echo "Tag:    ${CIRCLE_TAG}"
-  #           echo "No tests implemented yet"
+  test-selenium:
+    steps:
+      - run:
+          name: Checkout Selenium Tests
+          command: |
+            git clone https://github.com/greenpeace/planet4-selenium-tests
+
+      - run:
+          name: Start docker-compose
+          command: |
+            sudo echo "127.0.0.1  test.planet4.dev" >> /etc/hosts
+            git clone https://github.com/greenpeace/planet4-docker-compose
+            pushd planet4-docker-compose
+            APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:build-${CIRCLE_BUILD_NUM} \
+            OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:build-${CIRCLE_BUILD_NUM} \
+            docker-compose -f docker-compose.stateless.yml up -d
+            popd
+
+      - run:
+          name: Wait until containers are ready
+          command: |
+            # 2 seconds * 150 == 5+ minutes
+            interval=2
+            loop=150
+
+            # Number of consecutive successes to qualify as 'up'
+            threshold=2
+            success=0
+            until [[ $success -ge $threshold ]]
+            do
+              # Curl to container and expect status code 200
+              set +e
+              docker run --network "container:planet4docker_compose_openresty_1" --rm appropriate/curl -s -k "http://localhost:80" | grep -q "greenpeace"
+
+              if [[ $? -eq 0 ]]
+              then
+                success=$((success+1))
+                echo "Success: $success/$threshold"
+              else
+                success=0
+              fi
+              set -e
+
+              loop=$((loop-1))
+              if [[ $loop -lt 1 ]]
+              then
+                >&2 echo "[ERROR] Timeout waiting for docker-compose to start"
+                >&2 docker-compose -p build logs
+                exit 1
+              fi
+
+              [[ $success -ge $threshold ]] || sleep $interval
+            done
+
+      - run:
+          name: Run Selenium Tests
+          command: |
+            docker run --network "container:planet4docker_compose_openresty_1" --rm appropriate/curl -s -k "http://localhost:80" | grep "greenpeace"
 
   deploy-develop:
     <<: *defaults
@@ -94,11 +142,16 @@ workflows:
             only: develop
           tags:
             ignore: /^v.*/
-
-    - deploy-develop:
-        context: org-global
-        requires:
-          - build-develop
+    - test-selenium:
         filters:
           branches:
             only: develop
+            ignore: /^v.*/
+
+    # - deploy-develop:
+    #     context: org-global
+    #     requires:
+    #       - test
+    #     filters:
+    #       branches:
+    #         only: develop
