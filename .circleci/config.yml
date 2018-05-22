@@ -15,6 +15,7 @@ jobs:
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
+      TYPE: Container Build: planet4-base-x
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
@@ -33,9 +34,9 @@ jobs:
           command: |
             if make
             then
-              TYPE="Build" ${HOME}/scripts/notify-job-success.sh
+              ${HOME}/scripts/notify-job-success.sh
             else
-              TYPE="Build" ${HOME}/scripts/notify-job-failure.sh
+              ${HOME}/scripts/notify-job-failure.sh
               exit 1
             fi
 
