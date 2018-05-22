@@ -213,11 +213,10 @@ workflows:
           branches:
             only: develop
             ignore: /^v.*/
-
-    # - deploy-develop:
-    #     context: org-global
-    #     requires:
-    #       - test
-    #     filters:
-    #       branches:
-    #         only: develop
+    - deploy-develop:
+        context: org-global
+        requires:
+          - build-develop
+        filters:
+          branches:
+            only: develop
