@@ -58,9 +58,11 @@ jobs:
           background: true
           command: |
             git clone https://github.com/greenpeace/planet4-docker-selenium-tests
-            pushd planet4-docker-selenium-tests
-            docker build -t planet4-selenium-tests .
-            popd
+            if ! docker build -t planet4-selenium-tests planet4-docker-selenium-tests
+            then
+              TYPE="Selenium Container Build" ${HOME}/scripts/notify-job-failure.sh
+              exit 1
+            fi
             touch /tmp/workspace/selenium-container-built
 
       - run:
