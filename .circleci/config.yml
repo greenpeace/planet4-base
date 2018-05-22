@@ -125,9 +125,9 @@ jobs:
           name: Configure WP Options
           command: |
             source /tmp/workspace/var/variables.env
-            docker exec test_php-fpm_1 -- wp option set siteurl "http://localhost"
-            docker exec test_php-fpm_1 -- wp option set home "http://localhost"
-            docker exec test_php-fpm_1 -- wp user create ${PLANET4_USER} noreply@greenpeace.org --role=administrator --user_pass=${PLANET4_USER_PASS}
+            docker exec test_php-fpm_1 wp option set siteurl "http://localhost"
+            docker exec test_php-fpm_1 wp option set home "http://localhost"
+            docker exec test_php-fpm_1 wp user create ${PLANET4_USER} noreply@greenpeace.org --role=administrator --user_pass=${PLANET4_USER_PASS}
             docker exec test_redis_1 redis-cli flushdb
 
       - run:
