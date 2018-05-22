@@ -47,25 +47,34 @@ jobs:
   test-selenium:
     <<: *defaults
     steps:
+      - setup_remote_docker
+
       - attach_workspace:
           at: /tmp/workspace
 
       - run:
-          name: Checkout Selenium Tests
+          name: Configure
+          command: |
+            echo '127.0.0.1  test.planet4.dev' | sudo tee --append /etc/hosts
+
+      - run:
+          name: Clone Selenium Tests
           command: |
             git clone https://github.com/greenpeace/planet4-selenium-tests
 
-      - setup_remote_docker
-      
+      - run:
+          name: Clone planet4-docker-compose
+          command: |
+            git clone https://github.com/greenpeace/planet4-docker-compose
+
       - run:
           name: Start docker-compose
           command: |
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
-            echo '127.0.0.1  test.planet4.dev' | sudo tee --append /etc/hosts
-            git clone https://github.com/greenpeace/planet4-docker-compose
+            export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
+            export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
+
             pushd planet4-docker-compose
-            APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG} \
-            OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG} \
             docker-compose -f docker-compose.stateless.yml up -d
             popd
 
@@ -83,7 +92,7 @@ jobs:
             do
               # Curl to container and expect status code 200
               set +e
-              docker run --network "container:planet4docker_compose_openresty_1" --rm appropriate/curl -s -k "http://localhost:80" | grep -q "greenpeace"
+              docker run --network "container:planet4dockercompose_openresty_1" --rm appropriate/curl -s -k "http://localhost:80" | grep -q "greenpeace"
 
               if [[ $? -eq 0 ]]
               then
@@ -108,7 +117,11 @@ jobs:
       - run:
           name: Run Selenium Tests
           command: |
-            docker run --network "container:planet4docker_compose_openresty_1" --rm appropriate/curl -s -k "http://localhost:80" | grep "greenpeace"
+            pushd planet4-selenium-tests
+            vendor/bin/phpunit -c tests/ --group p4
+            popd
+
+
 
   deploy-develop:
     <<: *defaults
