@@ -209,6 +209,7 @@ workflows:
           tags:
             ignore: /^v.*/
     - test-selenium:
+        context: org-global
         requires:
           - build-develop
         filters:
