@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "1.18",
+	"version": "1.18.3",
 
 	"repositories": [
 		{
@@ -16,14 +16,14 @@
 	"require": {
 		"composer/installers": "~1.0",
 		"greenpeace/planet4-content-default": "0.2.*",
-		"greenpeace/planet4-master-theme" : "1.8.2",
+		"greenpeace/planet4-master-theme" : "1.8.3",
 		"greenpeace/planet4-plugin-blocks" : "1.8",
 		"greenpeace/planet4-plugin-medialibrary" : "0.1.1",
 		"leafo/scssphp": "^0.7.4",
 		"matthiasmullie/minify": "^1.3",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.0.3",
-		"wpackagist-plugin/cmb2": "^2.4.1",
+		"wpackagist-plugin/cmb2": "2.4.*",
 		"wpackagist-plugin/elasticpress": "2.5.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/nginx-helper": "1.9.11",
