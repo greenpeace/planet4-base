@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "1.18.3",
+	"version": "1.19.1",
 
 	"repositories": [
 		{
@@ -16,8 +16,8 @@
 	"require": {
 		"composer/installers": "~1.0",
 		"greenpeace/planet4-content-default": "0.2.*",
-		"greenpeace/planet4-master-theme" : "1.8.3",
-		"greenpeace/planet4-plugin-blocks" : "1.8",
+		"greenpeace/planet4-master-theme" : "1.9.1",
+		"greenpeace/planet4-plugin-blocks" : "1.9",
 		"greenpeace/planet4-plugin-medialibrary" : "0.1.1",
 		"leafo/scssphp": "^0.7.4",
 		"matthiasmullie/minify": "^1.3",
