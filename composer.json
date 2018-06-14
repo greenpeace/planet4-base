@@ -82,6 +82,15 @@
 			"@core:initial-content", "@core:style", "@core:style-child", "@core:js", "@core:js-minify", "@site:custom"
 		],
 
+		"site:global": [
+			"@install:searchwp",
+			"@core:style",
+			"@core:style-child",
+			"@core:js",
+			"@core:js-minify",
+			"@site:custom"
+		],
+
 		"theme:install": ["@copy:theme", "@theme:activate"],
 		"plugin:install": ["@copy:plugin", "@plugin:activate"],
 
