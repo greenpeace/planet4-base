@@ -27,9 +27,9 @@
 		"wpackagist-plugin/elasticpress": "2.5.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/nginx-helper": "1.9.11",
-		"wpackagist-plugin/redirection": "3.2",
+		"wpackagist-plugin/redirection": "3.3.1",
 		"wpackagist-plugin/shortcode-ui": "0.7.3",
-		"wpackagist-plugin/wordfence": "7.1.6",
+		"wpackagist-plugin/wordfence": "7.1.7",
 		"wpackagist-plugin/wp-redis": "0.7.0",
 		"wpackagist-plugin/wp-stateless": "2.1.5"
 	},
