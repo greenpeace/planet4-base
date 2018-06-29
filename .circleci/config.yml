@@ -197,6 +197,22 @@ jobs:
             BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)" \
             make deploy
 
+  trigger-planet4:
+    docker:
+      - image: gcr.io/planet-4-151612/circleci-base:latest
+    working_directory:  /tmp/workspace
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - deploy:
+          name: Trigger planet4 development sites
+          command: |
+              trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
+              trigger-build.sh git@github.com:greenpeace/planet4-brasil.git develop
+
 workflows:
   version: 2
   develop:
@@ -207,19 +223,20 @@ workflows:
           branches:
             only: develop
           tags:
-            ignore: /^v.*/
-    - test-selenium:
+            ignore: /.*/
+
+    - deploy-develop:
         context: org-global
         requires:
           - build-develop
         filters:
           branches:
             only: develop
-            ignore: /^v.*/
-    - deploy-develop:
+
+    - trigger-planet4:
         context: org-global
         requires:
-          - build-develop
+          - deploy-develop
         filters:
           branches:
             only: develop
