@@ -32,10 +32,8 @@ jobs:
           name: Build
           working_directory: /home/circleci
           command: |
-            if make
+            if ! make
             then
-              ${HOME}/scripts/notify-job-success.sh
-            else
               ${HOME}/scripts/notify-job-failure.sh
               exit 1
             fi
