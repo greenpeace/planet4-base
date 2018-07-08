@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Configure
           command: |
-            ${HOME}/scripts/activate-gcloud-account.sh
+            activate-gcloud-account.sh
             mkdir -p /tmp/workspace/var
             echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
 
@@ -34,7 +34,7 @@ jobs:
           command: |
             if ! make
             then
-              ${HOME}/scripts/notify-job-failure.sh
+              notify-job-failure.sh
               exit 1
             fi
 
@@ -58,7 +58,7 @@ jobs:
   #           git clone https://github.com/greenpeace/planet4-docker-selenium-tests
   #           if ! docker build -t planet4-selenium-tests planet4-docker-selenium-tests
   #           then
-  #             TYPE="Selenium Container Build" ${HOME}/scripts/notify-job-failure.sh
+  #             TYPE="Selenium Container Build" notify-job-failure.sh
   #             exit 1
   #           fi
   #           touch /tmp/workspace/selenium-container-built
@@ -185,7 +185,7 @@ jobs:
       - run:
           name: Configure
           command: |
-            ${HOME}/scripts/activate-gcloud-account.sh
+            activate-gcloud-account.sh
 
       - run:
           name: Deploy new containers
