@@ -231,7 +231,7 @@ jobs:
           root: /tmp/workspace
           paths:
             - var
-            
+
   promote:
     <<: *defaults
     steps:
@@ -267,6 +267,7 @@ jobs:
             else
               TYPE="Release" notify-job-failure.sh
             fi
+            
 workflows:
   version: 2
   develop:
@@ -304,7 +305,6 @@ workflows:
         filters:
           branches:
             ignore: master
-
     - promote:
         requires:
           - hold-develop
