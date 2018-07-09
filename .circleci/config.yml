@@ -332,6 +332,7 @@ workflows:
           branches:
             ignore: master
     - promote:
+        context: org-global
         requires:
           - hold-promote
         filters:
