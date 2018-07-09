@@ -15,12 +15,11 @@ jobs:
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
-      TYPE: "Container Build: planet4-base-x"
+      TYPE: "Build"
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
       - setup_remote_docker
-
       - run:
           name: Configure
           command: |
@@ -28,17 +27,14 @@ jobs:
             mkdir -p /tmp/workspace/var
             mkdir -p /tmp/workspace/src
             echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
-
       - run:
           name: Build containers
           working_directory: /home/circleci
           command: make
-
       - run:
           name: Notify failure
           when: on_fail
           command: notify-job-failure.sh
-
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
@@ -224,8 +220,6 @@ jobs:
   notify-promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    environment:
-      TYPE: "Notify"
     working_directory:  /tmp/workspace/src
     steps:
       - checkout
@@ -247,13 +241,17 @@ jobs:
       - run:
           name: Notify failure
           when: on_fail
-          command: notify-job-failure.sh
+          command: TYPE="@rawalker Promotion: $new_version" notify-job-failure.sh
 
   promote:
     <<: *defaults
     environment:
       TYPE: "Promotion"
     steps:
+      - run:
+          name: Notify of resumed workflow
+          command: TYPE="@rawalker Promotion: $new_version" notify-job-resume.sh
+
       - attach_workspace:
           at: /tmp/workspace/src
       - deploy:
