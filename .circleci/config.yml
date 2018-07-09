@@ -229,7 +229,7 @@ jobs:
           name: Notify of held workflow
           command: |
             old_version=$(git-current-tag.sh)
-            old_version=${old_version:-v0.0.1}
+            old_version=${old_version:-v0.0.0}
             new_version=$(increment-version.sh $old_version)
             echo $old_version > /tmp/workspace/var/old_version
             echo $new_version > /tmp/workspace/var/new_version
