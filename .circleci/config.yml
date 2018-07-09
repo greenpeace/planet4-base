@@ -1,7 +1,7 @@
 defaults: &defaults
   docker:
     - image: gcr.io/planet-4-151612/p4-builder:latest
-  working_directory:  /src
+  working_directory:  /home/circleci/
 
 version: 2
 
@@ -19,14 +19,16 @@ jobs:
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
-      - checkout
       - setup_remote_docker
+
       - run:
           name: Configure
           command: |
             activate-gcloud-account.sh
             mkdir -p /tmp/workspace/var
+            mkdir -p /tmp/workspace/src
             echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
+
       - run:
           name: Build
           working_directory: /home/circleci
@@ -36,6 +38,7 @@ jobs:
               notify-job-failure.sh
               exit 1
             fi
+
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
@@ -177,7 +180,6 @@ jobs:
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
-      - checkout
       - attach_workspace:
           at: /tmp/workspace
       - run:
@@ -210,7 +212,9 @@ jobs:
               trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
 
   notify-promote:
-    <<: *defaults
+    docker:
+      - image: gcr.io/planet-4-151612/circleci-base:latest
+    working_directory:  /tmp/workspace/src
     steps:
       - checkout
       - attach_workspace:
@@ -227,14 +231,13 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - var
+            - src
 
   promote:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/workspace
-      - checkout
+          at: /tmp/workspace/src
       - deploy:
           name: Start release
           command: |
@@ -244,21 +247,21 @@ jobs:
           command: |
             # Get new version number and strip leading 'v' from tag
             tag=$(sed 's/^v//' /tmp/workspace/var/new_version)
-            # Update composer.json version number automatically
+            # Update composer.json version number
             mv composer.json /tmp/workspace/composer.old.json
-            jq ".version=\"$tag\"" < /tmp/workspace/composer.old.json > composer.json
+            jq -M ".version=\"$tag\"" < /tmp/workspace/composer.old.json > composer.json
             # Re-validate composer.json
             if ! composer validate
             then
               TYPE="Composer validation" notify-job-failure.sh
             fi
             # Commit changed files
-            git commit -a -m ":robot: Version v$tag"
+            git commit -a -m ":robot: Release v$tag"
       - deploy:
           name: Finish release
           command: |
             # Finish release
-            if release-finish.sh $new_version
+            if release-finish.sh $(cat /tmp/workspace/var/new_version)
             then
               TYPE="Release" notify-job-success.sh
             else
