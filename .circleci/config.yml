@@ -254,10 +254,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Notify of resumed workflow
-          command: TYPE="@rawalker Promotion: $new_version" notify-job-resume.sh
-
-      - attach_workspace:
-          at: /tmp/workspace/src
+          command: TYPE="@rawalker Promotion: $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
       - deploy:
           name: Start release
           command: |
