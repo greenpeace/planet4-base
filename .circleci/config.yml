@@ -248,7 +248,10 @@ jobs:
     <<: *defaults
     environment:
       TYPE: "Promotion"
+    working_directory:  /tmp/workspace/src
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Notify of resumed workflow
           command: TYPE="@rawalker Promotion: $new_version" notify-job-resume.sh
