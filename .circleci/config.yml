@@ -30,14 +30,14 @@ jobs:
             echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
 
       - run:
-          name: Build
+          name: Build containers
           working_directory: /home/circleci
-          command: |
-            if ! make
-            then
-              notify-job-failure.sh
-              exit 1
-            fi
+          command: make
+
+      - run:
+          name: Notify failure
+          when: on_fail
+          command: notify-job-failure.sh
 
       - persist_to_workspace:
           root: /tmp/workspace
@@ -177,6 +177,7 @@ jobs:
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
+      TYPE: "Deployment"
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
@@ -184,8 +185,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: Configure
-          command: |
-            activate-gcloud-account.sh
+          command: activate-gcloud-account.sh
       - run:
           name: Deploy new containers
           environment:
@@ -193,10 +193,16 @@ jobs:
           command: |
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             make deploy
+      - run:
+          name: Notify failure
+          when: on_fail
+          command: notify-job-failure.sh
 
   trigger-planet4:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
+    environment:
+      TYPE: "Trigger"
     working_directory:  /tmp/workspace
     steps:
       - checkout
@@ -210,10 +216,16 @@ jobs:
               trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
+      - run:
+          name: Notify failure
+          when: on_fail
+          command: notify-job-failure.sh
 
   notify-promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
+    environment:
+      TYPE: "Notify"
     working_directory:  /tmp/workspace/src
     steps:
       - checkout
@@ -232,9 +244,15 @@ jobs:
           root: /tmp/workspace
           paths:
             - src
+      - run:
+          name: Notify failure
+          when: on_fail
+          command: notify-job-failure.sh
 
   promote:
     <<: *defaults
+    environment:
+      TYPE: "Promotion"
     steps:
       - attach_workspace:
           at: /tmp/workspace/src
@@ -273,6 +291,11 @@ jobs:
             else
               TYPE="Release" notify-job-failure.sh
             fi
+      - run:
+          name: Notify failure
+          when: on_fail
+          command: TYPE="Release $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
+
 
 workflows:
   version: 2
