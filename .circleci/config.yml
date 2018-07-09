@@ -214,17 +214,24 @@ jobs:
               trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
 
-
   notify-promote:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Notify of held workflow
           command: |
-            current_version=${$(git-current-tag.sh):-v0.0.1}
-            new_version=$(increment-version.sh $current_version)
+            old_version=${$(git-current-tag.sh):-v0.0.1}
+            new_version=$(increment-version.sh $old_version)
+            echo $old_version > /tmp/workspace/var/old_version
+            echo $new_version > /tmp/workspace/var/new_version
             TYPE="Promotion: $new_version" notify-job-hold.sh
-
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - var
+            
   promote:
     <<: *defaults
     steps:
@@ -234,11 +241,7 @@ jobs:
       - deploy:
           name: Start release
           command: |
-            old_version=${$(git-current-tag.sh):-v0.0.1}
-            new_version=$(increment-version.sh $old_version)
-            echo $old_version > /tmp/workspace/var/old_version
-            echo $new_version > /tmp/workspace/var/new_version
-            release-start.sh $new_version
+            release-start.sh $(cat /tmp/workspace/var/new_version)
       - deploy:
           name: Update version numbers
           command: |
@@ -280,6 +283,13 @@ workflows:
         filters:
           branches:
             ignore: master
+    - hold-promote:
+        type: approval
+        requires:
+          - deploy-develop
+        filters:
+          branches:
+            ignore: master
     - trigger-planet4:
         context: org-global
         requires:
@@ -287,17 +297,14 @@ workflows:
         filters:
           branches:
             ignore: master
-    - notify-develop:
+    - notify-promote:
         context: org-global
-        requires:
-          - deploy-develop
-    - hold-develop:
-        type: approval
         requires:
           - deploy-develop
         filters:
           branches:
             ignore: master
+
     - promote:
         requires:
           - hold-develop
