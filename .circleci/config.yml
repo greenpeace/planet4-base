@@ -233,28 +233,28 @@ jobs:
             new_version=$(increment-version.sh $old_version)
             echo $old_version > /tmp/workspace/var/old_version
             echo $new_version > /tmp/workspace/var/new_version
-            TYPE="@rawalker Promotion: $new_version" notify-job-hold.sh
+            TYPE="@rawalker Promote $new_version" notify-job-hold.sh
+      - run:
+          name: Notify failure
+          when: on_fail
+          command: TYPE="@rawalker Promote $new_version" notify-job-failure.sh
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
             - var
             - src
-      - run:
-          name: Notify failure
-          when: on_fail
-          command: TYPE="@rawalker Promotion: $new_version" notify-job-failure.sh
 
   promote:
     <<: *defaults
     environment:
-      TYPE: "Promotion"
+      TYPE: "Promote"
     working_directory:  /tmp/workspace/src
     steps:
       - attach_workspace:
           at: /tmp/workspace
       - run:
           name: Notify of resumed workflow
-          command: TYPE="@rawalker Promotion: $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
+          command: TYPE="@rawalker Promote $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
       - deploy:
           name: Start release
           command: |
