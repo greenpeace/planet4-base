@@ -267,7 +267,7 @@ jobs:
             else
               TYPE="Release" notify-job-failure.sh
             fi
-            
+
 workflows:
   version: 2
   develop:
@@ -307,7 +307,7 @@ workflows:
             ignore: master
     - promote:
         requires:
-          - hold-develop
+          - hold-promote
         filters:
           branches:
             ignore: master
