@@ -261,6 +261,12 @@ jobs:
           name: Finish release
           command: |
             # Finish release
+            git log -3
+
+            # DEBUG
+            echo "Looks good"
+            exit 0
+
             if release-finish.sh $(cat /tmp/workspace/var/new_version)
             then
               TYPE="Release" notify-job-success.sh
