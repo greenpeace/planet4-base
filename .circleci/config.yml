@@ -245,9 +245,8 @@ jobs:
             - src
 
   promote:
-    <<: *defaults
-    environment:
-      TYPE: "Promote"
+    docker:
+      - image: gcr.io/planet-4-151612/circleci-base:latest
     working_directory:  /tmp/workspace/src
     steps:
       - attach_workspace:
@@ -257,8 +256,7 @@ jobs:
           command: TYPE="@rawalker Promote $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
       - deploy:
           name: Start release
-          command: |
-            release-start.sh $(cat /tmp/workspace/var/new_version)
+          command: release-start.sh $(cat /tmp/workspace/var/new_version)
       - deploy:
           name: Update version numbers
           command: |
