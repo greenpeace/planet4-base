@@ -222,9 +222,9 @@ jobs:
       - image: gcr.io/planet-4-151612/circleci-base:latest
     working_directory:  /tmp/workspace/src
     steps:
-      - checkout
       - attach_workspace:
           at: /tmp/workspace
+      - checkout
       - run:
           name: Notify of held workflow
           command: |
