@@ -19,15 +19,14 @@ jobs:
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
+      - checkout
       - setup_remote_docker
-
       - run:
           name: Configure
           command: |
             activate-gcloud-account.sh
             mkdir -p /tmp/workspace/var
             echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
-
       - run:
           name: Build
           working_directory: /home/circleci
@@ -37,7 +36,6 @@ jobs:
               notify-job-failure.sh
               exit 1
             fi
-
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
@@ -179,14 +177,13 @@ jobs:
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
+      - checkout
       - attach_workspace:
           at: /tmp/workspace
-
       - run:
           name: Configure
           command: |
             activate-gcloud-account.sh
-
       - run:
           name: Deploy new containers
           environment:
@@ -201,10 +198,8 @@ jobs:
     working_directory:  /tmp/workspace
     steps:
       - checkout
-
       - attach_workspace:
           at: /tmp/workspace
-
       - deploy:
           name: Trigger Planet 4 NRO sites
           command: |
@@ -217,6 +212,7 @@ jobs:
   notify-promote:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
           at: /tmp/workspace
       - run:
@@ -227,7 +223,7 @@ jobs:
             new_version=$(increment-version.sh $old_version)
             echo $old_version > /tmp/workspace/var/old_version
             echo $new_version > /tmp/workspace/var/new_version
-            TYPE="Promotion: $new_version" notify-job-hold.sh
+            TYPE="@rawalker Promotion: $new_version" notify-job-hold.sh
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
