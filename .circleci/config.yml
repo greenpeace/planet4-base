@@ -39,6 +39,7 @@ jobs:
           root: /tmp/workspace
           paths:
             - var
+            - src
 
   # test-selenium:
   #   <<: *defaults
@@ -199,7 +200,7 @@ jobs:
       - image: gcr.io/planet-4-151612/circleci-base:latest
     environment:
       TYPE: "Trigger"
-    working_directory:  /tmp/workspace
+    working_directory: /tmp/workspace
     steps:
       - checkout
       - attach_workspace:
@@ -207,11 +208,12 @@ jobs:
       - deploy:
           name: Trigger Planet 4 NRO sites
           command: |
-              trigger-build.sh git@github.com:greenpeace/planet4-brasil.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-canada.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
+              # Skip triggers while debugging promotion
+              # trigger-build.sh git@github.com:greenpeace/planet4-brasil.git develop
+              # trigger-build.sh git@github.com:greenpeace/planet4-canada.git develop
+              # trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
+              # trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
+              # trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
       - run:
           name: Notify failure
           when: on_fail
@@ -220,7 +222,7 @@ jobs:
   notify-promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  ~/src
+    working_directory:  /tmp/workspace/src
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -241,16 +243,12 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - var
-      - persist_to_workspace:
-          root: ~
-          paths:
-            - src
+            - .
 
   promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  ~
+    working_directory:  /home/circleci/src
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -308,6 +306,8 @@ workflows:
         filters:
           branches:
             ignore: master
+          tags:
+            ignore: /.*/
     - deploy-develop:
         context: org-global
         requires:
@@ -340,6 +340,7 @@ workflows:
         context: org-global
         requires:
           - hold-promote
+          - notify-promote
         filters:
           branches:
             ignore: master
