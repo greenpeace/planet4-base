@@ -258,6 +258,7 @@ jobs:
       - run:
           name: Notify of resumed workflow
           command: TYPE="@rawalker Promote $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
+      - run: git flow init -d
       - deploy:
           name: Start release
           command: release-start.sh $(cat /tmp/workspace/var/new_version)
