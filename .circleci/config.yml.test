@@ -248,7 +248,7 @@ jobs:
   promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  /home/circleci/src
+    working_directory:  /tmp/workspace/src
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -257,11 +257,10 @@ jobs:
           command: TYPE="@rawalker Promote $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
       - deploy:
           name: Start release
-          command: cd /tmp/workspace/src; release-start.sh $(cat /tmp/workspace/var/new_version)
+          command: release-start.sh $(cat /tmp/workspace/var/new_version)
       - deploy:
           name: Update version numbers
           command: |
-            cd /tmp/workspace/src
             # Get new version number and strip leading 'v' from tag
             tag=$(sed 's/^v//' /tmp/workspace/var/new_version)
             # Update composer.json version number
