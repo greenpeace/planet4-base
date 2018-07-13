@@ -63,7 +63,8 @@
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
 			"@install:searchwp",
 			"@core:initial-content", "@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
-			"@core:style", "@core:style-child", "@core:js", "@core:js-minify", "@site:custom"
+			"@core:style", "@core:style-child", "@copy:style-blocks", "@core:style-blocks",
+			"@core:js", "@core:js-minify", "@core:js-blocks", "@core:js-blocks-minify", "@site:custom"
 		],
 
 		"site-update": [
@@ -71,7 +72,8 @@
 			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:assets", "@copy:plugins",
 			"@core:updatedb", "@plugin:activate", "@theme:activate",
 			"@install:searchwp",
-			"@core:add-contributor-capabilities", "@redis:enable", "@core:style", "@core:style-child", "@core:js", "@core:js-minify", "@site:custom"
+			"@core:add-contributor-capabilities", "@redis:enable", "@core:style", "@core:style-child", "@copy:style-blocks", "@core:style-blocks",
+			"@core:js", "@core:js-minify", "@core:js-blocks", "@core:js-blocks-minify", "@site:custom"
 		],
 
 		"docker-site-install": [
@@ -79,7 +81,8 @@
 			"@reset:themes", "@copy:themes", "@copy:assets", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
 			"@install:searchwp",
-			"@core:initial-content", "@core:style", "@core:style-child", "@core:js", "@core:js-minify", "@site:custom"
+			"@core:initial-content", "@core:style", "@core:style-child", "@copy:style-blocks", "@core:style-blocks",
+			"@core:js", "@core:js-minify", "@core:js-blocks", "@core:js-blocks-minify", "@site:custom"
 		],
 
 		"site:global": [
@@ -117,8 +120,17 @@
 		"core:style" : "pscss -f=compressed public/wp-content/themes/planet4-master-theme/assets/scss/style.scss > public/wp-content/themes/planet4-master-theme/style.css",
 		"core:style-child" : "cd public/wp-content/themes/; for i in planet4-child-theme*; do cd $i; minifycss style.css > style.min.css; cd ..; done",
 
+		"copy:style-blocks" : [
+			"rsync -ar public/wp-content/themes/planet4-master-theme/assets/scss/partials public/wp-content/plugins/planet4-plugin-blocks/assets/scss/",
+			"rsync -ar public/wp-content/themes/planet4-master-theme/assets/scss/modules public/wp-content/plugins/planet4-plugin-blocks/assets/scss/",
+			"rsync -ar public/wp-content/themes/planet4-master-theme/assets/lib public/wp-content/plugins/planet4-plugin-blocks/assets/"
+		],
+		"core:style-blocks" : "pscss -f=compressed public/wp-content/plugins/planet4-plugin-blocks/assets/scss/style.scss > public/wp-content/plugins/planet4-plugin-blocks/blocks.css",
+
 		"core:js" : "cat public/wp-content/themes/planet4-master-theme/assets/js/partials/*.js > public/wp-content/themes/planet4-master-theme/assets/js/custom.js",
 		"core:js-minify" : "minifyjs public/wp-content/themes/planet4-master-theme/assets/js/custom.js > public/wp-content/themes/planet4-master-theme/assets/js/main.js",
+		"core:js-blocks" : "cat public/wp-content/plugins/planet4-plugin-blocks/assets/js/partials/*.js > public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js",
+		"core:js-blocks-minify" : "minifyjs public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js > public/wp-content/themes/planet4-master-theme/assets/js/blocks.js",
 
 		"plugin:deactivate": "wp plugin deactivate --all",
 		"plugin:activate": "wp plugin activate --all",
