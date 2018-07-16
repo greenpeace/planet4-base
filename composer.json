@@ -26,6 +26,7 @@
 		"wpackagist-plugin/akismet": "4.0.8",
 		"wpackagist-plugin/elasticpress": "2.5.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
+		"wpackagist-plugin/google-sitemap-generator": "4.0.9",
 		"wpackagist-plugin/nginx-helper": "1.9.11",
 		"wpackagist-plugin/redirection": "3.3.1",
 		"wpackagist-plugin/shortcode-ui": "0.7.3",
@@ -101,7 +102,7 @@
 		"reset:themes" : "rm -rf public/wp-content/themes",
 		"reset:plugins" : "rm -rf public/wp-content/plugins",
 
-		"download:wordpress": "wp core download --version=4.9.6 --path=public --force",
+		"download:wordpress": "wp core download --version=4.9.7 --path=public --force",
 		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
 		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
