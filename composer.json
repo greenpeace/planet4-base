@@ -120,11 +120,7 @@
 		"core:style" : "pscss -f=compressed public/wp-content/themes/planet4-master-theme/assets/scss/style.scss > public/wp-content/themes/planet4-master-theme/style.css",
 		"core:style-child" : "cd public/wp-content/themes/; for i in planet4-child-theme*; do cd $i; minifycss style.css > style.min.css; cd ..; done",
 
-		"copy:style-blocks" : [
-			"rsync -ar public/wp-content/themes/planet4-master-theme/assets/scss/partials public/wp-content/plugins/planet4-plugin-blocks/assets/scss/",
-			"rsync -ar public/wp-content/themes/planet4-master-theme/assets/scss/modules public/wp-content/plugins/planet4-plugin-blocks/assets/scss/",
-			"rsync -ar public/wp-content/themes/planet4-master-theme/assets/lib public/wp-content/plugins/planet4-plugin-blocks/assets/"
-		],
+		"copy:style-blocks" : "rsync -ar public/wp-content/themes/planet4-master-theme/assets/scss/global public/wp-content/plugins/planet4-plugin-blocks/assets/scss/",
 		"core:style-blocks" : "pscss -f=compressed public/wp-content/plugins/planet4-plugin-blocks/assets/scss/style.scss > public/wp-content/plugins/planet4-plugin-blocks/blocks.css",
 
 		"core:js" : "cat public/wp-content/themes/planet4-master-theme/assets/js/partials/*.js > public/wp-content/themes/planet4-master-theme/assets/js/custom.js",
