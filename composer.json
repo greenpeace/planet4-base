@@ -91,9 +91,11 @@
 			"@install:searchwp",
 			"@core:style",
 			"@core:style-child",
+			"copy:style-blocks",
 			"@core:style-blocks",
 			"@core:js",
 			"@core:js-minify",
+			"@core:js-blocks",
 			"@core:js-blocks-minify",
 			"@site:custom"
 		],
