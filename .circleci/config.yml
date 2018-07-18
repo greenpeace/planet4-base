@@ -211,12 +211,12 @@ jobs:
               # Skip triggers while debugging promotion
               trigger-build.sh git@github.com:greenpeace/planet4-brasil.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-canada.git develop
+              trigger-build.sh git@github.com:greenpeace/planet4-eu-unit.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-mena.git develop
               trigger-build.sh git@github.com:greenpeace/planet4-luxembourg.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-eu-unit.git develop
+              trigger-build.sh git@github.com:greenpeace/planet4-mena.git develop
+              trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
       - run:
           name: Notify failure
           when: on_fail

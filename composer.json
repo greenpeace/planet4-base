@@ -91,8 +91,12 @@
 			"@install:searchwp",
 			"@core:style",
 			"@core:style-child",
+			"@copy:style-blocks",
+			"@core:style-blocks",
 			"@core:js",
 			"@core:js-minify",
+			"@core:js-blocks",
+			"@core:js-blocks-minify",
 			"@site:custom"
 		],
 
@@ -128,7 +132,7 @@
 		"core:js" : "cat public/wp-content/themes/planet4-master-theme/assets/js/partials/*.js > public/wp-content/themes/planet4-master-theme/assets/js/custom.js",
 		"core:js-minify" : "minifyjs public/wp-content/themes/planet4-master-theme/assets/js/custom.js > public/wp-content/themes/planet4-master-theme/assets/js/main.js",
 		"core:js-blocks" : "cat public/wp-content/plugins/planet4-plugin-blocks/assets/js/partials/*.js > public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js",
-		"core:js-blocks-minify" : "minifyjs public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js > public/wp-content/themes/planet4-master-theme/assets/js/blocks.js",
+		"core:js-blocks-minify" : "minifyjs public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js > public/wp-content/plugins/planet4-plugin-blocks/assets/js/blocks.js",
 
 		"plugin:deactivate": "wp plugin deactivate --all",
 		"plugin:activate": "wp plugin activate --all",
