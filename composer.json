@@ -112,7 +112,7 @@
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
 		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
 
-		"install:searchwp": "wp plugin install https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.13.zip --activate",
+		"install:searchwp": "wp plugin install https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.14.zip --activate",
 
 		"redis:enable" : "wp redis enable",
 
