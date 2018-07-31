@@ -208,15 +208,19 @@ jobs:
       - deploy:
           name: Trigger Planet 4 NRO sites
           command: |
-              # Skip triggers while debugging promotion
-              trigger-build.sh git@github.com:greenpeace/planet4-brasil.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-canada.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-eu-unit.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-luxembourg.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-mena.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
+              sites=(
+                "brasil" \
+                "eu-unit" \
+                "flibble" \
+                "india" \
+                "luxembourg" \
+                "mena" \
+                "netherlands" \
+              )
+              for i in "${!sites[@]}"
+              do
+                trigger-build.sh git@github.com:greenpeace/planet4-$i.git develop
+              done
       - run:
           name: Notify failure
           when: on_fail
@@ -292,6 +296,7 @@ jobs:
           name: Notify failure
           when: on_fail
           command: TYPE="Release $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
+
 
 
 workflows:
