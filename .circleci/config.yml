@@ -154,7 +154,8 @@ jobs:
               --name planet4-tests \
               --network "container:test_openresty_1" \
               --shm-size=2g \
-              planet4-selenium-tests vendor/bin/phpunit -c tests
+              planet4-selenium-tests
+            docker exec planet4-tests vendor/bin/phpunit -c tests
             popd
 
       - persist_to_workspace:
