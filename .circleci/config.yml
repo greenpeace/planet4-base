@@ -59,6 +59,7 @@ jobs:
               TYPE="Selenium Container Build" notify-job-failure.sh
               exit 1
             fi
+            touch /tmp/workspace/selenium-container-built
 
 
       - run:
@@ -108,7 +109,6 @@ jobs:
 
               [[ $success -ge $threshold ]] || sleep $interval
             done
-            touch /tmp/workspace/selenium-container-ready
 
       - run:
           name: Configure Selenium container
@@ -133,7 +133,7 @@ jobs:
             interval=2
             loop=150
 
-            while [ ! -f /tmp/workspace/selenium-container-ready ]
+            while [ ! -f /tmp/workspace/selenium-container-built ]
             do
               loop=$((loop-1))
               if [[ $loop -lt 1 ]]
