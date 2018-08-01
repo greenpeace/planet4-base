@@ -309,48 +309,48 @@ workflows:
             ignore: master
           tags:
             ignore: /.*/
-    - test-selenium:
-        context: org-global
-        requires:
-          - build-develop
-        filters:
-          branches:
-            ignore: master
-          tags:
-            ignore: /.*/
-    # - deploy-develop:
+    # - test-selenium:
     #     context: org-global
     #     requires:
     #       - build-develop
     #     filters:
     #       branches:
     #         ignore: master
-    # - hold-promote:
-    #     type: approval
-    #     requires:
-    #       - deploy-develop
-    #     filters:
-    #       branches:
-    #         ignore: master
-    # - trigger-planet4:
-    #     context: org-global
-    #     requires:
-    #       - deploy-develop
-    #     filters:
-    #       branches:
-    #         ignore: master
-    # - notify-promote:
-    #     context: org-global
-    #     requires:
-    #       - deploy-develop
-    #     filters:
-    #       branches:
-    #         ignore: master
-    # - promote:
-    #     context: org-global
-    #     requires:
-    #       - hold-promote
-    #       - notify-promote
-    #     filters:
-    #       branches:
-    #         ignore: master
+    #       tags:
+    #         ignore: /.*/
+    - deploy-develop:
+        context: org-global
+        requires:
+          - build-develop
+        filters:
+          branches:
+            ignore: master
+    - hold-promote:
+        type: approval
+        requires:
+          - deploy-develop
+        filters:
+          branches:
+            ignore: master
+    - trigger-planet4:
+        context: org-global
+        requires:
+          - deploy-develop
+        filters:
+          branches:
+            ignore: master
+    - notify-promote:
+        context: org-global
+        requires:
+          - deploy-develop
+        filters:
+          branches:
+            ignore: master
+    - promote:
+        context: org-global
+        requires:
+          - hold-promote
+          - notify-promote
+        filters:
+          branches:
+            ignore: master
