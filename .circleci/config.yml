@@ -112,6 +112,7 @@ jobs:
 
               [[ $success -ge $threshold ]] || sleep $interval
             done
+            touch /tmp/workspace/selenium-container-ready
 
       - run:
           name: Configure Selenium container
