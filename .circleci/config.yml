@@ -149,13 +149,14 @@ jobs:
           name: Run Selenium Tests
           command: |
             pushd planet4-docker-selenium-tests
-            docker run --rm \
+            docker run -d \
               --env-file /tmp/workspace/var/variables.env \
               --name planet4-tests \
               --network "container:test_openresty_1" \
               --shm-size=2g \
               planet4-selenium-tests
             docker exec planet4-tests vendor/bin/phpunit -c tests
+            docker stop planet4-tests
             popd
 
       - persist_to_workspace:
