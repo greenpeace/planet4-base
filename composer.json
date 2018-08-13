@@ -33,7 +33,7 @@
 		"wpackagist-plugin/shortcode-ui": "0.7.3",
 		"wpackagist-plugin/wordfence": "7.1.10",
 		"wpackagist-plugin/wp-redis": "0.7.0",
-		"wpackagist-plugin/wp-stateless": "2.1.6"
+		"wpackagist-plugin/wp-stateless": "2.1.7"
 	},
 
 	"config": {
