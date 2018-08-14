@@ -209,6 +209,8 @@ jobs:
           command: |
               sites=(
                 "brasil" \
+                "canada" \
+                "defaultcontent" \
                 "eu-unit" \
                 "flibble" \
                 "india" \
