@@ -330,7 +330,7 @@ workflows:
     - hold-promote:
         type: approval
         requires:
-          - deploy-branch
+          - deploy-develop
         filters:
           branches:
             only: develop
