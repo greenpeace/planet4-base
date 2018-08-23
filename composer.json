@@ -25,7 +25,7 @@
 		"webdevstudios/cmb2": "2.4.*",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.0.8",
-		"wpackagist-plugin/elasticpress": "2.6.0",
+		"wpackagist-plugin/elasticpress": "2.5.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/google-sitemap-generator": "4.0.9",
 		"wpackagist-plugin/nginx-helper": "1.9.11",
