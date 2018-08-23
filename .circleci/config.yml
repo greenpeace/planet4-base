@@ -6,7 +6,7 @@ defaults: &defaults
 version: 2
 
 jobs:
-  build-develop:
+  build-branch:
     <<: *defaults
     environment:
       APP_HOSTNAME: k8s.p4.greenpeace.org
@@ -304,7 +304,7 @@ workflows:
   version: 2
   develop:
     jobs:
-    - build-develop:
+    - build-branch:
         context: org-global
         filters:
           branches:
@@ -314,7 +314,7 @@ workflows:
     # - test-selenium:
     #     context: org-global
     #     requires:
-    #       - build-develop
+    #       - build-branch
     #     filters:
     #       branches:
     #         ignore: master
@@ -323,31 +323,31 @@ workflows:
     - deploy-develop:
         context: org-global
         requires:
-          - build-develop
+          - build-branch
         filters:
           branches:
-            ignore: master
+            only: develop
     - hold-promote:
         type: approval
         requires:
-          - deploy-develop
+          - deploy-branch
         filters:
           branches:
-            ignore: master
+            only: develop
     - trigger-planet4:
         context: org-global
         requires:
           - deploy-develop
         filters:
           branches:
-            ignore: master
+            only: develop
     - notify-promote:
         context: org-global
         requires:
           - deploy-develop
         filters:
           branches:
-            ignore: master
+            only: develop
     - promote:
         context: org-global
         requires:
@@ -355,4 +355,4 @@ workflows:
           - notify-promote
         filters:
           branches:
-            ignore: master
+            only: develop
