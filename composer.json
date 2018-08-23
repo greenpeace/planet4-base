@@ -97,6 +97,7 @@
 			"@core:js-minify",
 			"@core:js-blocks",
 			"@core:js-blocks-minify",
+			"@core:modify-users",
 			"@site:custom"
 		],
 
@@ -133,6 +134,8 @@
 		"core:js-minify" : "minifyjs public/wp-content/themes/planet4-master-theme/assets/js/custom.js > public/wp-content/themes/planet4-master-theme/assets/js/main.js",
 		"core:js-blocks" : "cat public/wp-content/plugins/planet4-plugin-blocks/assets/js/partials/*.js > public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js",
 		"core:js-blocks-minify" : "minifyjs public/wp-content/plugins/planet4-plugin-blocks/assets/js/custom.js > public/wp-content/plugins/planet4-plugin-blocks/assets/js/blocks.js",
+
+		"core:modify-users" : "bash modify_users.sh",
 
 		"plugin:deactivate": "wp plugin deactivate --all",
 		"plugin:activate": "wp plugin activate --all",
