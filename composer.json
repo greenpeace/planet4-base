@@ -26,8 +26,8 @@
 		"wpackagist-plugin/akismet": "4.0.8",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/google-sitemap-generator": "4.0.9",
-		"wpackagist-plugin/nginx-helper": "1.9.11",
-		"wpackagist-plugin/redirection": "3.4.1",
+		"wpackagist-plugin/nginx-helper": "1.9.12",
+		"wpackagist-plugin/redirection": "3.5",
 		"wpackagist-plugin/shortcode-ui": "0.7.3",
 		"wpackagist-plugin/wordfence": "7.1.12",
 		"wpackagist-plugin/wp-redis": "0.7.0",
@@ -110,7 +110,7 @@
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
 		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
 
-		"install:searchwp": "wp plugin install https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.15.zip --activate",
+		"install:searchwp": "wp plugin install https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.16.zip --activate",
 
 		"redis:enable" : "wp redis enable",
 
