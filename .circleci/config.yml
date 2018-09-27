@@ -208,10 +208,12 @@ jobs:
           name: Trigger Planet 4 NRO sites
           command: |
               sites=(
+                "africa" \
                 "brasil" \
                 "canada" \
                 "colombia" \
                 "defaultcontent" \
+                "denmark" \
                 "dev-search" \
                 "eu-unit" \
                 "flibble" \
