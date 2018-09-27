@@ -212,6 +212,7 @@ jobs:
                 "canada" \
                 "colombia" \
                 "defaultcontent" \
+                "dev-search" \
                 "eu-unit" \
                 "flibble" \
                 "greece" \
@@ -221,7 +222,6 @@ jobs:
                 "mena" \
                 "netherlands" \
                 "new-zealand" \
-                "search" \
               )
               for i in "${sites[@]}"
               do
