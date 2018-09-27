@@ -210,13 +210,18 @@ jobs:
               sites=(
                 "brasil" \
                 "canada" \
+                "colombia" \
                 "defaultcontent" \
                 "eu-unit" \
                 "flibble" \
+                "greece" \
                 "india" \
+                "international" \
                 "luxembourg" \
                 "mena" \
                 "netherlands" \
+                "new-zealand" \
+                "search" \
               )
               for i in "${sites[@]}"
               do
