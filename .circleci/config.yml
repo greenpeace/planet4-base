@@ -218,10 +218,12 @@ jobs:
                 "eu-unit" \
                 "flibble" \
                 "greece" \
+                "hungary" \
                 "india" \
                 "international" \
                 "luxembourg" \
                 "mena" \
+                "mexico" \
                 "netherlands" \
                 "new-zealand" \
               )
