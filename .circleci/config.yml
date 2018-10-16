@@ -209,8 +209,10 @@ jobs:
           command: |
               sites=(
                 "africa" \
+                "argentina" \
                 "brasil" \
                 "canada" \
+                "chile" \
                 "colombia" \
                 "czech-republic" \
                 "defaultcontent" \
