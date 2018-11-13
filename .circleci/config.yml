@@ -210,10 +210,12 @@ jobs:
               sites=(
                 "africa" \
                 "argentina" \
+                "belgium" \
                 "brasil" \
                 "canada" \
                 "chile" \
                 "colombia" \
+                "croatia" \
                 "czech-republic" \
                 "defaultcontent" \
                 "denmark" \
