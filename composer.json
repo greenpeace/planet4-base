@@ -16,7 +16,7 @@
 	"require": {
 		"composer/installers": "~1.0",
 		"greenpeace/planet4-content-default": "0.2.*",
-		"greenpeace/planet4-master-theme" : "1.23",
+		"greenpeace/planet4-master-theme" : "1.23.1",
 		"greenpeace/planet4-plugin-blocks" : "1.23",
 		"greenpeace/planet4-plugin-medialibrary" : "1.4",
 		"matthiasmullie/minify": "^1.3",
