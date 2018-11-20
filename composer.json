@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "1.33",
+	"version": "1.34",
 
 	"repositories": [
 		{
@@ -16,9 +16,9 @@
 	"require": {
 		"composer/installers": "~1.0",
 		"greenpeace/planet4-content-default": "0.2.*",
-		"greenpeace/planet4-master-theme" : "1.23.1",
-		"greenpeace/planet4-plugin-blocks" : "1.23",
-		"greenpeace/planet4-plugin-medialibrary" : "1.4",
+		"greenpeace/planet4-master-theme" : "1.24",
+		"greenpeace/planet4-plugin-blocks" : "1.24",
+		"greenpeace/planet4-plugin-medialibrary" : "1.5",
 		"matthiasmullie/minify": "^1.3",
 		"cmb2/cmb2": "2.4.*",
 		"wikimedia/composer-merge-plugin": "1.4.1",
