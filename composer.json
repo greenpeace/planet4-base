@@ -15,7 +15,6 @@
 
 	"require": {
 		"composer/installers": "~1.0",
-		"greenpeace/planet4-content-default": "0.2.*",
 		"greenpeace/planet4-master-theme" : "1.25",
 		"greenpeace/planet4-plugin-blocks" : "1.25",
 		"greenpeace/planet4-plugin-medialibrary" : "1.5",
@@ -58,16 +57,16 @@
 	"scripts": {
 		"site-install": [
 			"@reset:public", "@download:wordpress", "@copy:health-check",
-			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:assets", "@copy:plugins",
+			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
 			"@install:searchwp",
-			"@core:initial-content", "@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
+			"@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
 			"@core:style-child", "@site:custom"
 		],
 
 		"site-update": [
 			"@download:wordpress", "@copy:health-check",
-			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:assets", "@copy:plugins",
+			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:updatedb", "@plugin:activate", "@theme:activate",
 			"@install:searchwp",
 			"@core:add-contributor-capabilities", "@redis:enable", "@core:style-child", "@site:custom"
@@ -75,9 +74,9 @@
 
 		"docker-site-install": [
 			"@download:wordpress", "@copy:health-check",
-			"@reset:themes", "@copy:themes", "@copy:assets", "@copy:plugins",
+			"@reset:themes", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@install:searchwp", "@core:initial-content", "@core:style-child", "@site:custom"
+			"@install:searchwp", "@core:style-child", "@site:custom"
 		],
 
 		"site:global": [
@@ -96,7 +95,6 @@
 		"download:wordpress": "wp core download --version=4.9.8 --path=public --force",
 		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
-		"copy:assets" : "rsync -ar vendor/greenpeace/planet4-content-default/assets public/wp-content/themes/planet4-master-theme",
 
 		"install:searchwp": "wp plugin install https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.17.zip --activate",
 
@@ -105,7 +103,6 @@
 		"core:config": "wp core config --force",
 		"core:install": "wp core install",
 		"core:updatedb": "wp core update-db",
-		"core:initial-content": "composer run-script content-default -d vendor/greenpeace/planet4-content-default ",
 		"core:add-author-capabilities": "wp cap add author edit_others_posts; wp cap add author delete_others_posts; wp cap add author delete_private_posts;wp cap add author edit_private_posts;wp cap add author read_private_posts;",
 		"core:add-contributor-capabilities": "wp cap add contributor upload_files",
 
