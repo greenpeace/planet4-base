@@ -3,3 +3,6 @@ wp-cli.yml
 .DS_Store
 secrets/
 composer\.lock
+vendor
+public
+.install
