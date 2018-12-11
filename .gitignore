@@ -1,5 +1,5 @@
 .idea
-wp-cli.yml
+wp-cli.local.yml
 .DS_Store
 secrets/
 composer\.lock
