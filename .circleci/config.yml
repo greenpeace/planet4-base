@@ -41,7 +41,7 @@ jobs:
             - var
             - src
 
-  test-selenium:
+  test-codeception:
     <<: *defaults
     steps:
       - setup_remote_docker
@@ -50,119 +50,45 @@ jobs:
           at: /tmp/workspace
 
       - run:
-          name: Build Selenium Test Container
-          background: true
-          command: |
-            git clone https://github.com/greenpeace/planet4-docker-selenium-tests
-            if ! docker build -t planet4-selenium-tests planet4-docker-selenium-tests
-            then
-              TYPE="Selenium Container Build" notify-job-failure.sh
-              exit 1
-            fi
-            touch /tmp/workspace/selenium-container-built
-
-
-      - run:
           name: Clone planet4-docker-compose
           command: |
             git clone https://github.com/greenpeace/planet4-docker-compose
+            pushd planet4-docker-compose
+            git checkout codeception
+            popd
 
       - run:
-          name: Start docker-compose
+          name: Run tests
           command: |
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
             export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
 
             pushd planet4-docker-compose
-            docker-compose -p test -f docker-compose.stateless.yml up -d
+            make ci
             popd
 
       - run:
-          name: Wait until containers are ready
+          name: Extract test artifacts
+          when: always
           command: |
-            # 2 seconds * 150 == 5+ minutes
-            interval=2
-            loop=150
+            export COMPOSE_FILE=docker-compose.ci.yml
+            export COMPOSE_PROJECT_NAME=$(basename "${PWD}" | sed 's/[\w.-]//g')
 
-            # Number of consecutive successes to qualify as 'up'
-            threshold=2
-            success=0
-            until [[ $success -ge $threshold ]]
-            do
-              # Curl to container and expect 'greenpeace' in the response
-              if docker run --network "container:test_openresty_1" --rm appropriate/curl -s -k "http://localhost" | grep -i "greenpeace" > /dev/null
-              then
-                success=$((success+1))
-                echo "Success: $success/$threshold"
-              else
-                success=0
-              fi
-
-              loop=$((loop-1))
-              if [[ $loop -lt 1 ]]
-              then
-                >&2 echo "[ERROR] Timeout waiting for docker-compose to start"
-                >&2 docker-compose -p test logs
-                exit 1
-              fi
-
-              [[ $success -ge $threshold ]] || sleep $interval
-            done
-
-      - run:
-          name: Configure Selenium container
-          command: |
-            pushd planet4-docker-selenium-tests
-            cat variables.env.example | sed "s/test.planet4.dev/localhost/g" > /tmp/workspace/var/variables.env
-            popd
-
-      - run:
-          name: Configure WP Options
-          command: |
-            source /tmp/workspace/var/variables.env
-            docker exec test_php-fpm_1 wp option set siteurl "http://localhost"
-            docker exec test_php-fpm_1 wp option set home "http://localhost"
-            docker exec test_php-fpm_1 wp user create ${PLANET4_USER} noreply@greenpeace.org --role=administrator --user_pass=${PLANET4_USER_PASS}
-            docker exec test_redis_1 redis-cli flushdb
-
-      - run:
-          name: Wait for Selenium container to build
-          command: |
-            # 2 seconds * 150 == 5+ minutes
-            interval=2
-            loop=150
-
-            while [ ! -f /tmp/workspace/selenium-container-built ]
-            do
-              loop=$((loop-1))
-              if [[ $loop -lt 1 ]]
-              then
-                >&2 echo "[ERROR] Timeout waiting for docker-compose to start"
-                >&2 docker-compose logs
-                exit 1
-              fi
-              sleep $interval
-            done
-
-      - run:
-          name: Run Selenium Tests
-          command: |
-            pushd planet4-docker-selenium-tests
-            docker run -d \
-              --env-file /tmp/workspace/var/variables.env \
-              --name planet4-tests \
-              --network "container:test_openresty_1" \
-              --shm-size=2g \
-              planet4-selenium-tests
-            docker exec planet4-tests vendor/bin/phpunit -c tests
-            docker stop planet4-tests
+            pushd planet4-docker-compose
+            docker cp $(docker-compose ps -q php-fpm):/app/source/tests/_output /tmp/artifacts
             popd
 
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
             - var
+
+      - store_test_results:
+          path: /tmp/artifacts
+
+      - store_artifacts:
+          path: /tmp/artifacts
 
   deploy-develop:
     <<: *defaults
@@ -327,15 +253,13 @@ workflows:
             ignore: master
           tags:
             ignore: /.*/
-    # - test-selenium:
-    #     context: org-global
-    #     requires:
-    #       - build-branch
-    #     filters:
-    #       branches:
-    #         ignore: master
-    #       tags:
-    #         ignore: /.*/
+    - test-codeception:
+        context: org-global
+        requires:
+          - build-branch
+        filters:
+          branches:
+            only: codeception
     - deploy-develop:
         context: org-global
         requires:
