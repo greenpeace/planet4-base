@@ -2,28 +2,7 @@
 
 class AcceptanceTester extends \Codeception\Actor
 {
-    use _generated\AcceptanceTesterActions;
-
-	function generateRandomSlug($length = 10)
-	{
-		$characters = 'abcdefghijklmnopqrstuvwxyz';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		return $randomString;
-	}
-
-	function generateShortcode($name, $data)
-	{
-		$result = '[' . $name . '';
-		foreach ($data as $key => $value) {
-			$result .= ' ' . $key . '="' . $value . '"';
-		}
-		$result .= ' /]';
-		return $result;
-	}
+	use _generated\AcceptanceTesterActions;
 
 	public function fillFields($data)
 	{
@@ -42,6 +21,13 @@ class AcceptanceTester extends \Codeception\Actor
 		}
 		$I->loginAsAdmin();
 		$I->saveSessionSnapshot('login/admin');
+	}
+
+	public function getP4Option($name)
+	{
+		$I = $this;
+		$value = $I->grabFromDatabase('wp_options', 'option_value', ['option_name' => 'planet4_options']);
+		return unserialize($value)[$name];
 	}
 
 }

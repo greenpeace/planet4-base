@@ -1,6 +1,6 @@
 <?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('login once');
+$I->wantTo('login to wordpress admin');
 
 $I->loginAsAdminCached();
 

@@ -7,12 +7,8 @@ $I->amOnPage('/');
 $I->see('People Power', 'h2');
 $I->see('Change the world', 'h2');
 
-$lines = explode("\n", $I->grabPageSource());
+// the copyright notice appears on the page
+$I->seeInSource($I->getP4Option('copyright_line1'));
 
-// check we have no php warnings
-
-foreach ($lines as $line) {
-	$I->assertNotContains('<b>Warning</b>:', $line);
-}
-
-$I->assertNotContains('<b>Warning</b>:', $I->grabPageSource());
+// check we have no php warnings on the page
+$I->dontSeeInSource('<b>Warning</b>:');

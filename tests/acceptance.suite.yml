@@ -11,6 +11,7 @@ modules:
         - Asserts
         - WPDb
         - WPWebDriver
+        - WPCLI
         - \Helper\Acceptance
     config:
         WPDb:
@@ -34,3 +35,6 @@ modules:
             adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
             adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
             adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
+        WPCLI:
+          path: /app/source/public
+          throw: true
