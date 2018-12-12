@@ -63,7 +63,6 @@ jobs:
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
             export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
-            export GIT_REF=codeception
 
             pushd planet4-docker-compose
             make ci
@@ -76,11 +75,9 @@ jobs:
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
             export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
-            export COMPOSE_FILE=docker-compose.ci.yml
-            export COMPOSE_PROJECT_NAME=$(basename "${PWD}" | sed 's/[\w.-]//g')
 
             pushd planet4-docker-compose
-            docker cp $(docker-compose ps -q php-fpm):/app/source/tests/_output /tmp/artifacts
+            make ci-extract-artifacts
             popd
 
       - persist_to_workspace:
