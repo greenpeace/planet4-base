@@ -63,6 +63,7 @@ jobs:
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
             export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
+            export GIT_REF=codeception
 
             pushd planet4-docker-compose
             make ci
@@ -72,6 +73,9 @@ jobs:
           name: Extract test artifacts
           when: always
           command: |
+            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
+            export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
+            export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
             export COMPOSE_FILE=docker-compose.ci.yml
             export COMPOSE_PROJECT_NAME=$(basename "${PWD}" | sed 's/[\w.-]//g')
 
