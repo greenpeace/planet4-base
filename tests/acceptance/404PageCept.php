@@ -11,5 +11,3 @@ $I->seeInSource($html);
 $I->seeElement('input', ['placeholder' => 'Search']);
 
 $I->seeElement('img', ['src' => $backgroundImage]);
-
-// <img src="https://storage.googleapis.com/planet4-defaultcontent-stateless-develop/2018/05/fa9dc460-deep-sea-oil.jpg" class="page-header-image img-fluid">

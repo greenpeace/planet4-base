@@ -7,15 +7,23 @@ namespace Helper;
 
 class Acceptance extends \Codeception\Module
 {
-	function generateRandomSlug($length = 10)
+
+	function generateRandomString(
+		$length = 10,
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	)
 	{
-		$characters = 'abcdefghijklmnopqrstuvwxyz';
 		$charactersLength = strlen($characters);
 		$randomString = '';
 		for ($i = 0; $i < $length; $i++) {
 			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
 		return $randomString;
+	}
+
+	function generateRandomSlug($length = 10)
+	{
+		return $this->generateRandomString($length, 'abcdefghijklmnopqrstuvwxyz');
 	}
 
 	function generateShortcode($name, $data)
