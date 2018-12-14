@@ -8,6 +8,13 @@ namespace Helper;
 class Acceptance extends \Codeception\Module
 {
 
+	/**
+	 * Generate a random string of a given length from a given set of characters
+	 *
+	 * @param int $length
+	 * @param string $characters
+	 * @return string
+	 */
 	function generateRandomString(
 		$length = 10,
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -21,11 +28,31 @@ class Acceptance extends \Codeception\Module
 		return $randomString;
 	}
 
+	/**
+	 * Generate a random string suitable to be used as a WordPress slug
+	 *
+	 * @param int $length
+	 * @return string
+	 */
 	function generateRandomSlug($length = 10)
 	{
 		return $this->generateRandomString($length, 'abcdefghijklmnopqrstuvwxyz');
 	}
 
+	/**
+	 * Given a shortcode name as set of parameters, format it into WordPress shortcode syntax
+	 *
+	 * e.g.
+	 *
+	 * ```
+	 * $I->generateShortcode('myshortcode_name', ['with' => 'params', 'like' => 'this']);
+	 * # will give you [myshortcode_name with="params" like="this" /]
+	 * ```
+	 *
+	 * @param $name
+	 * @param $data
+	 * @return string
+	 */
 	function generateShortcode($name, $data)
 	{
 		$result = '[' . $name . '';
