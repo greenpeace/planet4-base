@@ -222,7 +222,9 @@ jobs:
                 "dev-search" \
                 "eu-unit" \
                 "flibble" \
+                "finland" \
                 "greece" \
+                "handbook" \
                 "hungary" \
                 "india" \
                 "international" \
@@ -233,6 +235,7 @@ jobs:
                 "mexico" \
                 "netherlands" \
                 "new-zealand" \
+                "storytelling" \
               )
               for i in "${sites[@]}"
               do
