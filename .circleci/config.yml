@@ -208,34 +208,7 @@ jobs:
           name: Trigger Planet 4 NRO sites
           command: |
               sites=(
-                "africa" \
-                "argentina" \
-                "belgium" \
-                "brasil" \
-                "canada" \
-                "chile" \
-                "colombia" \
-                "croatia" \
-                "czech-republic" \
-                "defaultcontent" \
-                "denmark" \
-                "dev-search" \
-                "eu-unit" \
-                "flibble" \
-                "finland" \
-                "greece" \
-                "handbook" \
-                "hungary" \
-                "india" \
-                "international" \
-                "italy" \
-                "japan" \
-                "luxembourg" \
-                "mena" \
-                "mexico" \
-                "netherlands" \
-                "new-zealand" \
-                "storytelling" \
+                "koyansync" \
               )
               for i in "${sites[@]}"
               do
