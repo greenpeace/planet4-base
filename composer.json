@@ -28,10 +28,10 @@
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
 		"wpackagist-plugin/nginx-helper": "2.*",
 		"wpackagist-plugin/redirection": "3.*",
-		"wpackagist-plugin/shortcode-ui": "0.7.3",
+		"wpackagist-plugin/shortcode-ui": "0.*",
 		"wpackagist-plugin/wordfence": "7.*",
 		"wpackagist-plugin/wp-redis": "0.7.*",
-		"wpackagist-plugin/wp-stateless": "2.1.9"
+		"wpackagist-plugin/wp-stateless": "2.*"
 	},
 
 	"config": {
