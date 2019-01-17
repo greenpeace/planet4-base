@@ -94,8 +94,8 @@ jobs:
   build-and-test-codeception:
     <<: *defaults
     environment:
-      APP_HOSTNAME: k8s.p4.greenpeace.org
-      APP_HOSTPATH: base
+      APP_HOSTNAME: www.planet4.test
+      APP_HOSTPATH: 
       CLOUDSQL_INSTANCE: p4-develop-k8s
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
