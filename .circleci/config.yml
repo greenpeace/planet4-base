@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: gcr.io/planet-4-151612/p4-builder:latest
+    - image: gcr.io/planet-4-151612/p4-builder:build-307
   working_directory:  /home/circleci/
 
 version: 2
@@ -115,7 +115,7 @@ jobs:
       - run:
           name: Build - Build containers
           working_directory: /home/circleci
-          command: make
+          command: MASTER_THEME_BRANCH=dev-release/v1.30.0 make
       - run:
           name: Test - Clone planet4-docker-compose
           command: |
