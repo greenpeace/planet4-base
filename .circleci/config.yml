@@ -149,7 +149,9 @@ jobs:
                 "dev-search" \
                 "eu-unit" \
                 "flibble" \
+                "finland" \
                 "greece" \
+                "handbook" \
                 "hungary" \
                 "india" \
                 "international" \
@@ -160,6 +162,8 @@ jobs:
                 "mexico" \
                 "netherlands" \
                 "new-zealand" \
+                "storytelling" \
+                "sweden" \
               )
               for i in "${sites[@]}"
               do
@@ -275,10 +279,17 @@ workflows:
         filters:
           branches:
             only: develop
+    - hold-trigger-planet4:
+        type: approval
+        requires:
+          - deploy-develop
+        filters:
+          branches:
+            only: develop
     - trigger-planet4:
         context: org-global
         requires:
-          - deploy-develop
+          - hold-trigger-planet4
         filters:
           branches:
             only: develop
