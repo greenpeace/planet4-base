@@ -18,7 +18,7 @@ $I->havePageInDatabase([
 
 $I->amOnPage('/' . $slug);
 
-$I->see($videoTitle, '.video-block h2');
+$I->see($videoTitle, '.media-block h2');
 $I->seeElement('.video-block .video-section iframe', [
 	'src' => 'https://www.youtube.com/embed/' . $videoId . '?autoplay=0&rel=0'
 ]);
