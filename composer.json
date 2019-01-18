@@ -120,8 +120,5 @@
 		"server": "php -S 127.0.0.1:9191 -t public",
 		"site:custom" : ""
 
-	},
-	"require-dev": {
-		"lucatume/wp-browser": "^2.2"
 	}
 }

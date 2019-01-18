@@ -1,0 +1,21 @@
+{
+	"name": "greenpeace/planet4-base/tests",
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://packagist.org"
+		}
+	],
+	"require": {
+	},
+	"config": {
+		"secure-http": false,
+		"github-protocols": ["https"],
+    "platform": {
+      "php": "7.0.32"
+    }
+	},
+	"require-dev": {
+		"lucatume/wp-browser": "^2.2"
+	}
+}
