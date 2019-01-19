@@ -95,7 +95,7 @@ jobs:
     <<: *defaults
     environment:
       APP_HOSTNAME: www.planet4.test
-      APP_HOSTPATH: 
+      APP_HOSTPATH: base
       CLOUDSQL_INSTANCE: p4-develop-k8s
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
