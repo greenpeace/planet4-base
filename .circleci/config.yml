@@ -115,7 +115,9 @@ jobs:
       - run:
           name: Build - Build containers
           working_directory: /home/circleci
-          command: MASTER_THEME_BRANCH=dev-release/v1.30.0 make
+          command: |
+            echo "Master theme branch is ${MASTER_THEME_BRANCH}"
+            make
       - run:
           name: Test - Clone planet4-docker-compose
           command: |
