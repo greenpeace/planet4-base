@@ -53,8 +53,6 @@ jobs:
           name: Clone planet4-docker-compose
           command: |
             git clone https://github.com/greenpeace/planet4-docker-compose
-            pushd planet4-docker-compose
-            popd
 
       - run:
           name: Run tests
