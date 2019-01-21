@@ -54,7 +54,6 @@ jobs:
           command: |
             git clone https://github.com/greenpeace/planet4-docker-compose
             pushd planet4-docker-compose
-            git checkout codeception
             popd
 
       - run:
