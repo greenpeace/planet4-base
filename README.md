@@ -45,13 +45,16 @@ necessary and any time.
 You need to create a [Wordpress command line](http://wp-cli.org/) configuration file.
 You can do that by copying the default one:
 ```
-cp wp-cli.yml.default wp-cli.yml
+cp wp-cli.yml.default wp-cli.local.yml
 ```
 
+The base configuration file `wp-cli.yml` is part of the repository and contains minimal
+configuration, all your local changes should go in `wp-cli.local.yml`.
+
 This file is not tracked by default since it contains the complete configuration of
-your Wordpress instance such as your database user passwod. When you need to change
+your Wordpress instance such as your database user password. When you need to change
 the database configuration, the title or the URL of this
-installation, please edit `wp-cli.yml`.
+installation, please edit `wp-cli.local.yml`.
 ```
 path: public
 
