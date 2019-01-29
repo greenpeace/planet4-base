@@ -38,3 +38,10 @@ modules:
         WPCLI:
           path: /app/source/public
           throw: true
+extensions:
+    enabled:
+        - Codeception\Extension\Recorder
+    config:
+        Codeception\Extension\Recorder:
+            delete_successful: false
+            module: WPWebDriver
