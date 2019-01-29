@@ -16,8 +16,8 @@
 	"require": {
 		"composer/installers": "~1.0",
 		"greenpeace/planet4-content-default": "0.2.*",
-		"greenpeace/planet4-master-theme" : "1.30",
-		"greenpeace/planet4-plugin-blocks" : "1.30",
+		"greenpeace/planet4-master-theme" : "1.31",
+		"greenpeace/planet4-plugin-blocks" : "1.31",
 		"greenpeace/planet4-plugin-engagingnetworks": "1.2",
 		"greenpeace/planet4-plugin-medialibrary" : "1.5",
 		"matthiasmullie/minify": "^1.3",
