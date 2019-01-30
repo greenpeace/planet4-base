@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "005eb6842037e06667b2c45aa93aa35d",
+    "content-hash": "04d160222deee6a022fb41686f6abf34",
     "packages": [],
     "packages-dev": [
         {
@@ -327,6 +327,42 @@
             ],
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
             "time": "2018-07-26T11:55:37+00:00"
+        },
+        {
+            "name": "codeception/visualception",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/VisualCeption.git",
+                "reference": "9de2e61956c08f5181951293bc099e68405ed99a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/VisualCeption/zipball/9de2e61956c08f5181951293bc099e68405ed99a",
+                "reference": "9de2e61956c08f5181951293bc099e68405ed99a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-imagick": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "^2.2.0",
+                "phpunit/phpunit": "^5.7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "module/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Visual regression tests for Codeception",
+            "homepage": "https://github.com/Codeception/VisualCeption",
+            "time": "2018-10-07T21:22:39+00:00"
         },
         {
             "name": "composer/ca-bundle",

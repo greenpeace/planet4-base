@@ -13,6 +13,11 @@ modules:
         - WPWebDriver
         - WPCLI
         - \Helper\Acceptance
+        - VisualCeption:
+            maximumDeviation: 5                                   # deviation in percent
+            saveCurrentImageIfFailure: true                       # if true, VisualCeption saves the current
+            fullScreenShot: true                                  # fullpage screenshot
+            module: WPWebDriver
     config:
         WPDb:
             dsn: 'mysql:host=%TEST_SITE_DB_HOST%;dbname=%TEST_SITE_DB_NAME%'
