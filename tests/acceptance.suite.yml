@@ -35,6 +35,7 @@ modules:
             adminUsername: '%TEST_SITE_ADMIN_USERNAME%'
             adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
             adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
+            clear_cookies: true
         WPCLI:
           path: /app/source/public
           throw: true
