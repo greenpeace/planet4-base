@@ -252,10 +252,7 @@ jobs:
       - run:
           name: Notify of held workflow
           command: |
-            old_version=$(git-current-tag.sh)
-            old_version=${old_version:-v0.0.0}
-            new_version=$(increment-version.sh $old_version)
-            echo $old_version > /tmp/workspace/var/old_version
+            new_version=$(git-new-version.sh)
             echo $new_version > /tmp/workspace/var/new_version
             TYPE="@rawalker Promote $new_version" notify-job-hold.sh
       - run:
