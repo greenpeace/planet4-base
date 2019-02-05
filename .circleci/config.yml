@@ -326,6 +326,9 @@ workflows:
         context: org-global
         requires:
           - build-branch
+        filters:
+          branches:
+            only: develop
     - deploy-develop:
         context: org-global
         requires:
