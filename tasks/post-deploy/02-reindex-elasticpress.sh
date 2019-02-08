@@ -1,2 +1,2 @@
 #!/bin/sh
-wp elasticpress index
+# wp elasticpress index
