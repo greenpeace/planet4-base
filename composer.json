@@ -25,6 +25,7 @@
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.*",
 		"wpackagist-plugin/classic-editor":"1.*",
+		"wpackagist-plugin/elasticpress":"2.7.*",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
 		"wpackagist-plugin/nginx-helper": "2.*",
