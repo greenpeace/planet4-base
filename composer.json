@@ -64,7 +64,7 @@
 			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
 			"@install:searchwp",
-			"@core:initial-content", "@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
+			"@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
 			"@core:style-child", "@site:custom"
 		],
 
@@ -80,7 +80,7 @@
 			"@download:wordpress", "@copy:health-check",
 			"@reset:themes", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@install:searchwp", "@core:initial-content", "@core:style-child", "@site:custom"
+			"@install:searchwp", "@core:style-child", "@site:custom"
 		],
 
 		"site:global": [
@@ -107,7 +107,6 @@
 		"core:config": "wp core config --force",
 		"core:install": "wp core install",
 		"core:updatedb": "wp core update-db",
-		"core:initial-content": "composer run-script content-default -d vendor/greenpeace/planet4-content-default ",
 		"core:add-author-capabilities": "wp cap add author edit_others_posts; wp cap add author delete_others_posts; wp cap add author delete_private_posts;wp cap add author edit_private_posts;wp cap add author read_private_posts;",
 		"core:add-contributor-capabilities": "wp cap add contributor upload_files",
 
