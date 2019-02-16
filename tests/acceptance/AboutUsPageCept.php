@@ -6,11 +6,9 @@ $I->amOnPage('/about-us-2');
 
 $I->see('Who we are', 'h1');
 
-// TODO: This is empty:
 $I->scrollTo('.split-three-column');
 
-// TODO: This has broken images, and only three columns...
-$I->scrollTo('section.four-column');
+$I->see('Get to know our organisation', 'h2');
 
 $I->scrollTo('.media-block');
 
