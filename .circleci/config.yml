@@ -342,6 +342,7 @@ workflows:
         type: approval
         requires:
           - deploy-develop
+          - test-codeception
         filters:
           branches:
             only: develop
