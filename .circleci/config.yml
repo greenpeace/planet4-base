@@ -301,18 +301,13 @@ jobs:
       - deploy:
           name: Finish release
           command: |
-            cd /tmp/workspace/src
             # Finish release
-            if release-finish.sh $(cat /tmp/workspace/var/new_version)
-            then
-              TYPE="Release" notify-job-success.sh
-            else
-              TYPE="Release" notify-job-failure.sh
-            fi
+            release-finish.sh $(cat /tmp/workspace/var/new_version)
+            TYPE="Release" notify-job-success.sh
       - run:
           name: Notify failure
           when: on_fail
-          command: TYPE="Release $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
+          command: TYPE="Promote $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
 
 
 
