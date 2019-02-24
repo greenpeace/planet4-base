@@ -19,7 +19,8 @@ jobs:
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Configure
           command: |
@@ -44,7 +45,8 @@ jobs:
   test-codeception:
     <<: *defaults
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
 
       - attach_workspace:
           at: /tmp/workspace
