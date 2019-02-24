@@ -231,7 +231,10 @@ jobs:
                 "mexico" \
                 "netherlands" \
                 "new-zealand" \
+                "norway" \
+                "philippines" \
                 "storytelling" \
+                "thailand" \
                 "sweden" \
               )
               for i in "${sites[@]}"
