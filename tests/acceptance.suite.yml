@@ -4,7 +4,7 @@
 # Perform tests in browser using the WPWebDriver or WPBrowser.
 # Use WPDb to set up your initial database fixture.
 # If you need both WPWebDriver and WPBrowser tests - create a separate suite.
-
+---
 actor: AcceptanceTester
 modules:
     enabled:
@@ -22,7 +22,8 @@ modules:
             cleanup: false
             waitlock: 0
             url: '%TEST_SITE_WP_URL%'
-            urlReplacement: true #replace the hardcoded dump URL with the one above
+            #  replace the hardcoded dump URL with the one above
+            urlReplacement: true
             tablePrefix: '%TEST_SITE_TABLE_PREFIX%'
         WPWebDriver:
             url: '%TEST_SITE_WP_URL%'
@@ -37,8 +38,8 @@ modules:
             adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
             clear_cookies: true
         WPCLI:
-          path: /app/source/public
-          throw: true
+            path: /app/source/public
+            throw: true
 extensions:
     enabled:
         - Codeception\Extension\Recorder

@@ -1,7 +1,8 @@
+---
 defaults: &defaults
   docker:
     - image: gcr.io/planet-4-151612/p4-builder:latest
-  working_directory:  /home/circleci/
+  working_directory: /home/circleci/
 
 version: 2
 
@@ -250,7 +251,7 @@ jobs:
   notify-promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  /tmp/workspace/app
+    working_directory: /tmp/workspace/app
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -274,7 +275,7 @@ jobs:
   promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  /tmp/workspace/app
+    working_directory: /tmp/workspace/app
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -317,68 +318,67 @@ jobs:
           command: TYPE="Promote $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
 
 
-
 workflows:
   version: 2
   develop:
     jobs:
-    - build-branch:
-        context: org-global
-        filters:
-          branches:
-            ignore: master
-          tags:
-            ignore: /.*/
-    - test-codeception:
-        context: org-global
-        requires:
-          - build-branch
-        filters:
-          branches:
-            only: develop
-    - deploy-develop:
-        context: org-global
-        requires:
-          - build-branch
-        filters:
-          branches:
-            only: develop
-    - hold-promote:
-        type: approval
-        requires:
-          - deploy-develop
-          - test-codeception
-        filters:
-          branches:
-            only: develop
-    - hold-trigger-planet4:
-        type: approval
-        requires:
-          - deploy-develop
-          - test-codeception
-        filters:
-          branches:
-            only: develop
-    - trigger-planet4:
-        context: org-global
-        requires:
-          - hold-trigger-planet4
-        filters:
-          branches:
-            only: develop
-    - notify-promote:
-        context: org-global
-        requires:
-          - deploy-develop
-          - test-codeception
-        filters:
-          branches:
-            only: develop
-    - promote:
-        context: org-global
-        requires:
-          - hold-promote
-          - notify-promote
-        filters:
-          branches:
-            only: develop
+      - build-branch:
+          context: org-global
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /.*/
+      - test-codeception:
+          context: org-global
+          requires:
+            - build-branch
+          filters:
+            branches:
+              only: develop
+      - deploy-develop:
+          context: org-global
+          requires:
+            - build-branch
+          filters:
+            branches:
+              only: develop
+      - hold-promote:
+          type: approval
+          requires:
+            - deploy-develop
+            - test-codeception
+          filters:
+            branches:
+              only: develop
+      - hold-trigger-planet4:
+          type: approval
+          requires:
+            - deploy-develop
+            - test-codeception
+          filters:
+            branches:
+              only: develop
+      - trigger-planet4:
+          context: org-global
+          requires:
+            - hold-trigger-planet4
+          filters:
+            branches:
+              only: develop
+      - notify-promote:
+          context: org-global
+          requires:
+            - deploy-develop
+            - test-codeception
+          filters:
+            branches:
+              only: develop
+      - promote:
+          context: org-global
+          requires:
+            - hold-promote
+            - notify-promote
+          filters:
+            branches:
+              only: develop
