@@ -4,5 +4,4 @@ wp-cli.local.yml
 secrets/
 composer\.lock
 vendor
-public
 .install
