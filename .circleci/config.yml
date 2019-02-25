@@ -294,6 +294,7 @@ jobs:
             if ! composer validate
             then
               TYPE="Composer validation" notify-job-failure.sh
+              exit 1
             fi
             # Commit changed files
             git commit -a -m ":robot: Release v$tag"
