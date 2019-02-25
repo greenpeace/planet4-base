@@ -6,7 +6,7 @@ defaults: &defaults
 version: 2
 
 jobs:
-  build-develop:
+  build-branch:
     <<: *defaults
     environment:
       APP_HOSTNAME: k8s.p4.greenpeace.org
@@ -19,7 +19,8 @@ jobs:
       WP_DB_NAME: planet4-base_wordpress
       WP_TITLE: Greenpeace Base Development
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Configure
           command: |
@@ -41,129 +42,122 @@ jobs:
             - var
             - src
 
-  # test-selenium:
-  #   <<: *defaults
-  #   steps:
-  #     - setup_remote_docker
-  #
-  #     - attach_workspace:
-  #         at: /tmp/workspace
-  #
-  #     - run:
-  #         name: Build Selenium Test Container
-  #         background: true
-  #         command: |
-  #           git clone https://github.com/greenpeace/planet4-docker-selenium-tests
-  #           if ! docker build -t planet4-selenium-tests planet4-docker-selenium-tests
-  #           then
-  #             TYPE="Selenium Container Build" notify-job-failure.sh
-  #             exit 1
-  #           fi
-  #           touch /tmp/workspace/selenium-container-built
-  #
-  #     - run:
-  #         name: Clone planet4-docker-compose
-  #         command: |
-  #           git clone https://github.com/greenpeace/planet4-docker-compose
-  #
-  #     - run:
-  #         name: Start docker-compose
-  #         command: |
-  #           export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
-  #           export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
-  #           export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
-  #
-  #           pushd planet4-docker-compose
-  #           docker-compose -p test -f docker-compose.stateless.yml up -d
-  #           popd
-  #
-  #     - run:
-  #         name: Wait until containers are ready
-  #         command: |
-  #           # 2 seconds * 150 == 5+ minutes
-  #           interval=2
-  #           loop=150
-  #
-  #           # Number of consecutive successes to qualify as 'up'
-  #           threshold=2
-  #           success=0
-  #           until [[ $success -ge $threshold ]]
-  #           do
-  #             # Curl to container and expect status code 200
-  #             set +e
-  #             docker run --network "container:test_openresty_1" --rm appropriate/curl -s -k "http://localhost" | grep -q "greenpeace"
-  #
-  #             if [[ $? -eq 0 ]]
-  #             then
-  #               success=$((success+1))
-  #               echo "Success: $success/$threshold"
-  #             else
-  #               success=0
-  #             fi
-  #             set -e
-  #
-  #             loop=$((loop-1))
-  #             if [[ $loop -lt 1 ]]
-  #             then
-  #               >&2 echo "[ERROR] Timeout waiting for docker-compose to start"
-  #               >&2 docker-compose -p test logs
-  #               exit 1
-  #             fi
-  #
-  #             [[ $success -ge $threshold ]] || sleep $interval
-  #           done
-  #
-  #     - run:
-  #         name: Configure Selenium container
-  #         command: |
-  #           pushd planet4-docker-selenium-tests
-  #           cat variables.env.example | sed "s/test.planet4.dev/localhost/g" > /tmp/workspace/var/variables.env
-  #           popd
-  #
-  #     - run:
-  #         name: Configure WP Options
-  #         command: |
-  #           source /tmp/workspace/var/variables.env
-  #           docker exec test_php-fpm_1 wp option set siteurl "http://localhost"
-  #           docker exec test_php-fpm_1 wp option set home "http://localhost"
-  #           docker exec test_php-fpm_1 wp user create ${PLANET4_USER} noreply@greenpeace.org --role=administrator --user_pass=${PLANET4_USER_PASS}
-  #           docker exec test_redis_1 redis-cli flushdb
-  #
-  #     - run:
-  #         name: Wait for Selenium container to build
-  #         command: |
-  #           # 2 seconds * 150 == 5+ minutes
-  #           interval=2
-  #           loop=150
-  #
-  #           while [ ! -f /tmp/workspace/selenium-container-built ]
-  #           do
-  #             loop=$((loop-1))
-  #             if [[ $loop -lt 1 ]]
-  #             then
-  #               >&2 echo "[ERROR] Timeout waiting for docker-compose to start"
-  #               >&2 docker-compose logs
-  #               exit 1
-  #             fi
-  #             sleep $interval
-  #           done
-  #
-  #     - run:
-  #         name: Run Selenium Tests
-  #         command: |
-  #           pushd planet4-docker-selenium-tests
-  #           docker run --rm \
-  #             --env-file /tmp/workspace/var/variables.env \
-  #             --name planet4-tests \
-  #             --network "container:test_openresty_1" \
-  #             --shm-size=2g \
-  #             planet4-selenium-tests
-  #           popd
-  #
-  #     - persist_to_workspace:
-  #         root: /tmp/workspace
-  #         paths:
-  #           - var
+  test-codeception:
+    <<: *defaults
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Clone planet4-docker-compose
+          command: |
+            git clone https://github.com/greenpeace/planet4-docker-compose
+
+      - run:
+          name: Run tests
+          command: |
+            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
+            export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
+            export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
+
+            pushd planet4-docker-compose
+            make ci
+            popd
+
+      - run:
+          name: Extract test artifacts
+          when: always
+          command: |
+            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
+            export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
+            export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
+
+            pushd planet4-docker-compose
+            make ci-extract-artifacts
+            popd
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - var
+
+      - store_test_results:
+          path: /tmp/artifacts
+
+      - store_artifacts:
+          path: /tmp/artifacts
+
+  build-and-test-codeception:
+    <<: *defaults
+    environment:
+      APP_HOSTNAME: www.planet4.test
+      APP_HOSTPATH:
+      CLOUDSQL_INSTANCE: p4-develop-k8s
+      CONTAINER_PREFIX: planet4-base
+      GOOGLE_PROJECT_ID: planet-4-151612
+      HELM_NAMESPACE: develop
+      WP_DB_NAME: planet4-base_wordpress
+      WP_TITLE: Greenpeace Base Development
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build - Configure
+          command: |
+            activate-gcloud-account.sh
+            mkdir -p /tmp/workspace/var
+            mkdir -p /tmp/workspace/src
+            echo "${CIRCLE_BUILD_NUM}" > /tmp/workspace/var/circle-build-num
+      - run:
+          name: Build - Build containers
+          working_directory: /home/circleci
+          command: |
+            echo "Master theme branch is ${MASTER_THEME_BRANCH}"
+            make
+      - run:
+          name: Test - Clone planet4-docker-compose
+          command: |
+            git clone https://github.com/greenpeace/planet4-docker-compose
+      - run:
+          name: Test - Run tests
+          command: |
+            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
+            export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
+            export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
+
+            pushd planet4-docker-compose
+            make ci
+            popd
+
+      - run:
+          name: Test - Extract test artifacts
+          when: always
+          command: |
+            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
+            export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
+            export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
+
+            pushd planet4-docker-compose
+            make ci-extract-artifacts
+            popd
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - var
+
+      - store_test_results:
+          path: /tmp/artifacts
+
+      - store_artifacts:
+          path: /tmp/artifacts
+      - run:
+          name: Build - Notify failure
+          when: on_fail
+          command: TYPE="Test" notify-job-failure.sh
 
   deploy-develop:
     <<: *defaults
@@ -205,18 +199,49 @@ jobs:
       - checkout
       - attach_workspace:
           at: /tmp/workspace
-      - deploy:
+      - run:
           name: Trigger Planet 4 NRO sites
           command: |
-              # Skip triggers while debugging promotion
-              trigger-build.sh git@github.com:greenpeace/planet4-brasil.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-canada.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-eu-unit.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-flibble.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-india.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-luxembourg.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-mena.git develop
-              trigger-build.sh git@github.com:greenpeace/planet4-netherlands.git develop
+              sites=(
+                "africa" \
+                "argentina" \
+                "belgium" \
+                "brasil" \
+                "bulgaria" \
+                "canada" \
+                "chile" \
+                "colombia" \
+                "croatia" \
+                "czech-republic" \
+                "defaultcontent" \
+                "denmark" \
+                "dev-search" \
+                "eu-unit" \
+                "flibble" \
+                "finland" \
+                "greece" \
+                "handbook" \
+                "hungary" \
+                "india" \
+                "indonesia" \
+                "international" \
+                "italy" \
+                "japan" \
+                "luxembourg" \
+                "mena" \
+                "mexico" \
+                "netherlands" \
+                "new-zealand" \
+                "norway" \
+                "philippines" \
+                "storytelling" \
+                "thailand" \
+                "sweden" \
+              )
+              for i in "${sites[@]}"
+              do
+                trigger-build-api.sh planet4-$i develop
+              done
       - run:
           name: Notify failure
           when: on_fail
@@ -225,7 +250,7 @@ jobs:
   notify-promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  /tmp/workspace/src
+    working_directory:  /tmp/workspace/app
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -233,10 +258,7 @@ jobs:
       - run:
           name: Notify of held workflow
           command: |
-            old_version=$(git-current-tag.sh)
-            old_version=${old_version:-v0.0.0}
-            new_version=$(increment-version.sh $old_version)
-            echo $old_version > /tmp/workspace/var/old_version
+            new_version=$(git-new-version.sh)
             echo $new_version > /tmp/workspace/var/new_version
             TYPE="@rawalker Promote $new_version" notify-job-hold.sh
       - run:
@@ -246,18 +268,16 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - .
+            - app
+            - var
 
   promote:
     docker:
       - image: gcr.io/planet-4-151612/circleci-base:latest
-    working_directory:  /tmp/workspace/src
+    working_directory:  /tmp/workspace/app
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run:
-          name: Notify of resumed workflow
-          command: TYPE="@rawalker Promote $(cat /tmp/workspace/var/new_version)" notify-job-resume.sh
       - run: git flow init -d
       - deploy:
           name: Start release
@@ -277,62 +297,82 @@ jobs:
             fi
             # Commit changed files
             git commit -a -m ":robot: Release v$tag"
+      - run:
+          name: Configure git
+          command: |
+            mkdir -p ~/.ssh
+            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+            bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw==
+            ' >> ~/.ssh/known_hosts
       - deploy:
           name: Finish release
           command: |
-            cd /tmp/workspace/src
             # Finish release
-            if release-finish.sh $(cat /tmp/workspace/var/new_version)
-            then
-              TYPE="Release" notify-job-success.sh
-            else
-              TYPE="Release" notify-job-failure.sh
-            fi
+            release-finish.sh $(cat /tmp/workspace/var/new_version)
+            TYPE="Release" notify-job-success.sh
       - run:
           name: Notify failure
           when: on_fail
-          command: TYPE="Release $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
+          command: TYPE="Promote $(cat /tmp/workspace/var/new_version)" notify-job-failure.sh
+
 
 
 workflows:
   version: 2
   develop:
     jobs:
-    - build-develop:
+    - build-branch:
         context: org-global
         filters:
           branches:
             ignore: master
           tags:
             ignore: /.*/
+    - test-codeception:
+        context: org-global
+        requires:
+          - build-branch
+        filters:
+          branches:
+            only: develop
     - deploy-develop:
         context: org-global
         requires:
-          - build-develop
+          - build-branch
         filters:
           branches:
-            ignore: master
+            only: develop
     - hold-promote:
         type: approval
         requires:
           - deploy-develop
+          - test-codeception
         filters:
           branches:
-            ignore: master
+            only: develop
+    - hold-trigger-planet4:
+        type: approval
+        requires:
+          - deploy-develop
+          - test-codeception
+        filters:
+          branches:
+            only: develop
     - trigger-planet4:
         context: org-global
         requires:
-          - deploy-develop
+          - hold-trigger-planet4
         filters:
           branches:
-            ignore: master
+            only: develop
     - notify-promote:
         context: org-global
         requires:
           - deploy-develop
+          - test-codeception
         filters:
           branches:
-            ignore: master
+            only: develop
     - promote:
         context: org-global
         requires:
@@ -340,4 +380,4 @@ workflows:
           - notify-promote
         filters:
           branches:
-            ignore: master
+            only: develop
