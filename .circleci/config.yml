@@ -7,6 +7,12 @@ defaults: &defaults
 version: 2
 
 jobs:
+  lint:
+    docker:
+      - image: gcr.io/planet-4-151612/circleci-base:latest
+    steps:
+      - checkout
+      - run: make lint
   build-branch:
     <<: *defaults
     environment:
@@ -320,10 +326,13 @@ jobs:
 
 workflows:
   version: 2
-  develop:
+  branch:
     jobs:
+      - lint
       - build-branch:
           context: org-global
+          requires:
+            - lint
           filters:
             branches:
               ignore: master
@@ -335,7 +344,7 @@ workflows:
             - build-branch
           filters:
             branches:
-              only: develop
+              ignore: master
       - deploy-develop:
           context: org-global
           requires:
