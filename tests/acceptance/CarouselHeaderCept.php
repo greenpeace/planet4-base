@@ -8,6 +8,9 @@ $I->wantTo('check carousel header is rendered correctly');
 // Start on the homepage
 $I->amOnPage('/');
 
+// Lets scroll to the top
+$I->scrollTo('.page-template');
+
 // Verify first slide
 $I->see('Lorem Ipsum', 'h1');
 
