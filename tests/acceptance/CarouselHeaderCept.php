@@ -16,7 +16,7 @@ $I->see('Lorem Ipsum', 'h1');
 
 // Click on the next icon and verify next slide
 $I->click('.carousel-control-next-icon');
-$I->see('Cras faucibus ac erat ac auctor', 'h1');
+$I->see('Cras faucibus', 'h1');
 
 // Click on the first indicator and verify first slide
 $I->click('.carousel-indicators > li:first-child');
