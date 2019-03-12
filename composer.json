@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "1.45.0",
+	"version": "1.46.0",
 	"description": "Core Greenpeace Planet4 application",
 	"license": "GPL-3.0-or-later",
 	"repositories": [
@@ -16,10 +16,10 @@
 
 	"require": {
 		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "1.35",
-		"greenpeace/planet4-plugin-blocks" : "1.35",
+		"greenpeace/planet4-master-theme" : "1.36",
+		"greenpeace/planet4-plugin-blocks" : "1.36",
 		"greenpeace/planet4-plugin-engagingnetworks": "1.5",
-		"greenpeace/planet4-plugin-medialibrary" : "1.5",
+		"greenpeace/planet4-plugin-medialibrary" : "1.6",
 		"matthiasmullie/minify": "^1.3",
 		"cmb2/cmb2": "2.*",
 		"wikimedia/composer-merge-plugin": "1.4.1",
