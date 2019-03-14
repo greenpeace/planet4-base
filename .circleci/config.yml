@@ -235,15 +235,18 @@ jobs:
                 "italy" \
                 "japan" \
                 "luxembourg" \
+                "malaysia" \
                 "mena" \
                 "mexico" \
                 "netherlands" \
                 "new-zealand" \
                 "norway" \
                 "philippines" \
+                "slovenia" \
+                "southeastasia" \
                 "storytelling" \
-                "thailand" \
                 "sweden" \
+                "thailand" \
               )
               for i in "${sites[@]}"
               do
