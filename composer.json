@@ -29,7 +29,7 @@
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
 		"wpackagist-plugin/nginx-helper": "2.*",
-		"wpackagist-plugin/redirection": "4.0",
+		"wpackagist-plugin/redirection": "4.*",
 		"wpackagist-plugin/shortcode-ui": "0.*",
 		"wpackagist-plugin/wordfence": "7.*",
 		"wpackagist-plugin/wp-redis": "0.7.*",
