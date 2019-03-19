@@ -10,7 +10,7 @@ $I->amOnPage('/');
 
 // we see the first image
 $I->seeElement('img', [
-		'src' => 'http://www.planet4.test/wp-content/uploads/2018/05/ea8f1af6-gp0stq27a_web_size_with_credit_line.jpg']
+	'src' => 'http://www.planet4.test/wp-content/uploads/2018/05/ea8f1af6-gp0stq27a_web_size_with_credit_line.jpg']
 );
 
 // we can click the next icon
