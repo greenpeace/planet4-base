@@ -151,10 +151,10 @@ jobs:
             - var
 
       - store_test_results:
-          path: /tmp/artifacts
+          path: artifacts
 
       - store_artifacts:
-          path: /tmp/artifacts
+          path: artifacts
       - run:
           name: Build - Notify failure
           when: on_fail
