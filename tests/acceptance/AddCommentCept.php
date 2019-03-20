@@ -33,17 +33,6 @@ $I->submitForm('#commentform', [
 	'email' => $email
 ]);
 
-// we can now see the comment on the page
-//$I->see($comment, '.comments-section');
-
-//$I->cleanupComments($email);
-
-
-// we can now see the comment on the page
-//$I->see($comment, '.comments-section');
-
-//$I->cleanupComments($email);
-
 //login to the backend
 $I->loginAsAdmin();
 
@@ -53,7 +42,9 @@ $I->amOnPage('wp-admin/edit-comments.php');
 // we can now see the comment in the admin
 $I->see($comment, '.comments');
 
+//lets logout to make sure we dont' affect any other tests
 $I->amOnPage('wp-login.php?action=logout');
+$I->click('log out');
 
 $I->cleanupComments($email);
 
