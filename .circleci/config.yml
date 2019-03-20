@@ -86,10 +86,10 @@ jobs:
             - var
 
       - store_test_results:
-          path: /tmp/artifacts
+          path: artifacts
 
       - store_artifacts:
-          path: /tmp/artifacts
+          path: artifacts
 
   build-and-test-codeception:
     <<: *defaults
