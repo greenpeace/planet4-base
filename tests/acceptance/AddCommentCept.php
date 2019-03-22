@@ -33,17 +33,6 @@ $I->submitForm('#commentform', [
 	'email' => $email
 ]);
 
-// we can now see the comment on the page
-//$I->see($comment, '.comments-section');
-
-//$I->cleanupComments($email);
-
-
-// we can now see the comment on the page
-//$I->see($comment, '.comments-section');
-
-//$I->cleanupComments($email);
-
 //login to the backend
 $I->loginAsAdmin();
 
