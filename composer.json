@@ -27,6 +27,7 @@
 		"wpackagist-plugin/akismet": "4.*",
 		"wpackagist-plugin/classic-editor":"1.*",
 		"wpackagist-plugin/elasticpress":"2.8.*",
+		"wpackagist-plugin/gdpr-comments":"1.0.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
 		"wpackagist-plugin/redirection": "4.*",
