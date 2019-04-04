@@ -223,6 +223,7 @@ jobs:
                 "greece" \
                 "handbook" \
                 "hungary" \
+                "hongkong" \
                 "india" \
                 "indonesia" \
                 "international" \
@@ -240,6 +241,7 @@ jobs:
                 "southeastasia" \
                 "storytelling" \
                 "sweden" \
+                "switzerland" \
                 "thailand" \
               )
               for i in "${sites[@]}"
