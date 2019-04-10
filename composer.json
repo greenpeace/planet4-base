@@ -17,9 +17,9 @@
 	"require": {
 		"cmb2/cmb2": "2.*",
 		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "1.39",
+		"greenpeace/planet4-master-theme" : "1.39.1",
 		"greenpeace/planet4-nginx-helper" : "2.*",
-		"greenpeace/planet4-plugin-blocks" : "1.39",
+		"greenpeace/planet4-plugin-blocks" : "1.39.1",
 		"greenpeace/planet4-plugin-engagingnetworks": "1.7.1",
 		"greenpeace/planet4-plugin-medialibrary" : "1.6",
 		"matthiasmullie/minify": "^1.3",
