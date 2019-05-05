@@ -1,0 +1,18 @@
+# `dev` environment config goes here
+---
+actor: WpunitTester
+params:
+  - .env.codeception
+modules:
+  enabled:
+    - Asserts
+    - WPLoader
+    - \Helper\Wpunit
+  config:
+    WPLoader:
+      dbName: 'planet4_non_existing_db'
+      dbHost: 'db'
+      dbUser: "%TEST_WPUNIT_DB_USER%"
+      dbPassword: "%TEST_WPUNIT_DB_PASSWORD%"
+      tablePrefix: "%TEST_WPUNIT_TABLE_PREFIX%"
+      title: "Planet4 Dev"

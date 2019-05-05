@@ -1,7 +1,8 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "1.43.0",
-
+	"version": "1.51.0",
+	"description": "Core Greenpeace Planet4 application",
+	"license": "GPL-3.0-or-later",
 	"repositories": [
 		{
 			"type": "composer",
@@ -14,20 +15,21 @@
 	],
 
 	"require": {
-		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "1.33",
-		"greenpeace/planet4-plugin-blocks" : "1.33",
-		"greenpeace/planet4-plugin-engagingnetworks": "1.4",
-		"greenpeace/planet4-plugin-medialibrary" : "1.5",
-		"matthiasmullie/minify": "^1.3",
 		"cmb2/cmb2": "2.*",
+		"composer/installers": "~1.0",
+		"greenpeace/planet4-master-theme" : "1.41",
+		"greenpeace/planet4-nginx-helper" : "2.*",
+		"greenpeace/planet4-plugin-blocks" : "1.41",
+		"greenpeace/planet4-plugin-engagingnetworks": "1.8",
+		"greenpeace/planet4-plugin-medialibrary" : "1.6",
+		"matthiasmullie/minify": "^1.3",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.*",
 		"wpackagist-plugin/classic-editor":"1.*",
 		"wpackagist-plugin/elasticpress":"2.8.*",
+		"wpackagist-plugin/gdpr-comments":"1.0.2",
 		"wpackagist-plugin/google-apps-login": "3.2",
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
-		"wpackagist-plugin/nginx-helper": "2.*",
 		"wpackagist-plugin/redirection": "4.*",
 		"wpackagist-plugin/shortcode-ui": "0.*",
 		"wpackagist-plugin/wordfence": "7.*",
@@ -62,7 +64,6 @@
 			"@reset:public", "@download:wordpress", "@copy:health-check",
 			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@install:searchwp",
 			"@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
 			"@core:style-child", "@site:custom"
 		],
@@ -71,7 +72,6 @@
 			"@download:wordpress", "@copy:health-check",
 			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:updatedb", "@plugin:activate", "@theme:activate",
-			"@install:searchwp",
 			"@core:add-contributor-capabilities", "@redis:enable", "@core:style-child", "@site:custom"
 		],
 
@@ -79,11 +79,10 @@
 			"@download:wordpress", "@copy:health-check",
 			"@reset:themes", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@install:searchwp", "@core:style-child", "@site:custom"
+			"@core:style-child", "@site:custom"
 		],
 
 		"site:global": [
-			"@install:searchwp",
 			"@core:style-child",
 			"@site:custom"
 		],
@@ -98,8 +97,6 @@
 		"download:wordpress": "wp core download --version=5.0.3 --path=public --force",
 		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
 		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
-
-		"install:searchwp": "wp plugin install https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/searchwp-2.9.17.zip --activate",
 
 		"redis:enable" : "wp redis enable",
 

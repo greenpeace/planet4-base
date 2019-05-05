@@ -1,2 +1,2 @@
 #!/bin/sh
-wp rewrite flush
+# wp rewrite flush

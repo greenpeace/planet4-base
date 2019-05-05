@@ -1,5 +1,7 @@
 {
-	"name": "greenpeace/planet4-base/tests",
+	"name": "greenpeace/planet4-base-tests",
+	"description": "Tests for the Greenpeace Planet4 NRO application",
+	"license": "GPL-3.0-or-later",
 	"repositories": [
 		{
 			"type": "composer",
