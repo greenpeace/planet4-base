@@ -23,7 +23,7 @@ $I->havePageInDatabase([
 $I->amOnPage('/' . $slug);
 
 // Check the Gallery block
-$I->see('Slider', 'h1');
+$I->see('Slider', 'h2');
 $I->see('Slider description', 'p');
 $I->scrollTo('.carousel-wrap');
 
