@@ -24,7 +24,7 @@ $I->havePageInDatabase([
 $I->amOnPage('/' . $slug);
 
 // Check the Articles block
-$I->see('News', 'h3.page-section-header');
+$I->see('News', 'h2.page-section-header');
 $I->see('Articles Block description', 'p.page-section-description');
 $I->see('More', 'button.btn-secondary');
 $I->seeNumberOfElements('.article-list-item-headline', 1);

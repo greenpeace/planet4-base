@@ -30,7 +30,7 @@ $I->havePageInDatabase([
 $I->amOnPage('/' . $slug);
 
 // Check the Tasks style
-$I->see('Tasks Columns', 'h3');
+$I->see('Tasks Columns', 'h2');
 $I->see('Columns Block description', 'p');
 $I->see('Column 1', '.step-info h5');
 $I->see('Column 1 description', '.step-info p');
