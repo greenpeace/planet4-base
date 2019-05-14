@@ -1,6 +1,10 @@
 <?php
 use \Codeception\Util\Locator;
 
+/**
+ * @group frontend
+ */
+
 $I = new AcceptanceTester($scenario);
 
 $I->wantTo('check all columns block styles');
@@ -15,9 +19,7 @@ $I->see('Discover our stories', 'a.btn-secondary');
 // Check the Icons style
 $I->see('Get to know our organisation', 'h2');
 $I->see('History', 'h3');
-$I->seeElement('img', [
-	'src' => 'http://www.planet4.test/wp-content/uploads/2018/06/ebfa5ed4-organisation-2.png']
-);
+$I->seeElement('//img[contains(@src, "organisation")]');
 
 // Switch to an action page
 $I->amOnPage('act/consectetur-adipiscing-elit/');

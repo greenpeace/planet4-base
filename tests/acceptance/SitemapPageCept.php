@@ -1,4 +1,8 @@
 <?php
+/**
+ * @group frontend
+ */
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('check Sitemap page');
 
@@ -10,18 +14,18 @@ $I->seeElement('.page-sitemap');
 // Ensure all types of sitemap entries are there
 
 // Act
-$I->see('Consectetur adipiscing elit', 'a');
+$I->see('Consectetur adipiscing elit', '.col-md-7 > a');
 
 // Explore
-$I->see('Energy', 'a');
-$I->see('#Coal', 'a');
-$I->see('Nature', 'a');
-$I->see('#Forests', 'a');
+$I->see('Energy', '.col-md-7 > a');
+$I->see('#Coal', '.tag-item');
+$I->see('Nature', '.col-md-7 > a');
+$I->see('#Forests', '.tag-item');
 
 // About
-$I->see('Community Policy', 'a');
+$I->see('Community Policy', '.col-md-5 > a');
 
 // Articles
-$I->see('Press Release', 'a');
-$I->see('Publication', 'a');
-$I->see('Story', 'a');
+$I->see('Press Release', '.col-md-5 > a');
+$I->see('Publication', '.col-md-5 > a');
+$I->see('Story', '.col-md-5 > a');
