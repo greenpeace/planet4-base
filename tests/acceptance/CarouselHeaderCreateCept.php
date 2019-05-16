@@ -1,6 +1,10 @@
 <?php
 use \Codeception\Util\Locator;
 
+/**
+ * @group frontend
+ */
+
 $I = new AcceptanceTester($scenario);
 
 $I->wantTo('create and check carousel header block');
@@ -29,8 +33,8 @@ $I->havePageInDatabase([
 $I->amOnPage('/' . $slug);
 
 // Check the Carousel header block
-$I->see('Header 1', 'h1');
-$I->see('Image 1 description', 'p');
+$I->see('Header 1', '.carousel-captions-wrapper > h1');
+$I->see('Image 1 description', '.carousel-captions-wrapper > p');
 $I->see('Act', 'a.btn-primary');
 $I->scrollTo('.carousel-header_full-width-classic');
 $I->seeElement('.carousel-control-prev-icon');
@@ -39,11 +43,11 @@ $I->seeNumberOfElements('.carousel-indicators > li', 2);
 
 // Click next button
 $I->click('.carousel-control-next');
-$I->wait(2);
-$I->see('Header 2', 'h1');
+$I->waitForElementVisible( '//div[@class="carousel-inner"]/div[contains(@class, "carousel-item") and position()=2]', 10 ); // secs
+$I->see('Header 2', '.carousel-captions-wrapper > h1');
 
 // Click first indicator
 $I->click('.carousel-indicators > li:first-child');
-$I->wait(2);
-$I->see('Header 1', 'h1');
+$I->waitForElementVisible( '//div[@class="carousel-inner"]/div[contains(@class, "carousel-item") and position()=1]', 10 ); // secs
+$I->see('Header 1', '.carousel-captions-wrapper > h1');
 $I->scrollTo('.page-template');

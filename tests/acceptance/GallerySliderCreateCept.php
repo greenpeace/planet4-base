@@ -2,6 +2,10 @@
 <?php
 use \Codeception\Util\Locator;
 
+/**
+ * @group frontend
+ */
+
 $I = new AcceptanceTester($scenario);
 
 $I->wantTo('create and check check gallery block slider style');
@@ -23,18 +27,18 @@ $I->havePageInDatabase([
 $I->amOnPage('/' . $slug);
 
 // Check the Gallery block
-$I->see('Slider', 'h1');
+$I->see('Slider', 'h2');
 $I->see('Slider description', 'p');
 $I->scrollTo('.carousel-wrap');
 
 // Click next button
 $I->click('.carousel-control-next-icon');
-$I->wait(1);
+$I->waitForElementVisible( '//div[@class="carousel-inner"]/div[contains(@class, "carousel-item") and position()=2]', 10 ); // secs
 $I->see('solar power', '.carousel-caption p');
 
 // Click first indicator
 $I->click('.carousel-indicators > li:first-child');
-$I->wait(1);
+$I->waitForElementVisible( '//div[@class="carousel-inner"]/div[contains(@class, "carousel-item") and position()=1]', 10 ); // secs
 $I->see('Penguins', '.carousel-caption p');
 
 // Check arrows and indicators
