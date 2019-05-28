@@ -19,7 +19,7 @@
 		"composer/installers": "~1.0",
 		"greenpeace/planet4-master-theme" : "dev-release/v1.45.0",
 		"greenpeace/planet4-nginx-helper" : "2.*",
-		"greenpeace/planet4-plugin-blocks" : "1.44",
+		"greenpeace/planet4-plugin-blocks" : "dev-release/v1.45.0",
 		"greenpeace/planet4-plugin-engagingnetworks": "1.9",
 		"greenpeace/planet4-plugin-medialibrary" : "1.8",
 		"wikimedia/composer-merge-plugin": "1.4.1",
