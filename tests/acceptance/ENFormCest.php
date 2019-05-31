@@ -112,6 +112,13 @@ class ENFormCest {
 				'type'          => 'Text',
 			],
 		];
+
+		// Set dummy engaging networks api keys.
+		$en_api_keys = $I->cli( 'option get --allow-root p4en_main_settings' );
+		if ( ! is_array( $en_api_keys ) ) {
+			codecept_debug( 'Setting engaging networks api dummy keys' );
+			$I->cli( 'option update --allow-root p4en_main_settings \'{"p4en_private_api": "11119999"}\' --format=json ' );
+		}
 	}
 
 	/**
