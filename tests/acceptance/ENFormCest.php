@@ -22,6 +22,12 @@ class ENFormCest {
 		$this->form_fields = [
 			'fields'    => [
 				[
+					"id"       => 28121,
+					"name"     => "Email",
+					"tag"      => "Email Address",
+					"property" => "emailAddress"
+				],
+				[
 					"id"       => 28116,
 					"name"     => "First name",
 					"tag"      => "First Name",
@@ -32,12 +38,6 @@ class ENFormCest {
 					"name"     => "Last name",
 					"tag"      => "Last Name",
 					"property" => "lastName"
-				],
-				[
-					"id"       => 28121,
-					"name"     => "Email",
-					"tag"      => "Email Address",
-					"property" => "emailAddress"
 				],
 				[
 					"id"       => 28122,
@@ -114,8 +114,8 @@ class ENFormCest {
 		];
 
 		// Set dummy engaging networks api keys.
-		$en_api_keys = $I->cli( 'option get --allow-root p4en_main_settings' );
-		if ( ! is_array( $en_api_keys ) ) {
+		$en_api_keys = $I->cliToArray( 'option get --allow-root p4en_main_settings' );
+		if ( ! is_array( $en_api_keys ) || ! isset( $en_api_keys['p4en_private_api'] ) ) {
 			codecept_debug( 'Setting engaging networks api dummy keys' );
 			$I->cli( 'option update --allow-root p4en_main_settings \'{"p4en_private_api": "11119999"}\' --format=json ' );
 		}
@@ -138,8 +138,10 @@ class ENFormCest {
 		// Read sample ENS API responses and cache them to avoid trying to do the actual calls during testing.
 		$jsonf          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_fields_response.json' );
 		$jsonq          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_questions_response.json' );
+		$jsono          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_3877_response.json' );
 		$fields_data    = json_decode( $jsonf, true );
 		$questions_data = json_decode( $jsonq, true );
+		$optin_data = json_decode( $jsono, true );
 
 		// Set fields transient.
 		$cache_key = 'ens_supporter_fields_response';
@@ -150,6 +152,11 @@ class ENFormCest {
 		$cache_key = 'ens_supporter_questions_response';
 		$questions = json_encode( $questions_data['questions'] );
 		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $questions . '\' transient 600' );
+
+		// Set optin transient.
+		$cache_key = 'ens_supporter_question_by_id_response_3887';
+		$optin     = json_encode( $optin_data['question.3887'] );
+		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $optin . '\' transient 600' );
 
 		// Start testing.
 		$I->loginAsAdminCached();
@@ -172,6 +179,7 @@ class ENFormCest {
 		foreach ( $form_fields as $form_field ) {
 			$form_field_name = $form_field['name'];
 			$I->click( "button[data-name='$form_field_name']" );
+			$I->waitForJqueryAjax();
 		}
 
 		// Set fields attributes.
@@ -179,7 +187,8 @@ class ENFormCest {
 		foreach ( $form_fields as $form_field ) {
 
 			// Select field type.
-			$field_name = $form_field['name'];
+			$field_name   = $form_field['name'];
+			$field_entype = $form_field['type'] ?? '';
 			$I->selectOption( "tr:nth-child($index) .field-type-select", $this->form_fields_attributes[ $field_name ] );
 
 			// Set the required checkbox.
@@ -188,7 +197,7 @@ class ENFormCest {
 			}
 
 			// Set field label.
-			if ( ! empty( $this->form_fields_attributes[ $field_name ]['label'] ) ) {
+			if ( ! empty( $this->form_fields_attributes[ $field_name ]['label'] ) && 'OPT' !== $field_entype ) {
 				$I->fillField( "tr:nth-child($index) input[type='text']", $this->form_fields_attributes[ $field_name ]['label'] );
 			}
 
@@ -224,7 +233,8 @@ class ENFormCest {
 		foreach ( $form_fields as $form_field ) {
 
 			// Select field type.
-			$field_name = $form_field['name'];
+			$field_name   = $form_field['name'];
+			$field_entype = $form_field['type'] ?? '';
 
 			$I->seeElement(
 				'tr.field-item',
@@ -239,7 +249,7 @@ class ENFormCest {
 			}
 
 			// Check the field label.
-			if ( ! empty( $this->form_fields_attributes[ $field_name ]['label'] ) ) {
+			if ( ! empty( $this->form_fields_attributes[ $field_name ]['label'] ) && 'OPT' !== $field_entype ) {
 				$I->seeInField( "tr:nth-child($index) input[type='text']", $this->form_fields_attributes[ $field_name ]['label'] );
 			}
 
@@ -275,11 +285,6 @@ class ENFormCest {
 
 		$I->wantTo( 'create a new page that contains an engaging networks form' );
 
-		$I->loginAsAdminCached();
-
-		// Create a new WordPress page.
-		$I->amOnPage( '/wp-admin/post-new.php?post_type=page' );
-
 		// Grab sample en pages response and populate the transient to emulate response from en api.
 		$jsonp         = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_pages_response.json' );
 		$en_pages_data = json_decode( $jsonp, true );
@@ -288,6 +293,11 @@ class ENFormCest {
 		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $cache_value . '\' transient 600' );
 
 		$shortcode_attributes = [];
+
+		$I->loginAsAdminCached();
+
+		// Create a new WordPress page.
+		$I->amOnPage( '/wp-admin/post-new.php?post_type=page' );
 
 		// Add a new enblock.
 		$I->click( 'Add Page Element' );
@@ -331,6 +341,7 @@ class ENFormCest {
 
 		// Publish post.
 		$I->clickWithLeftButton( '#publish' );
+		$I->clickWithLeftButton( '#content-html' );
 
 		// Generate an enblock shortcode and compare it to the post content.
 		$generated_shortcode = $I->generateShortcode( ENBlock::$shortcodeName, $shortcode_attributes );
