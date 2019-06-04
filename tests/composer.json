@@ -18,6 +18,6 @@
     }
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "^2.2"
+		"lucatume/wp-browser": "^2.2.8"
 	}
 }
