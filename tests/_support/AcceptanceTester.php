@@ -28,11 +28,11 @@ class AcceptanceTester extends \Codeception\Actor
 	{
 		$I = $this;
 		$I->amOnPage('/');
-		//if ($I->loadSessionSnapshot('login/admin')) {
-		//	return;
-		//}
+		if ($I->loadSessionSnapshot('login/admin')) {
+			return;
+		}
 		$I->loginAsAdmin();
-		//$I->saveSessionSnapshot('login/admin');
+		$I->saveSessionSnapshot('login/admin');
 	}
 
 
