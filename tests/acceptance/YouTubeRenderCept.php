@@ -20,5 +20,5 @@ $I->amOnPage('/' . $slug);
 
 $I->see($videoTitle, '.media-block h2');
 $I->seeElement('.media-block .video-embed iframe', [
-	'src' => 'https://www.youtube.com/embed/' . $videoId . '?feature=oembed'
+	'src' => 'https://www.youtube-nocookie.com/embed/' . $videoId . '?feature=oembed'
 ]);
