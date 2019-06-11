@@ -230,6 +230,7 @@ jobs:
                 "international" \
                 "italy" \
                 "japan" \
+                "korea" \
                 "luxembourg" \
                 "malaysia" \
                 "mena" \
@@ -238,11 +239,13 @@ jobs:
                 "new-zealand" \
                 "norway" \
                 "philippines" \
+                "poland" \
                 "slovenia" \
                 "southeastasia" \
                 "storytelling" \
                 "sweden" \
                 "switzerland" \
+                "taiwan" \
                 "thailand" \
               )
               for i in "${sites[@]}"
