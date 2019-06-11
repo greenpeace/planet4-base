@@ -319,8 +319,8 @@ class ENFormCest {
 		$fields = [
 //			ENBlock::$titleField       => 'enform block test',
 			ENBlock::$descriptionField        => 'enform block description',
-			ENBlock::$contentTitleField       => 'enform block test',
-			ENBlock::$contentDescriptionField => 'enform block description',
+//			ENBlock::$contentTitleField       => 'enform block test',
+//			ENBlock::$contentDescriptionField => 'enform block description',
 			ENBlock::$buttonTextField         => 'Call to Action',
 		];
 
