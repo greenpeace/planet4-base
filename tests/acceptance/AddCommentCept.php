@@ -20,10 +20,14 @@ $id = $I->havePostInDatabase([
 // we create a preapproved comment in the database, which means the one we create on the page will be auto approved
 // this would change behaviour depending on the "Discussion Settings / Before a comment appears" options selected
 // we create it in the past to avoid triggering the comment flood prevention
-$I->haveAnOldApprovedComment($id, [
-	'comment_author_email' => $email,
-	'comment_author' => $author
-]);
+$I->haveAnOldApprovedComment(
+	$id,
+	[
+		'comment_author_email' => $email,
+		'comment_author'       => $author,
+		'comment_content'      => $comment
+	]
+);
 
 $I->amOnPage('/?p=' . $id);
 
