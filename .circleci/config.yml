@@ -1,7 +1,7 @@
 ---
 defaults: &defaults
   docker:
-    - image: gcr.io/planet-4-151612/p4-builder:latest
+    - image: greenpeaceinternational/p4-builder:latest
   working_directory: /home/circleci/
 
 version: 2
@@ -9,7 +9,7 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: gcr.io/planet-4-151612/circleci-base:latest
+      - image: greenpeaceinternational/circleci-base:latest
     steps:
       - checkout
       - run: make lint
@@ -192,7 +192,7 @@ jobs:
 
   trigger-planet4:
     docker:
-      - image: gcr.io/planet-4-151612/circleci-base:latest
+      - image: greenpeaceinternational/circleci-base:latest
     environment:
       TYPE: "Trigger"
     working_directory: /tmp/workspace
@@ -240,6 +240,7 @@ jobs:
                 "norway" \
                 "philippines" \
                 "poland" \
+                "romania" \
                 "slovenia" \
                 "southeastasia" \
                 "storytelling" \
@@ -259,7 +260,7 @@ jobs:
 
   notify-promote:
     docker:
-      - image: gcr.io/planet-4-151612/circleci-base:latest
+      - image: greenpeaceinternational/circleci-base:latest
     working_directory: /tmp/workspace/app
     steps:
       - attach_workspace:
@@ -283,7 +284,7 @@ jobs:
 
   promote:
     docker:
-      - image: gcr.io/planet-4-151612/circleci-base:latest
+      - image: greenpeaceinternational/circleci-base:latest
     working_directory: /tmp/workspace/app
     steps:
       - attach_workspace:
