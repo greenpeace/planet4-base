@@ -33,6 +33,7 @@
 		"wpackagist-plugin/shortcode-ui": "0.*",
 		"wpackagist-plugin/timber-library": "1.9.4",
 		"wpackagist-plugin/wordfence": "7.*",
+		"wpackagist-plugin/wordpress-importer": "0.*",
 		"wpackagist-plugin/wp-redis": "0.7.*",
 		"wpackagist-plugin/wp-stateless": "2.*"
 	},
