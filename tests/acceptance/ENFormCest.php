@@ -135,10 +135,13 @@ class ENFormCest {
 		// Read sample ENS API responses and cache them to avoid trying to do the actual calls during testing.
 		$jsonf          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_fields_response.json' );
 		$jsonq          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_questions_response.json' );
-		$jsono          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_3877_response.json' );
+		$json_question  = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_236734_response.json' );
+		$json_optin     = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_3877_response.json' );
+
 		$fields_data    = json_decode( $jsonf, true );
 		$questions_data = json_decode( $jsonq, true );
-		$optin_data = json_decode( $jsono, true );
+		$question_data  = json_decode( $json_question, true );
+		$optin_data     = json_decode( $json_optin, true );
 
 		// Set fields transient.
 		$cache_key = 'ens_supporter_fields_response';
@@ -150,7 +153,12 @@ class ENFormCest {
 		$questions = json_encode( $questions_data['questions'] );
 		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $questions . '\' transient 600' );
 
-		// Set optin transient.
+		// Set single question transient.
+		$cache_key = 'ens_supporter_question_by_id_response_236734';
+		$question  = json_encode( $question_data['question.236734'] );
+		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $question . '\' transient 600' );
+
+		// Set single optin transient.
 		$cache_key = 'ens_supporter_question_by_id_response_3887';
 		$optin     = json_encode( $optin_data['question.3887'] );
 		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $optin . '\' transient 600' );
