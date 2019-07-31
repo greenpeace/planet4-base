@@ -21,4 +21,4 @@ $I->amOnPage('/' . $slug);
 
 // Check the Subheader header block
 $I->see('Subheader', '.subheader h2');
-$I->see('Subheader description', '.subheader p');
+$I->see('Subheader description', '.subheader div');
