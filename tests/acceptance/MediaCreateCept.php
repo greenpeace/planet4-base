@@ -22,5 +22,5 @@ $I->amOnPage('/' . $slug);
 
 // Check the Tasks style
 $I->see('Ocean Memories', 'h2.page-section-header');
-$I->see('Greenpeace presents the world\'s most northerly ice music concert', 'p.page-section-description');
+$I->see('Greenpeace presents the world\'s most northerly ice music concert', 'div.page-section-description');
 $I->seeElement('iframe');

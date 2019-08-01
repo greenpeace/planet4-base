@@ -28,7 +28,7 @@ $I->amOnPage('/' . $slug);
 
 // Check the Gallery block
 $I->see('Slider', 'h2');
-$I->see('Slider description', 'p');
+$I->see('Slider description', 'div');
 $I->scrollTo('.carousel-wrap');
 
 // Click next button
