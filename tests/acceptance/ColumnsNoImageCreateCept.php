@@ -30,7 +30,7 @@ $I->amOnPage('/' . $slug);
 
 // Check the No Image style
 $I->see('No Image Columns', 'h2');
-$I->see('Columns Block description', 'p');
+$I->see('Columns Block description', 'div');
 $I->see('Column 1', 'h3 > a');
 $I->see('Column 1 description', 'p');
 $I->see('Explore', 'a.btn-secondary');

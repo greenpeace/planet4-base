@@ -24,5 +24,5 @@ $I->amOnPage('/' . $slug);
 
 // Check the Gallery block
 $I->see('Grid', 'h2');
-$I->see('Grid description', 'p');
+$I->see('Grid description', 'div');
 $I->seeNumberOfElements('.grid-item > img', 4);

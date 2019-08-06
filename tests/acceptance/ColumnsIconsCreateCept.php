@@ -31,7 +31,7 @@ $I->amOnPage('/' . $slug);
 
 // Check the Tasks style
 $I->see('Icons Columns', 'h2');
-$I->see('Columns Block description', 'p');
+$I->see('Columns Block description', 'div');
 $I->see('Column 1', 'h3 > a');
 $I->see('Column 1 description', '.column-wrap p');
 $I->seeElement('.attachment-container a img');

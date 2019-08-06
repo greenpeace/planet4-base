@@ -24,7 +24,7 @@ $I->amOnPage('/' . $slug);
 
 // Check the Covers block
 $I->see('Campaign', 'h2.page-section-header');
-$I->see('Description text', 'p.page-section-description');
+$I->see('Description text', 'div.page-section-description');
 $I->seeNumberOfElements('.campaign-card-column', 2);
 $I->see('#Oceans', 'span.yellow-cta');
 $I->seeElement('.thumbnail-large > img');
