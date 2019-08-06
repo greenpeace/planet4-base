@@ -24,6 +24,6 @@ $I->amOnPage('/' . $slug);
 
 // Check the Gallery block
 $I->see('3 Column', 'h2');
-$I->see('3 Column description', 'p');
+$I->see('3 Column description', 'div');
 $I->seeNumberOfElements('.three-column-images > .col', 3);
 $I->seeNumberOfElements('.split-image > img', 3);

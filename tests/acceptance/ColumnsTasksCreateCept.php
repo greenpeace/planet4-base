@@ -21,18 +21,19 @@ $I->havePageInDatabase([
 		'cta_text_1'          => 'Act',
 		'title_2'             => 'Column 2',
 		'description_2'       => 'Column 2 description',
+		'attachment_2'        => 87,
 		'link_2'              => '/explore/',
-		'cta_text_2'          => 'Explore'
-	])
+		'cta_text_2'          => 'Explore',
+	]),
 ]);
 
-// Navigate to the newly created page
-$I->amOnPage('/' . $slug);
+// Navigate to the newly created page.
+$I->amOnPage( '/' . $slug );
 
 // Check the Tasks style
-$I->see('Tasks Columns', 'h2');
-$I->see('Columns Block description', 'p');
-$I->see('Column 1', '.step-info h5');
-$I->see('Column 1 description', '.step-info p');
-$I->seeElement('.steps-action img');
-$I->see('Explore', '.steps-action a.btn-secondary');
+$I->see( 'Tasks Columns', 'h2' );
+$I->see( 'Columns Block description', 'div' );
+$I->see( 'Column 1', '.step-info h5' );
+$I->see( 'Column 1 description', '.step-info p' );
+$I->seeElement( '.steps-action img' );
+$I->see( 'Explore', '.steps-action a.btn-secondary' );
