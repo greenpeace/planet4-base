@@ -14,7 +14,7 @@
 						"imageUrl": "",
 						"selected": false,
 						"value": "Y",
-						"label": "Yes, I would like to receive updates via email&amp;nbsp;&lt;a href=\"https://www.google.com\" target=\"_blank\"&gt;https://www.google.com&lt;/a&gt;\n"
+						"label": "Yes, I would like to receive updates via email. This is a link example <a href=\"https://www.google.com\" target=\"_blank\">https://www.google.com</a>"
 					}
 				]
 			}
