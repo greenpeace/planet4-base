@@ -128,7 +128,7 @@ class ENFormCest {
 	 *
 	 * @throws \Codeception\Exception\ModuleException
 	 */
-	public function createAnEnform( AcceptanceTester $I ) {
+	public function createAnEnForm( AcceptanceTester $I ) {
 
 		$I->wantTo( 'Create a new engaging networks form' );
 
@@ -276,14 +276,98 @@ class ENFormCest {
 	}
 
 	/**
+	 * Create a WordPress page and add an enblock in it.
+	 *
+	 * @depends createAnEnForm
+	 * @group enform
+	 * @group engaging-networks
+	 *
+	 * @param AcceptanceTester $I
+	 *
+	 * @throws \Codeception\Exception\ModuleException
+	 */
+	public function createAnEnBlock( AcceptanceTester $I ) {
+
+		$I->wantTo( 'create a new page that contains an engaging networks form' );
+
+		// Grab sample en pages response and populate the transient to emulate response from en api.
+		$jsonp         = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_pages_response.json' );
+		$en_pages_data = json_decode( $jsonp, true );
+		$cache_key     = 'ens_pages_response_live_PET';
+		$cache_value   = json_encode( $en_pages_data['pages'] );
+		$I->cli( 'cache set --allow-root ' . $cache_key . ' \'' . $cache_value . '\' transient 600' );
+
+		$shortcode_attributes = [];
+
+		$I->loginAsAdminCached();
+
+		// Create a new WordPress page.
+		$I->amOnPage( '/wp-admin/post-new.php?post_type=page' );
+
+		// Add a new enblock.
+		$I->click( 'Add Page Element' );
+		$I->fillField( 'post_title', 'enform block test' );
+		$I->click( ENBlock::$pageElementButton );
+
+		// Select en page.
+		$option = $I->grabAttributeFrom( '//select[@name="'. ENBlock::$enPageSelect.'"]//option[2]', 'value' );
+		$I->selectOption( ENBlock::$enPageSelect, $option );
+		$shortcode_attributes[ ENBlock::$enPageSelect ] = $option;
+
+		// Select goal.
+		$option = $I->grabAttributeFrom( '//select[@name="' . ENBlock::$goalSelect . '"]//option[2]', 'value' );
+		$I->selectOption( ENBlock::$goalSelect, $option );
+		$shortcode_attributes[ ENBlock::$goalSelect ] = $option;
+
+		// Select form style.
+		$I->selectOption( ENBlock::$formStyleRadio, 'full-width' );
+		$shortcode_attributes[ ENBlock::$formStyleInputName ] = 'full-width';
+
+		// Fill field.
+		$shortcode_attributes[ ENBlock::$descriptionField ] = 'enform block description';
+		$I->fillField( ENBlock::$descriptionField, 'enform block description' );
+
+		// Select text size.
+		$option = $I->grabAttributeFrom( 'select[name=' . ENBlock::$enTitleSizeSelect . '] option:last-child', 'value' );
+		$I->selectOption( ENBlock::$enTitleSizeSelect, $option );
+		$shortcode_attributes[ ENBlock::$enTitleSizeSelect ] = $option;
+
+		// Fill field.
+		$shortcode_attributes[ ENBlock::$buttonTextField ]  = 'Call to Action';
+		$I->fillField( ENBlock::$buttonTextField, 'Call to Action' );
+
+		// Select enform post.
+		$I->selectOption( ENBlock::$enFormSelect, $this->enform_id );
+		$shortcode_attributes[ ENBlock::$enFormSelect ] = $this->enform_id;
+
+		// Insert shortcode.
+		$I->click( 'Insert Element' );
+		$I->waitForJqueryAjax();
+
+		// Publish post.
+		$I->clickWithLeftButton( '#publish' );
+		$I->clickWithLeftButton( '#content-html' );
+
+		// Generate an enblock shortcode and compare it to the post content.
+		$generated_shortcode = $I->generateShortcode( ENBlock::$shortcodeName, $shortcode_attributes );
+		$inserted_shortcode  = $I->grabTextFrom( '#content' );
+
+		$I->assertEquals( $generated_shortcode, $inserted_shortcode );
+
+		// Save post/page id for next text.
+		$this->enform_page_id = $I->executeJS( 'return $("#post_ID").val()' );
+
+	}
+
+	/**
 	 * Test an engaging networks form.
 	 *
-	 * @depends createAnEnformPage
+	 * @depends createAnEnBlock
 	 * @group enform
 	 * @group engaging-networks
 	 *
 	 */
-	public function fillAnEnformBlock( AcceptanceTester $I ) {
+	public function fillAnEnBlock( AcceptanceTester $I ) {
 
 		$I->wantTo( 'navigate to a page containing an engaging networks form and fill the form' );
 
