@@ -327,11 +327,6 @@ class ENFormCest {
 		$shortcode_attributes[ ENBlock::$descriptionField ] = 'enform block description';
 		$I->fillField( ENBlock::$descriptionField, 'enform block description' );
 
-		// Select text size.
-		$option = $I->grabAttributeFrom( 'select[name=' . ENBlock::$enTitleSizeSelect . '] option:last-child', 'value' );
-		$I->selectOption( ENBlock::$enTitleSizeSelect, $option );
-		$shortcode_attributes[ ENBlock::$enTitleSizeSelect ] = $option;
-
 		// Fill field.
 		$shortcode_attributes[ ENBlock::$buttonTextField ]  = 'Call to Action';
 		$I->fillField( ENBlock::$buttonTextField, 'Call to Action' );
