@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "1.66",
+	"version": "1.67",
 	"description": "Core Greenpeace Planet4 application",
 	"license": "GPL-3.0-or-later",
 	"repositories": [
@@ -17,10 +17,10 @@
 	"require": {
 		"cmb2/cmb2": "2.*",
 		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "v1.56",
+		"greenpeace/planet4-master-theme" : "v1.57",
 		"greenpeace/planet4-nginx-helper" : "2.*",
-		"greenpeace/planet4-plugin-blocks" : "v1.56",
-		"greenpeace/planet4-plugin-engagingnetworks" : "v2.10",
+		"greenpeace/planet4-plugin-blocks" : "v1.57",
+		"greenpeace/planet4-plugin-engagingnetworks" : "v2.11",
 		"greenpeace/planet4-plugin-medialibrary" : "1.8",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.*",
@@ -67,25 +67,24 @@
 			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
 			"@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
-			"@core:style-child", "@site:custom"
+			"@site:custom"
 		],
 
 		"site-update": [
 			"@download:wordpress", "@copy:health-check",
 			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
 			"@core:updatedb", "@plugin:activate", "@theme:activate",
-			"@core:add-contributor-capabilities", "@redis:enable", "@core:style-child", "@site:custom"
+			"@core:add-contributor-capabilities", "@redis:enable", "@site:custom"
 		],
 
 		"docker-site-install": [
 			"@download:wordpress", "@copy:health-check",
 			"@reset:themes", "@copy:themes", "@copy:plugins",
 			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@core:style-child", "@site:custom"
+			"@site:custom"
 		],
 
 		"site:global": [
-			"@core:style-child",
 			"@site:custom"
 		],
 
@@ -107,8 +106,6 @@
 		"core:updatedb": "wp core update-db",
 		"core:add-author-capabilities": "wp cap add author edit_others_posts; wp cap add author delete_others_posts; wp cap add author delete_private_posts;wp cap add author edit_private_posts;wp cap add author read_private_posts;",
 		"core:add-contributor-capabilities": "wp cap add contributor upload_files",
-
-		"core:style-child" : "cd public/wp-content/themes/; for i in planet4-child-theme*; do cd $i; minifycss style.css > style.min.css; cd ..; done",
 
 		"plugin:deactivate": "wp plugin deactivate --all",
 		"plugin:activate": "wp plugin activate --all",
