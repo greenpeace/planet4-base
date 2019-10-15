@@ -12,7 +12,4 @@ $I->submitForm('#search_form', ['s' => 'climate']);
 $I->see('for \'climate\'', 'h2');
 
 // ... and at least one #Climate tag to show up
-$I->see('#Climate', '.search-result-item-tag');
-
-// .. with a link to the #Climate tag page
-$I->seeElement('.tag', ['href' => 'http://www.planet4.test/tag/climate/']);
+$I->see('#Climate', '.search-result-item-headline');

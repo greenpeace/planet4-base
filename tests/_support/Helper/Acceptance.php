@@ -40,27 +40,24 @@ class Acceptance extends \Codeception\Module
 	}
 
 	/**
-	 * Given a shortcode name as set of parameters, format it into WordPress shortcode syntax
+	 * Given a gutenberg block name as set of parameters, format it into a Gutenberg json comment
 	 *
 	 * e.g.
 	 *
 	 * ```
-	 * $I->generateShortcode('myshortcode_name', ['with' => 'params', 'like' => 'this']);
-	 * # will give you [myshortcode_name with="params" like="this" /]
+	 * $I->generateGutenberg('wp:planet4-blocks/articles', ['article_heading' => 'News', 'article_count' => '1']);
+	 * # will give you <!-- wp:planet4-blocks/articles {"article_heading":"News","article_count":1,} /-->
 	 * ```
 	 *
 	 * @param $name
 	 * @param $data
 	 * @return string
 	 */
-	function generateShortcode($name, $data)
+	function generateGutenberg($name, $data)
 	{
-		$result = '[' . $name . '';
-		foreach ($data as $key => $value) {
-			$result .= ' ' . $key . '="' . $value . '"';
-		}
-		$result .= ' /]';
+		$result = '<!-- ' . $name . ' ';
+		$result .= json_encode($data);
+		$result .= ' /-->';
 		return $result;
 	}
-
 }

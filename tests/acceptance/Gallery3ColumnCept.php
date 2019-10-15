@@ -11,7 +11,7 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_gallery', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/gallery', [
 		'gallery_block_style'       => '2',
 		'gallery_block_title'       => '3 Column',
 		'gallery_block_description' => '3 Column description',

@@ -346,7 +346,7 @@ class ENFormCest {
 		$I->clickWithLeftButton( '#content-html' );
 
 		// Generate an enblock shortcode and compare it to the post content.
-		$generated_shortcode = $I->generateShortcode( ENBlock::$shortcodeName, $shortcode_attributes );
+		$generated_shortcode = $I->generateGutenberg( ENBlock::$shortcodeName, $shortcode_attributes );
 		$inserted_shortcode  = $I->grabTextFrom( '#content' );
 
 		$I->assertEquals( $generated_shortcode, $inserted_shortcode );
