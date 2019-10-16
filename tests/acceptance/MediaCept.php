@@ -10,9 +10,9 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_media_video', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/media-video', [
 		'video_title' => 'Ocean Memories',
-		'description' => 'Greenpeace presents the world\'s most northerly ice music concert',
+		'description' => 'Ice music concert',
 		'youtube_id'  => 'https://www.youtube.com/watch?v=YvXiSGbfxUI'
 	])
 ]);
@@ -22,5 +22,5 @@ $I->amOnPage('/' . $slug);
 
 // Check the Tasks style
 $I->see('Ocean Memories', 'h2.page-section-header');
-$I->see('Greenpeace presents the world\'s most northerly ice music concert', 'div.page-section-description');
+$I->see('Ice music concert', 'div.page-section-description');
 $I->seeElement('iframe');

@@ -10,7 +10,7 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_take_action_boxout', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/take-action-boxout', [
 		'take_action_page' => '28'
 	])
 ]);

@@ -10,11 +10,10 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_articles', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/articles', [
 		'article_heading'      => 'News',
 		'read_more_text'       => 'More',
 		'articles_description' => 'Articles Block description',
-		'title_1'              => 'Column 1',
 		'article_count'        => '1',
 		'ignore_categories'    => 'false'
 	])

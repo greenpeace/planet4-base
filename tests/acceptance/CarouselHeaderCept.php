@@ -11,21 +11,28 @@ $I->wantTo('create and check carousel header block');
 
 $slug = $I->generateRandomSlug();
 
+$slide1 = [
+	'image'       => 64,
+	'header'      => 'Header 1',
+	'description' => 'Image 1 description',
+	'link_text'   => 'Act',
+	'link_url'    => '/act/',
+];
+
+$slide2 = [
+	'image'       => 65,
+	'header'      => 'Header 2',
+	'description' => 'Image 2 description',
+	'link_text'   => 'Explore',
+	'link_url'    => '/explore/',
+];
+
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_carousel_header', [
-		'block_style'   => 'full-width-classic',
-		'image_1'       => '64',
-		'header_1'      => 'Header 1',
-		'description_1' => 'Image 1 description',
-		'link_text_1'   => 'Act',
-		'link_url_1'    => '/act/',
-		'image_2'       => '65',
-		'header_2'      => 'Header 2',
-		'description_2' => 'Image 2 description',
-		'link_text_2'   => 'Explore',
-		'link_url_2'    => '/explore/'
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/carousel-header', [
+		'block_style' => 'full-width-classic',
+		'slides'      => [$slide1, $slide2],
 	])
 ]);
 

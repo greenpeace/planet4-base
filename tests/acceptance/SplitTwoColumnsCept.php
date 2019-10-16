@@ -11,7 +11,7 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_split_two_columns', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/split-two-columns', [
 		'select_issue'    => '60',
 		'title'           => 'Issue',
 		'issue_link_text' => 'Read more',
