@@ -26,7 +26,6 @@ $I->amOnPage('/' . $slug);
 // Check the Split Two Column block
 $I->scrollTo('.split-two-column');
 $I->see('Issue', 'h2.split-two-column-item-title');
-$I->see('We fight', 'div.item--left p.split-two-column-item-subtitle');
 $I->see('Read more', 'a.split-two-column-item-link');
 $I->see('#Climate', 'a.split-two-column-item-tag');
 $I->see('Campaign description', 'div.item--right p.split-two-column-item-subtitle');
