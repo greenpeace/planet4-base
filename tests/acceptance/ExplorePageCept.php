@@ -16,11 +16,3 @@ $I->scrollTo('.article-listing');
 $I->see('Duis posuere', 'a');
 
 $I->scrollTo('#happy-point');
-
-// TODO: Add happy-point test here.
-
-$I->click('#header .btn-donate');
-
-$I->wait(.5);
-
-$I->see('Justice for people and planet', 'h1');
