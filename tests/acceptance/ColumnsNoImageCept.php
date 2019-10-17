@@ -10,7 +10,7 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_columns', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/columns', [
 		'columns_block_style' => 'no_image',
 		'columns_title'       => 'No Image Columns',
 		'columns_description' => 'Columns Block description',
