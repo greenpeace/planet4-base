@@ -7,6 +7,22 @@ $I->wantTo('create and check columns block icons style');
 
 $slug = $I->generateRandomSlug();
 
+$column1 = [
+	'title'             => 'Column 1',
+	'description'       => 'Column 1 description',
+	'attachment'        => 328,
+	'cta_link'              => '/act/',
+	'cta_text'          => 'Act',
+];
+
+$column2 = [
+	'title'             => 'Column 2',
+	'description'       => 'Column 2 description',
+	'attachment'        => 318,
+	'cta_link'              => '/explore/',
+	'cta_text'          => 'Explore',
+];
+
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
@@ -14,15 +30,7 @@ $I->havePageInDatabase([
 		'columns_block_style' => 'icons',
 		'columns_title'       => 'Icons Columns',
 		'columns_description' => 'Columns Block description',
-		'title_1'             => 'Column 1',
-		'description_1'       => 'Column 1 description',
-		'attachment_1'        => 16,
-		'link_1'              => '/act/',
-		'cta_text_1'          => 'Act',
-		'title_2'             => 'Column 2',
-		'description_2'       => 'Column 2 description',
-		'link_2'              => '/explore/',
-		'cta_text_2'          => 'Explore'
+		'columns'             => [$column1, $column2]
 	])
 ]);
 
