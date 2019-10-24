@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "$APP_HOSTPATH"
+
 # Run wp cli command to convert shortcake shortcodes to gutenberg blocks.
 wp cache flush
 wp p4-gblocks convert_to_gutenberg
