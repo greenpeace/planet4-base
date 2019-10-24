@@ -7,10 +7,10 @@ wp plugin deactivate planet4-plugin-blocks
 wp cache flush
 
 # Install dependencies for nodejs
-apt update
-apt install gnupg -y
+apt-get update
+apt-get install gnupg -y
 curl -sL https://deb.nodesource.com/setup_10.x | bash -
-apt install nodejs -y
+apt-get install nodejs -y
 
 # Clone convert-to-gutenberg repo, install npm packages
 cd /tmp
@@ -28,5 +28,4 @@ node convert-blocks.js campaign
 wp cache flush
 
 # Clean up
-apt remove nodejs -y
-cd /tmp && apt-get clean && rm -Rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
+apt-get remove nodejs -y
