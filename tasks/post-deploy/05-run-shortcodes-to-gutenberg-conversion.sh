@@ -13,9 +13,9 @@ curl -sL https://deb.nodesource.com/setup_10.x | bash -
 apt-get install nodejs -y
 
 # Clone convert-to-gutenberg repo, install npm packages
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/greenpeace/planet4-convert-to-gutenberg
-cd planet4-convert-to-gutenberg
+cd planet4-convert-to-gutenberg || exit
 sed 's|/path/to/wordpress/public/|/app/source/public|g' config.example.json > config.json
 npm install
 
