@@ -185,6 +185,7 @@ jobs:
           command: |
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             make deploy
+          no_output_timeout: 30m
       - run:
           name: Notify failure
           when: on_fail
