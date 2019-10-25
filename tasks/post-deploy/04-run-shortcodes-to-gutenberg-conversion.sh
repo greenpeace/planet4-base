@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-exclude=(hongkong korea taiwan)
+excluded=(hongkong korea taiwan)
 
 nro=$APP_HOSTPATH
 
-for i in "${array[@]}"
+for i in "${excluded[@]}"
 do
     if [ "$i" == "$nro" ] ; then
         echo "Excluded NRO"
