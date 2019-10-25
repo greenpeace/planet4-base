@@ -226,14 +226,12 @@ jobs:
                 "greenland" \
                 "handbook" \
                 "hungary" \
-                "hongkong" \
                 "india" \
                 "indonesia" \
                 "international" \
                 "israel" \
                 "italy" \
                 "japan" \
-                "korea" \
                 "luxembourg" \
                 "malaysia" \
                 "mena" \
@@ -251,7 +249,6 @@ jobs:
                 "storytelling" \
                 "sweden" \
                 "switzerland" \
-                "taiwan" \
                 "thailand" \
                 "turkey" \
               )

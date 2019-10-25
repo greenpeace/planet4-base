@@ -1,6 +1,16 @@
 #!/bin/sh
 
-echo "$APP_HOSTPATH"
+exclude=(hongkong korea taiwan)
+
+nro=$APP_HOSTPATH
+
+for i in "${array[@]}"
+do
+    if [ "$i" == "$nro" ] ; then
+        echo "Excluded NRO"
+        exit
+    fi
+done
 
 # Run wp cli command to convert shortcake shortcodes to gutenberg blocks.
 wp cache flush
@@ -30,4 +40,6 @@ node convert-blocks.js campaign
 wp cache flush
 
 # Clean up
-apt-get remove nodejs -y
+apt-get remove nodejs gnupg -y
+apt-get autoremove -y
+apt-get clean
