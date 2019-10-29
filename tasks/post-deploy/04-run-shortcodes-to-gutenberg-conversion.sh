@@ -1,8 +1,9 @@
 #!/bin/bash
 
-excluded=(hongkong korea taiwan)
+excluded=(hongkong korea taiwan netherland switzerland)
 
-nro=$APP_HOSTPATH
+nro="$(cut -d'_' -f2 <<<"$CONTAINER_PREFIX")"
+echo "NRO: ${nro}"
 
 for i in "${excluded[@]}"
 do
