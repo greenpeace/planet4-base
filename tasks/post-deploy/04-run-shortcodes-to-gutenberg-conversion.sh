@@ -1,8 +1,8 @@
 #!/bin/bash
 
-excluded=(hongkong korea taiwan netherland switzerland)
+excluded=(orghongkong orgkorea orgtaiwan orgnl ch)
 
-nro="$(cut -d'_' -f2 <<<"$CONTAINER_PREFIX")"
+nro="${APP_HOSTNAME##*.}${APP_HOSTPATH}"
 echo "NRO: ${nro}"
 
 for i in "${excluded[@]}"
