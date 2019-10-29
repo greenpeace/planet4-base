@@ -4,4 +4,4 @@
 wp option update classic-editor-replace 'block'
 
 # Allow users to switch editors (classic - gutenberg)
-wp option update classic-editor-allow-users 'allow'
+wp option update classic-editor-allow-users 'disallow'
