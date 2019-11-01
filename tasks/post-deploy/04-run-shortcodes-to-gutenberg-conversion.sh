@@ -15,6 +15,7 @@ done
 
 # Run wp cli command to convert shortcake shortcodes to gutenberg blocks.
 wp cache flush
+wp plugin activate --all
 wp p4-gblocks convert_to_gutenberg --skip-plugins=sitepress-multilingual-cms,wpml-translation-management,wpml-string-translation,wpml-media-translation
 wp plugin deactivate planet4-plugin-blocks
 wp cache flush
