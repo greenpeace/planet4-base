@@ -1,6 +1,6 @@
 #!/bin/bash
 
-excluded=(orghongkong orgkorea orgtaiwan ch)
+excluded=(orghongkong orgkorea orgtaiwan orgslovakia orgeastasia ch)
 
 nro="${APP_HOSTNAME##*.}${APP_HOSTPATH}"
 echo "NRO: ${nro}"
