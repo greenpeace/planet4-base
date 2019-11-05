@@ -10,10 +10,10 @@ $slug = $I->generateRandomSlug();
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_newcovers', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/covers', [
 		'cover_type'  => '1',
 		'title'       => 'Take Action',
-		'tags'        => '6,20',
+		'tags'        => [6, 20],
 		'description' => 'Description text',
 		'covers_view' => '0'
 	])

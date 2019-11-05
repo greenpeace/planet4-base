@@ -15,9 +15,6 @@ $I->scrollTo('.cookies-block');
 
 $I->wait(1);
 
-// Ensure back to top arrow is visible
-$I->seeElement('.back-top');
-
 // Click on a cookie block control to hide the cookie notice
 $I->click('.cookies-block .custom-control');
 

@@ -7,23 +7,30 @@ $I->wantTo('create and check columns block tasks style');
 
 $slug = $I->generateRandomSlug();
 
+$column1 = [
+	'title'       => 'Column 1',
+	'description' => 'Column 1 description',
+	'attachment'  => 90,
+	'cta_link'    => '/act/',
+	'cta_text'    => 'Act',
+];
+
+$column2 = [
+	'title'       => 'Column 2',
+	'description' => 'Column 2 description',
+	'attachment'  => 92,
+	'cta_link'    => '/explore/',
+	'cta_text'    => 'Explore',
+];
+
 $I->havePageInDatabase([
 	'post_name'    => $slug,
 	'post_status'  => 'publish',
-	'post_content' => $I->generateShortcode('shortcake_columns', [
+	'post_content' => $I->generateGutenberg('wp:planet4-blocks/columns', [
 		'columns_block_style' => 'tasks',
 		'columns_title'       => 'Tasks Columns',
 		'columns_description' => 'Columns Block description',
-		'title_1'             => 'Column 1',
-		'description_1'       => 'Column 1 description',
-		'attachment_1'        => 16,
-		'link_1'              => '/act/',
-		'cta_text_1'          => 'Act',
-		'title_2'             => 'Column 2',
-		'description_2'       => 'Column 2 description',
-		'attachment_2'        => 87,
-		'link_2'              => '/explore/',
-		'cta_text_2'          => 'Explore',
+		'columns'             => [$column1, $column2],
 	]),
 ]);
 
