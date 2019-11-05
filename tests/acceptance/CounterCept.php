@@ -26,4 +26,4 @@ $I->amOnPage('/' . $slug);
 
 // Check the text is rendered correctly
 $I->see('7000', 'span.counter-target');
-$I->see('7000 of 10000 only 3000 left', 'p.counter-text');
+$I->see('7000 of 10000 only 3000 left', 'div.counter-text');
