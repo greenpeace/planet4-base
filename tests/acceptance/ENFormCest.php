@@ -134,10 +134,10 @@ class ENFormCest {
 		$I->wantTo( 'Create a new engaging networks form' );
 
 		// Read sample ENS API responses and cache them to avoid trying to do the actual calls during testing.
-		$jsonf          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_fields_response.json' );
-		$jsonq          = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_questions_response.json' );
-		$json_question  = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_236734_response.json' );
-		$json_optin     = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_3877_response.json' );
+		$jsonf         = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_fields_response.json' );
+		$jsonq         = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_questions_response.json' );
+		$json_question = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_236734_response.json' );
+		$json_optin    = file_get_contents( __DIR__ . '/../_support/plugins/engagingnetworks/ensapi_sample_question_3877_response.json' );
 
 		$fields_data    = json_decode( $jsonf, true );
 		$questions_data = json_decode( $jsonq, true );
@@ -312,7 +312,7 @@ class ENFormCest {
 		$I->click( ENBlock::$pageElementButton );
 
 		// Select en page.
-		$option = $I->grabAttributeFrom( '//select[@name="'. ENBlock::$enPageSelect.'"]//option[2]', 'value' );
+		$option = $I->grabAttributeFrom( '//select[@name="' . ENBlock::$enPageSelect . '"]//option[2]', 'value' );
 		$I->selectOption( ENBlock::$enPageSelect, $option );
 		$shortcode_attributes[ ENBlock::$enPageSelect ] = $option;
 
@@ -330,7 +330,7 @@ class ENFormCest {
 		$I->fillField( ENBlock::$descriptionField, 'enform block description' );
 
 		// Fill field.
-		$shortcode_attributes[ ENBlock::$buttonTextField ]  = 'Call to Action';
+		$shortcode_attributes[ ENBlock::$buttonTextField ] = 'Call to Action';
 		$I->fillField( ENBlock::$buttonTextField, 'Call to Action' );
 
 		// Select enform post.
