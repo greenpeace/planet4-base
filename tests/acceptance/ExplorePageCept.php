@@ -11,7 +11,7 @@ $I->scrollTo('.split-two-column.block-wide');
 $I->see('Energy', 'a');
 $I->see('#renewables', '.split-two-column-item-tag');
 
-$I->scrollTo('.article-listing');
+$I->scrollTo('.articles-block');
 
 $I->see('Duis posuere', 'a');
 
