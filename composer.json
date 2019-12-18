@@ -20,7 +20,7 @@
 		"greenpeace/planet4-master-theme" : "v1.71",
 		"greenpeace/planet4-nginx-helper" : "2.*",
 		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.7",
-		"greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.7",
+		"greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.7.1",
 		"greenpeace/planet4-plugin-medialibrary" : "1.10",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.*",
