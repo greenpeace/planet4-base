@@ -2,6 +2,12 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
+## v2.23.1
+
+### Bug Fixes
+
+- [PLANET-4840](https://jira.greenpeace.org/browse/PLANET-4840) - Hide page title doesn't hide the title on Campaigs
+
 ## v2.23
 
 ### Features
