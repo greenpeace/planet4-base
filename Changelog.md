@@ -2,13 +2,21 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
-## v2.23.1
+## v2.24 - 2020-03-18
+
+### Bug FIxes
+
+- [PLANET-4680](https://jira.greenpeace.org/browse/PLANET-4680) - Images: Font size on the caption is huge
+- [PLANET-4842](https://jira.greenpeace.org/browse/PLANET-4842) - Carousel Header: scrolling not responsive on mobile
+- [PLANET-4860](https://jira.greenpeace.org/browse/PLANET-4860) - ErrorException: Catchable Fatal Error: Object of class stdClass could not be converted to string
+
+## v2.23.1 - 2020-03-12
 
 ### Bug Fixes
 
 - [PLANET-4840](https://jira.greenpeace.org/browse/PLANET-4840) - Hide page title doesn't hide the title on Campaigs
 
-## v2.23
+## v2.23 - 2020-03-11
 
 ### Features
 
@@ -25,7 +33,7 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 - [PLANET-4804](https://jira.greenpeace.org/browse/PLANET-4804) - Articles Block: Sorting order using Manual Override feature
 - [PLANET-4821](https://jira.greenpeace.org/browse/PLANET-4821) - Gallery block: only first image is being displayed
 
-## v2.22
+## v2.22 - 2020-03-20
 
 ### Features
 
