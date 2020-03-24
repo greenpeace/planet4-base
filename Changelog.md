@@ -2,9 +2,26 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
+## v2.25 - 2020-03-25
+
+### Features
+
+- [PLANET-4561](https://jira.greenpeace.org/browse/PLANET-4561) - Spreadsheet block: Follow Campaign styles
+- [PLANET-4710](https://jira.greenpeace.org/browse/PLANET-4710) - Campaigns: Align CTA buttons in Columns block
+- [PLANET-4833](https://jira.greenpeace.org/browse/PLANET-4833) - Campaigns: Add language selector to minimal navigation
+- [PLANET-4838](https://jira.greenpeace.org/browse/PLANET-4838) - Campaigns: Apply main site WPML configuration
+- [PLANET-4869](https://jira.greenpeace.org/browse/PLANET-4869) - Update login page UI for the new version of Google Login plugin
+
+### Bug Fixes
+
+- [PLANET-4806](https://jira.greenpeace.org/browse/PLANET-4806) - Covers block: Manual Override not finding posts
+- [PLANET-4844](https://jira.greenpeace.org/browse/PLANET-4844) - Pages: Open Graph/Social fields not pulled
+- [PLANET-4845](https://jira.greenpeace.org/browse/PLANET-4845) - JS Error: Unable to edit background image in pages
+- [PLANET-4880](https://jira.greenpeace.org/browse/PLANET-4880) - Increase timeout value of the Optimize anti-flicker snippet
+
 ## v2.24 - 2020-03-18
 
-### Bug FIxes
+### Bug Fixes
 
 - [PLANET-4680](https://jira.greenpeace.org/browse/PLANET-4680) - Images: Font size on the caption is huge
 - [PLANET-4842](https://jira.greenpeace.org/browse/PLANET-4842) - Carousel Header: scrolling not responsive on mobile
