@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "2.24",
+	"version": "2.25",
 	"description": "Core Greenpeace Planet4 application",
 	"license": "GPL-3.0-or-later",
 	"repositories": [
@@ -17,9 +17,9 @@
 	"require": {
 		"cmb2/cmb2": "2.*",
 		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "v1.82.1",
-		"greenpeace/planet4-nginx-helper" : "2.*",
-		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.17",
+		"greenpeace/planet4-master-theme" : "v1.83",
+		"greenpeace/planet4-nginx-helper" : "2.2.*",
+		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.18",
 		"greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.15",
 		"greenpeace/planet4-plugin-medialibrary" : "1.10",
 		"wikimedia/composer-merge-plugin": "1.4.1",
@@ -27,14 +27,14 @@
 		"wpackagist-plugin/duplicate-post": "3.*",
 		"wpackagist-plugin/elasticpress":"3.2.*",
 		"wpackagist-plugin/gdpr-comments":"1.0.2",
-		"wpackagist-plugin/google-apps-login": "3.2",
+		"wpackagist-plugin/google-apps-login": "3.3",
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
 		"wpackagist-plugin/redirection": "4.*",
 		"wpackagist-plugin/shortcode-ui": "0.*",
 		"wpackagist-plugin/timber-library": "1.9.4",
 		"wpackagist-plugin/wordfence": "7.*",
 		"wpackagist-plugin/wordpress-importer": "0.*",
-		"wpackagist-plugin/wp-redis": "0.7.*",
+		"wpackagist-plugin/wp-redis": "1.0.*",
 		"wpackagist-plugin/wp-sentry-integration":"3.*",
 		"wpackagist-plugin/wp-stateless": "2.*"
 	},
