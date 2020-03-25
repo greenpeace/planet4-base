@@ -2,6 +2,8 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
+## v2.25.1 - 2020-03-25
+
 ## v2.25 - 2020-03-25
 
 ### Features
