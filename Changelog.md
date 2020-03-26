@@ -2,7 +2,16 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
-## v2.25.1 - 2020-03-25
+## v2.26.0 - 2020-03-26
+
+### Features
+
+[PLANET-4889](https://jira.greenpeace.org/browse/PLANET-4889) - Add new value to campaign dataLayer dropdown (Covid-19)
+
+### Bug Fixes
+
+[PLANET-4623](https://jira.greenpeace.org/browse/PLANET-4623) - Some code included in the Social Media Share excerpt
+[PLANET-4822](https://jira.greenpeace.org/browse/PLANET-4822) - Gallery block: image selector not visible
 
 ## v2.25 - 2020-03-25
 
