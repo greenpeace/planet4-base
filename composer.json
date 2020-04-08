@@ -1,6 +1,6 @@
 {
 	"name": "greenpeace/planet4-base",
-	"version": "2.26.0",
+	"version": "2.27",
 	"description": "Core Greenpeace Planet4 application",
 	"license": "GPL-3.0-or-later",
 	"repositories": [
@@ -17,10 +17,10 @@
 	"require": {
 		"cmb2/cmb2": "2.*",
 		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "v1.84",
+		"greenpeace/planet4-master-theme" : "v1.85",
 		"greenpeace/planet4-nginx-helper" : "2.2.*",
-		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.19",
-		"greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.15",
+		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.20",
+		"greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.16",
 		"greenpeace/planet4-plugin-medialibrary" : "1.11",
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wpackagist-plugin/akismet": "4.*",
@@ -36,7 +36,9 @@
 		"wpackagist-plugin/wordpress-importer": "0.*",
 		"wpackagist-plugin/wp-redis": "1.0.*",
 		"wpackagist-plugin/wp-sentry-integration":"3.*",
-		"wpackagist-plugin/wp-stateless": "2.*"
+		"wpackagist-plugin/wp-stateless": "2.*",
+		"wpackagist-plugin/debug-bar": "1.*",
+		"10up/debug-bar-elasticpress": "1.*"
 	},
 
 	"config": {

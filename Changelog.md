@@ -2,6 +2,19 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
+## v2.27 - 2020-04-08
+
+### Features
+
+- [PLANET-4858](https://jira.greenpeace.org/browse/PLANET-4858) - Add a new parameter 'gPlatform' to the dataLayer
+- [PLANET-4906](https://jira.greenpeace.org/browse/PLANET-4906) - Create UI for Whatsapp share button
+
+### Bug Fixes
+
+- [PLANET-4779](https://jira.greenpeace.org/browse/PLANET-4779) - Author bio: Not visible on Post
+- [PLANET-4846](https://jira.greenpeace.org/browse/PLANET-4846) - EN Form: Bottom vertical space is off
+- [PLANET-4820](https://jira.greenpeace.org/browse/PLANET-4820) P4CG: Footer color should not be applied when "Main website navigation" is selected
+
 ## v2.26.0 - 2020-03-26
 
 ### Features
