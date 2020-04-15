@@ -2,6 +2,18 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
+## v2.28 - 2020-04-15
+
+### Features
+
+- [PLANET-4864](https://jira.greenpeace.org/browse/PLANET-4864) - Remove pre-defined background color from Campaign themes
+- [PLANET-4827](https://jira.greenpeace.org/browse/PLANET-4827) - Create importer for archive files into elasticsearch and include in search results
+
+
+### Bug Fixes
+
+- [PLANET-4895](https://jira.greenpeace.org/browse/PLANET-4895) - ErrorException: Warning: array_merge(): Argument #2 is not an array
+
 ## v2.27 - 2020-04-08
 
 ### Features
