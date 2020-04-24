@@ -30,7 +30,6 @@
 		"wpackagist-plugin/google-apps-login": "3.4",
 		"wpackagist-plugin/google-sitemap-generator": "4.*",
 		"wpackagist-plugin/redirection": "4.*",
-		"wpackagist-plugin/shortcode-ui": "0.*",
 		"wpackagist-plugin/timber-library": "1.9.4",
 		"wpackagist-plugin/wordfence": "7.*",
 		"wpackagist-plugin/wordpress-importer": "0.*",
