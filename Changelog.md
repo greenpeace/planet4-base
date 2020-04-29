@@ -2,7 +2,47 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
-## v2.28 - 2020-04-15
+## 2.30.0 - 2020-04-29
+
+### Features
+
+- [PLANET-4163](https://jira.greenpeace.org/browse/PLANET-4163) - Include excerpt in mobile search results
+- [PLANET-4797](https://jira.greenpeace.org/browse/PLANET-4797) - Remove Shortcode UI plugin
+- [PLANET-4878](https://jira.greenpeace.org/browse/PLANET-4878) - Make Campaign data layer field mandatory for Campaign pages
+- [PLANET-4913](https://jira.greenpeace.org/browse/PLANET-4913) - Spreadsheet block: Fix size and add scrolling
+- [PLANET-4946](https://jira.greenpeace.org/browse/PLANET-4946) - Edit selection in Gallery Block
+- [PLANET-4968](https://jira.greenpeace.org/browse/PLANET-4968) - Hide Scope dropdown from Analytics & Tracking fields
+
+### Bug Fixes
+
+- [PLANET-4335](https://jira.greenpeace.org/browse/PLANET-4335) - EN Form: Country field label appears twice on front-end
+- [PLANET-4723](https://jira.greenpeace.org/browse/PLANET-4723) - Author bio block is missing "Read more" link when too long - broken for M screens
+- [PLANET-4862](https://jira.greenpeace.org/browse/PLANET-4862) - Load more button doesn't work on some pages / devices
+- [PLANET-4887](https://jira.greenpeace.org/browse/PLANET-4887) - Text that is #000000 should be #1A1A1A
+- [PLANET-4919](https://jira.greenpeace.org/browse/PLANET-4919) - Ensure automatically selected options are correctly shown in the Preview when switching themes
+- [PLANET-4920](https://jira.greenpeace.org/browse/PLANET-4920) - Evergreen Pages: Some Opengraph metadata are empty
+- [PLANET-5018](https://jira.greenpeace.org/browse/PLANET-5018) - Spreadsheet block: missing from Campaigns
+
+## 2.29 - 2020-04-22
+
+### Features
+
+- [PLANET-4855](https://jira.greenpeace.org/browse/PLANET-4855) - Pull "Global Project" values from Smartsheet to campaign dropdowns (dataLayer)
+- [PLANET-4857](https://jira.greenpeace.org/browse/PLANET-4857) - Add a new parameter 'projectID' to the dataLayer
+- [PLANET-4859](https://jira.greenpeace.org/browse/PLANET-4859) - Pull "Local Project" values from each NRO's Smartsheet table
+- [PLANET-4924](https://jira.greenpeace.org/browse/PLANET-4924) - Re-enable the native buttons block
+
+### Bug Fixes
+
+- [PLANET-4705](https://jira.greenpeace.org/browse/PLANET-4705) - Header Carousel: icon to delete image is not shown
+- [PLANET-4738](https://jira.greenpeace.org/browse/PLANET-4738) - Search ErrorException: Warning: Invalid argument supplied for foreach()
+- [PLANET-4901](https://jira.greenpeace.org/browse/PLANET-4901) - Campaign Sidebar: Ensure fields with dependencies get the right defaults
+- [PLANET-4927](https://jira.greenpeace.org/browse/PLANET-4927) - Page, Evergreen: Spacing issue when using background image
+- [PLANET-4953](https://jira.greenpeace.org/browse/PLANET-4953) - Uncaught TypeError: Return value of P4_User::name() must be of the type string
+- [PLANET-4975](https://jira.greenpeace.org/browse/PLANET-4975) - Non-pdf attachments are returned by search
+- [PLANET-4990](https://jira.greenpeace.org/browse/PLANET-4990) - Error upon logging in via Google
+
+## 2.28 - 2020-04-15
 
 ### Features
 
@@ -14,7 +54,7 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 
 - [PLANET-4895](https://jira.greenpeace.org/browse/PLANET-4895) - ErrorException: Warning: array_merge(): Argument #2 is not an array
 
-## v2.27 - 2020-04-08
+## 2.27 - 2020-04-08
 
 ### Features
 
@@ -27,7 +67,7 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 - [PLANET-4846](https://jira.greenpeace.org/browse/PLANET-4846) - EN Form: Bottom vertical space is off
 - [PLANET-4820](https://jira.greenpeace.org/browse/PLANET-4820) P4CG: Footer color should not be applied when "Main website navigation" is selected
 
-## v2.26.0 - 2020-03-26
+## 2.26.0 - 2020-03-26
 
 ### Features
 
@@ -38,7 +78,7 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 [PLANET-4623](https://jira.greenpeace.org/browse/PLANET-4623) - Some code included in the Social Media Share excerpt
 [PLANET-4822](https://jira.greenpeace.org/browse/PLANET-4822) - Gallery block: image selector not visible
 
-## v2.25 - 2020-03-25
+## 2.25 - 2020-03-25
 
 ### Features
 
@@ -55,7 +95,7 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 - [PLANET-4845](https://jira.greenpeace.org/browse/PLANET-4845) - JS Error: Unable to edit background image in pages
 - [PLANET-4880](https://jira.greenpeace.org/browse/PLANET-4880) - Increase timeout value of the Optimize anti-flicker snippet
 
-## v2.24 - 2020-03-18
+## 2.24 - 2020-03-18
 
 ### Bug Fixes
 
@@ -63,13 +103,13 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 - [PLANET-4842](https://jira.greenpeace.org/browse/PLANET-4842) - Carousel Header: scrolling not responsive on mobile
 - [PLANET-4860](https://jira.greenpeace.org/browse/PLANET-4860) - ErrorException: Catchable Fatal Error: Object of class stdClass could not be converted to string
 
-## v2.23.1 - 2020-03-12
+## 2.23.1 - 2020-03-12
 
 ### Bug Fixes
 
 - [PLANET-4840](https://jira.greenpeace.org/browse/PLANET-4840) - Hide page title doesn't hide the title on Campaigs
 
-## v2.23 - 2020-03-11
+## 2.23 - 2020-03-11
 
 ### Features
 
@@ -86,7 +126,7 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 - [PLANET-4804](https://jira.greenpeace.org/browse/PLANET-4804) - Articles Block: Sorting order using Manual Override feature
 - [PLANET-4821](https://jira.greenpeace.org/browse/PLANET-4821) - Gallery block: only first image is being displayed
 
-## v2.22 - 2020-03-20
+## 2.22 - 2020-03-20
 
 ### Features
 
@@ -98,5 +138,3 @@ This document tracks all notable changes to Planet 4 project, introduced on each
 - [PLANET-4741](https://jira.greenpeace.org/browse/PLANET-4741) - Tags and Share buttons are visible when Title is hidden
 - [PLANET-4775](https://jira.greenpeace.org/browse/PLANET-4775) - P4CG: Wrong green color on footer links
 - [PLANET-4798](https://jira.greenpeace.org/browse/PLANET-4798) - MENA: Engaging Networks form thank you page text alignment
-
-
