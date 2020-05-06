@@ -1,118 +1,118 @@
 {
-	"name": "greenpeace/planet4-base",
-	"version": "2.30.0",
-	"description": "Core Greenpeace Planet4 application",
-	"license": "GPL-3.0-or-later",
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://wpackagist.org"
-		},
-		{
-			"type": "composer",
-			"url": "https://packagist.org"
-		}
-	],
+  "name": "greenpeace/planet4-base",
+  "version": "2.30.1",
+  "description": "Core Greenpeace Planet4 application",
+  "license": "GPL-3.0-or-later",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://packagist.org"
+    }
+  ],
 
-	"require": {
-		"cmb2/cmb2": "2.*",
-		"composer/installers": "~1.0",
-		"greenpeace/planet4-master-theme" : "v1.88",
-		"greenpeace/planet4-nginx-helper" : "2.2.*",
-		"greenpeace/planet4-plugin-gutenberg-blocks": "v0.23",
-		"greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.18",
-		"greenpeace/planet4-plugin-medialibrary" : "1.11",
-		"wikimedia/composer-merge-plugin": "1.4.1",
-		"wpackagist-plugin/akismet": "4.*",
-		"wpackagist-plugin/duplicate-post": "3.*",
-		"wpackagist-plugin/elasticpress":"3.2.*",
-		"wpackagist-plugin/gdpr-comments":"1.0.2",
-		"wpackagist-plugin/google-apps-login": "3.4.1",
-		"wpackagist-plugin/google-sitemap-generator": "4.*",
-		"wpackagist-plugin/redirection": "4.*",
-		"wpackagist-plugin/timber-library": "1.9.4",
-		"wpackagist-plugin/wordfence": "7.*",
-		"wpackagist-plugin/wordpress-importer": "0.*",
-		"wpackagist-plugin/wp-redis": "1.0.*",
-		"wpackagist-plugin/wp-sentry-integration":"3.*",
-		"wpackagist-plugin/wp-stateless": "2.*"
-	},
+  "require": {
+    "cmb2/cmb2": "2.*",
+    "composer/installers": "~1.0",
+    "greenpeace/planet4-master-theme" : "v1.89",
+    "greenpeace/planet4-nginx-helper" : "2.2.*",
+    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.24",
+    "greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.18",
+    "greenpeace/planet4-plugin-medialibrary" : "1.11",
+    "wikimedia/composer-merge-plugin": "1.4.1",
+    "wpackagist-plugin/akismet": "4.*",
+    "wpackagist-plugin/duplicate-post": "3.*",
+    "wpackagist-plugin/elasticpress":"3.2.*",
+    "wpackagist-plugin/gdpr-comments":"1.0.2",
+    "wpackagist-plugin/google-apps-login": "3.4.1",
+    "wpackagist-plugin/google-sitemap-generator": "4.*",
+    "wpackagist-plugin/redirection": "4.*",
+    "wpackagist-plugin/timber-library": "1.9.4",
+    "wpackagist-plugin/wordfence": "7.*",
+    "wpackagist-plugin/wordpress-importer": "0.*",
+    "wpackagist-plugin/wp-redis": "1.0.*",
+    "wpackagist-plugin/wp-sentry-integration":"3.*",
+    "wpackagist-plugin/wp-stateless": "2.*"
+  },
 
-	"config": {
-		"secure-http": false,
-		"github-protocols": ["https"]
-	},
+  "config": {
+    "secure-http": false,
+    "github-protocols": ["https"]
+  },
 
-	"extra": {
-		"installer-paths": {
-			"vendor/plugins/{$name}/": ["type:wordpress-plugin"],
-			"vendor/themes/{$name}/": ["type:wordpress-theme"]
-		},
-		"merge-plugin": {
-			"require": "composer-local.json",
-			"recurse": true,
-			"replace": true,
-			"ignore-duplicates": false,
-			"merge-dev": true,
-			"merge-extra": false,
-			"merge-extra-deep": false,
-			"merge-scripts": true
-		}
-	},
+  "extra": {
+    "installer-paths": {
+      "vendor/plugins/{$name}/": ["type:wordpress-plugin"],
+      "vendor/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "merge-plugin": {
+      "require": "composer-local.json",
+      "recurse": true,
+      "replace": true,
+      "ignore-duplicates": false,
+      "merge-dev": true,
+      "merge-extra": false,
+      "merge-extra-deep": false,
+      "merge-scripts": true
+    }
+  },
 
-	"scripts": {
-		"site-install": [
-			"@reset:public", "@download:wordpress", "@copy:health-check",
-			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
-			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
-			"@site:custom"
-		],
+  "scripts": {
+    "site-install": [
+      "@reset:public", "@download:wordpress", "@copy:health-check",
+      "@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
+      "@core:config", "@core:install", "@plugin:activate", "@theme:activate",
+      "@core:add-author-capabilities", "@core:add-contributor-capabilities", "@redis:enable",
+      "@site:custom"
+    ],
 
-		"site-update": [
-			"@download:wordpress", "@copy:health-check",
-			"@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
-			"@core:updatedb", "@plugin:activate", "@theme:activate",
-			"@core:add-contributor-capabilities", "@redis:enable", "@site:custom"
-		],
+    "site-update": [
+      "@download:wordpress", "@copy:health-check",
+      "@reset:themes", "@reset:plugins", "@copy:themes", "@copy:plugins",
+      "@core:updatedb", "@plugin:activate", "@theme:activate",
+      "@core:add-contributor-capabilities", "@redis:enable", "@site:custom"
+    ],
 
-		"docker-site-install": [
-			"@download:wordpress", "@copy:health-check",
-			"@reset:themes", "@copy:themes", "@copy:plugins",
-			"@core:config", "@core:install", "@plugin:activate", "@theme:activate",
-			"@site:custom"
-		],
+    "docker-site-install": [
+      "@download:wordpress", "@copy:health-check",
+      "@reset:themes", "@copy:themes", "@copy:plugins",
+      "@core:config", "@core:install", "@plugin:activate", "@theme:activate",
+      "@site:custom"
+    ],
 
-		"site:global": [
-			"@site:custom"
-		],
+    "site:global": [
+      "@site:custom"
+    ],
 
-		"theme:install": ["@copy:theme", "@theme:activate"],
-		"plugin:install": ["@copy:plugin", "@plugin:activate"],
+    "theme:install": ["@copy:theme", "@theme:activate"],
+    "plugin:install": ["@copy:plugin", "@plugin:activate"],
 
-		"reset:public" : "rm -rf public; mkdir public",
-		"reset:themes" : "rm -rf public/wp-content/themes",
-		"reset:plugins" : "rm -rf public/wp-content/plugins",
+    "reset:public" : "rm -rf public; mkdir public",
+    "reset:themes" : "rm -rf public/wp-content/themes",
+    "reset:plugins" : "rm -rf public/wp-content/plugins",
 
-		"download:wordpress": "wp core download --version=5.0.3 --path=public --force",
-		"copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
-		"copy:themes" : "rsync -ar vendor/themes public/wp-content",
+    "download:wordpress": "wp core download --version=5.0.3 --path=public --force",
+    "copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
+    "copy:themes" : "rsync -ar vendor/themes public/wp-content",
 
-		"redis:enable" : "wp redis enable",
+    "redis:enable" : "wp redis enable",
 
-		"core:config": "wp core config --force",
-		"core:install": "wp core install",
-		"core:updatedb": "wp core update-db",
-		"core:add-author-capabilities": "wp cap add author edit_others_posts; wp cap add author delete_others_posts; wp cap add author delete_private_posts;wp cap add author edit_private_posts;wp cap add author read_private_posts;",
-		"core:add-contributor-capabilities": "wp cap add contributor upload_files",
+    "core:config": "wp core config --force",
+    "core:install": "wp core install",
+    "core:updatedb": "wp core update-db",
+    "core:add-author-capabilities": "wp cap add author edit_others_posts; wp cap add author delete_others_posts; wp cap add author delete_private_posts;wp cap add author edit_private_posts;wp cap add author read_private_posts;",
+    "core:add-contributor-capabilities": "wp cap add contributor upload_files",
 
-		"plugin:deactivate": "wp plugin deactivate --all",
-		"plugin:activate": "wp plugin activate --all",
-		"plugin:activate-only-inactive": "inactive_plugins=$(wp plugin list --field=name --status=inactive --format=csv); wp plugin activate $inactive_plugins;",
-		"theme:activate": "wp theme activate",
+    "plugin:deactivate": "wp plugin deactivate --all",
+    "plugin:activate": "wp plugin activate --all",
+    "plugin:activate-only-inactive": "inactive_plugins=$(wp plugin list --field=name --status=inactive --format=csv); wp plugin activate $inactive_plugins;",
+    "theme:activate": "wp theme activate",
 
-		"server": "php -S 127.0.0.1:9191 -t public",
-		"site:custom" : ""
+    "server": "php -S 127.0.0.1:9191 -t public",
+    "site:custom" : ""
 
-	}
+  }
 }

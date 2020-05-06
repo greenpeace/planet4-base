@@ -2,6 +2,21 @@
 
 This document tracks all notable changes to Planet 4 project, introduced on each release.
 
+## 2.30.1 - 2020-05-06
+
+### Features
+
+- [PLANET-4971](https://jira.greenpeace.org/browse/PLANET-4971) - Implement DataLayer events on Footer
+
+### Bug Fixes
+
+- [PLANET-4853](https://jira.greenpeace.org/browse/PLANET-4853) - Covers: Rows displayed shows all on mobile
+- [PLANET-5015](https://jira.greenpeace.org/browse/PLANET-5015) - Blocks report API doesn't report Carousel Header accurately
+- [PLANET-4937](https://jira.greenpeace.org/browse/PLANET-4937) - Search results post type should use an a tag instead of a button that behaves like an a tag
+- [PLANET-5048](https://jira.greenpeace.org/browse/PLANET-5048) - Image thumbs in the Search page loading huge images
+- [PLANET-5001](https://jira.greenpeace.org/browse/PLANET-5001) - Footer primary + Disclaimer message links colours on child theme get overridden
+- [PLANET-5000](https://jira.greenpeace.org/browse/PLANET-5000) - Rollover color of primary navigation (footer and header) links is wrong
+
 ## 2.30.0 - 2020-04-29
 
 ### Features

@@ -5,24 +5,21 @@ root = true
 
 [*]
 end_of_line = lf
-indent_style = tab
+indent_style = space
+indent_size = 2
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[Makefile]
+indent_style = tab
+
 [.htaccess]
-indent_style = space
 indent_size = 4
 
-[*.json]
-indent_style = tab
-indent_size = 2
-
-[*.yml]
-indent_style = space
-indent_size = 2
+[*.py]
+indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
 indent_style = space
-
