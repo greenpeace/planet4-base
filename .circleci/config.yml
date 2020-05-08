@@ -258,6 +258,12 @@ jobs:
           name: Notify failure
           when: on_fail
           command: notify-job-failure.sh
+      - run:
+          name: Notify of new release
+          command: |
+            version=$(get-new-version.sh)
+            changelog=$(changelog.sh "$version")
+            VERSION="$version" CHANGELOG="$changelog" notify-release.sh
 
   notify-promote:
     docker:
@@ -272,11 +278,11 @@ jobs:
           command: |
             new_version=$(git-new-version.sh)
             echo $new_version > /tmp/workspace/var/new_version
-            TYPE="@rawalker Promote $new_version" notify-job-hold.sh
+            TYPE="@nikos Promote $new_version" notify-job-hold.sh
       - run:
           name: Notify failure
           when: on_fail
-          command: TYPE="@rawalker Promote $new_version" notify-job-failure.sh
+          command: TYPE="@nikos Promote $new_version" notify-job-failure.sh
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
