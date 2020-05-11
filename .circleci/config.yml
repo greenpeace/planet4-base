@@ -191,7 +191,7 @@ jobs:
           when: on_fail
           command: notify-job-failure.sh
 
-  trigger-planet4:
+  trigger-sites:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
     environment:
