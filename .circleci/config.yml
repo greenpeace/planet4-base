@@ -258,12 +258,6 @@ jobs:
           name: Notify failure
           when: on_fail
           command: notify-job-failure.sh
-      - run:
-          name: Notify of new release
-          command: |
-            version=$(get-new-version.sh)
-            changelog=$(changelog.sh "$version")
-            VERSION="$version" CHANGELOG="$changelog" notify-release.sh
 
   notify-promote:
     docker:
@@ -315,6 +309,26 @@ jobs:
           when: on_fail
           command: TYPE="Promote" notify-job-failure.sh
 
+  changelog:
+    docker:
+      - image: greenpeaceinternational/circleci-base:latest
+    working_directory: /tmp/workspace/
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Configure git
+          command: |
+            mkdir -p ~/.ssh
+            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+            ' >> ~/.ssh/known_hosts
+      - run:
+          name: Notify of new release
+          command: |
+            version=$(get-new-version.sh)
+            changelog=$(changelog.sh "$version")
+            VERSION="$version" CHANGELOG="$changelog" notify-release.sh
 
 workflows:
   version: 2
@@ -344,31 +358,16 @@ workflows:
           filters:
             branches:
               only: develop
-      - hold-promote:
-          type: approval
-          requires:
-            - deploy-develop
-            - test-codeception
-          filters:
-            branches:
-              only: develop
-      - hold-trigger-planet4:
-          type: approval
-          requires:
-            - deploy-develop
-            - test-codeception
-          filters:
-            branches:
-              only: develop
-      - trigger-planet4:
-          context: org-global
-          requires:
-            - hold-trigger-planet4
-          filters:
-            branches:
-              only: develop
       - notify-promote:
           context: org-global
+          requires:
+            - deploy-develop
+            - test-codeception
+          filters:
+            branches:
+              only: develop
+      - hold-promote:
+          type: approval
           requires:
             - deploy-develop
             - test-codeception
@@ -380,6 +379,35 @@ workflows:
           requires:
             - hold-promote
             - notify-promote
+          filters:
+            branches:
+              only: develop
+      - hold-trigger-sites:
+          type: approval
+          requires:
+            - deploy-develop
+            - test-codeception
+          filters:
+            branches:
+              only: develop
+      - trigger-sites:
+          context: org-global
+          requires:
+            - hold-trigger-sites
+          filters:
+            branches:
+              only: develop
+      - hold-changelog:
+          type: approval
+          requires:
+            - trigger-sites
+          filters:
+            branches:
+              only: develop
+      - changelog:
+          context: org-global
+          requires:
+            - hold-changelog
           filters:
             branches:
               only: develop
