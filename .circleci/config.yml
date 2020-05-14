@@ -397,3 +397,17 @@ workflows:
           filters:
             branches:
               only: develop
+      - hold-changelog:
+          type: approval
+          requires:
+            - trigger-sites
+          filters:
+            branches:
+              only: develop
+      - changelog:
+          context: org-global
+          requires:
+            - hold-changelog
+          filters:
+            branches:
+              only: develop
