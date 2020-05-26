@@ -64,12 +64,22 @@ jobs:
             git clone https://github.com/greenpeace/planet4-docker-compose
 
       - run:
-          name: Run tests
+          name: Start docker-compose
           command: |
             export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
             export APP_IMAGE=gcr.io/planet-4-151612/planet4-base-app:${BUILD_TAG}
             export OPENRESTY_IMAGE=gcr.io/planet-4-151612/planet4-base-openresty:${BUILD_TAG}
-            make -C planet4-docker-compose ci test
+            make -C planet4-docker-compose hosts ci
+
+      - run:
+          name: Install codeception
+          command: |
+            make -C planet4-docker-compose install-codeception test-env-info
+
+      - run:
+          name: Run tests
+          command: |
+            make -C planet4-docker-compose test-codeception
 
       - run:
           name: Extract test artifacts
