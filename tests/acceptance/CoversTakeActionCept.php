@@ -27,4 +27,3 @@ $I->see('Take Action', 'h2.page-section-header');
 $I->see('Description text', 'div.page-section-description');
 $I->seeNumberOfElements('.cover-card', 2);
 $I->see('#Climate', 'a.cover-card-tag');
-$I->see('Get Involved', 'a.cover-card-btn');
