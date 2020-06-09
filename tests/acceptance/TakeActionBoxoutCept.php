@@ -20,5 +20,4 @@ $I->amOnPage('/' . $slug);
 
 // Check the Take Action Boxout block
 $I->see('#Climate', '.cover-card .cover-card-tag');
-$I->see('Vestibulum leo libero', '.cover-card h2.cover-card-heading');
 $I->see('Get Involved', '.cover-card a.btn-action');
