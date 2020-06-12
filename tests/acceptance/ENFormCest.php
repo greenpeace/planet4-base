@@ -123,7 +123,6 @@ class ENFormCest {
 	 *
 	 * @group enform
 	 * @group engaging-networks
-	 * @skip
 	 *
 	 * @param AcceptanceTester $I
 	 *
@@ -282,7 +281,6 @@ class ENFormCest {
 	 * @depends createAnEnForm
 	 * @group enform
 	 * @group engaging-networks
-	 * @skip
 	 *
 	 * @param AcceptanceTester $I
 	 *
@@ -362,7 +360,6 @@ class ENFormCest {
 	 * @depends createAnEnBlock
 	 * @group enform
 	 * @group engaging-networks
-	 * @skip
 	 *
 	 */
 	public function fillAnEnBlock( AcceptanceTester $I ) {
