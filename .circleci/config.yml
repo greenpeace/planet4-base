@@ -327,8 +327,15 @@ jobs:
           name: Notify of new release
           command: |
             version=$(get-new-version.sh)
-            changelog=$(changelog.sh "$version")
-            VERSION="$version" CHANGELOG="$changelog" notify-release.sh
+            changelog.sh "$version"
+      - slack/notify:
+          channel: C014UMRC4AJ
+          mentions: here
+          color: '#78c043'
+          message: "🌍 A new Planet 4 release is currently being deployed.\nCheck the <https://support.greenpeace.org/planet4/tech/changelog|Changelog> for the full list of changes"
+          include_job_number_field: false
+          include_project_field: false
+          include_visit_job_action: false
 
 workflows:
   version: 2
