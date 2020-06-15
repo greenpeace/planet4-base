@@ -1,10 +1,13 @@
 ---
+version: 2.1
+
 defaults: &defaults
   docker:
     - image: greenpeaceinternational/p4-builder:latest
   working_directory: /home/circleci/
 
-version: 2
+orbs:
+  slack: circleci/slack@3.4.2
 
 jobs:
   lint:
