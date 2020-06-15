@@ -1,13 +1,10 @@
 ---
-version: 2.1
+version: 2
 
 defaults: &defaults
   docker:
     - image: greenpeaceinternational/p4-builder:latest
   working_directory: /home/circleci/
-
-orbs:
-  slack: circleci/slack@3.4.2
 
 jobs:
   lint:
@@ -331,14 +328,6 @@ jobs:
           command: |
             version=$(get-new-version.sh)
             changelog.sh "$version"
-      - slack/notify:
-          channel: C014UMRC4AJ
-          mentions: here
-          color: '#78c043'
-          message: "🌍 A new Planet 4 release is currently being deployed.\nCheck the <https://support.greenpeace.org/planet4/tech/changelog|Changelog> for the full list of changes"
-          include_job_number_field: false
-          include_project_field: false
-          include_visit_job_action: false
 
 workflows:
   version: 2
