@@ -9,15 +9,17 @@
 		}
 	],
 	"require": {
+		"codeception/module-asserts": "^1.2.1",
+		"codeception/module-db": "^1.0.1",
+		"codeception/module-webdriver": "^1.1.0",
+		"codeception/module-cli": "^1.0.2"
 	},
 	"config": {
 		"secure-http": false,
-		"github-protocols": ["https"],
-    "platform": {
-      "php": "7.0.32"
-    }
+		"github-protocols": ["https"]
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "^2.2.8"
+    "codeception/c3": "^2.4.1",
+		"lucatume/wp-browser": "^2.6.1"
 	}
 }
