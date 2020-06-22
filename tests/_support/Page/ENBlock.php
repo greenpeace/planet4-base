@@ -10,7 +10,7 @@ namespace Page;
 class ENBlock {
 	// Include url of current page.
 	public static $URL                     = '/wp-admin/post-new.php?post_type=p4en_form';
-	public static $shortcodeName           = 'shortcake_enblock';
+	public static $shortcodeName           = 'wp:planet4-blocks/enform';
 	public static $addFieldButton          = '.add-en-field';
 	public static $pageElementButton       = '[data-shortcode="shortcake_enblock"]';
 	public static $enPageSelect            = 'en_page_id';
