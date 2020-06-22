@@ -291,3 +291,12 @@ workflows:
           filters:
             branches:
               only: master
+
+  branch:
+    jobs:
+      - build:
+          context: org-global
+      - test:
+          context: org-global
+          requires:
+            - build
