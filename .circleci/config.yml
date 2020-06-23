@@ -296,7 +296,17 @@ workflows:
     jobs:
       - build:
           context: org-global
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
       - test:
           context: org-global
           requires:
             - build
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
