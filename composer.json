@@ -17,10 +17,10 @@
   "require": {
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
-    "greenpeace/planet4-master-theme" : "v1.97.2",
+    "greenpeace/planet4-master-theme" : "v1.97.1",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
     "greenpeace/planet4-plugin-gutenberg-blocks": "v0.34.1",
-    "greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.21.1",
+    "greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.21.2",
     "greenpeace/planet4-plugin-medialibrary" : "1.12",
     "wikimedia/composer-merge-plugin": "1.4.1",
     "wpackagist-plugin/akismet": "4.*",
