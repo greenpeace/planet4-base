@@ -2,7 +2,7 @@
 
  [![CircleCI](https://circleci.com/gh/greenpeace/planet4-base-fork/tree/develop.svg?style=shield)](https://circleci.com/gh/greenpeace/planet4-base-fork/tree/develop)
 
-Testing.
+Testing..
 
 This project provides the base for all Planet 4 sites.
 
