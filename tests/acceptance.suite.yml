@@ -37,6 +37,9 @@ modules:
             adminPassword: '%TEST_SITE_ADMIN_PASSWORD%'
             adminPath: '%TEST_SITE_WP_ADMIN_PATH%'
             clear_cookies: true
+            capabilities:
+                chromeOptions:
+                    args: ["--unsafely-treat-insecure-origin-as-secure='%TEST_SITE_WP_URL%'"]
         WPCLI:
             path: /app/source/public
             throw: true
@@ -47,3 +50,9 @@ extensions:
         Codeception\Extension\Recorder:
             delete_successful: true
             module: WPWebDriver
+gherkin:
+    contexts:
+        default:
+            - AcceptanceTester
+            - Step\Acceptance\Admin\NavigationSteps
+            - Step\Acceptance\Admin\GutenbergEditorSteps

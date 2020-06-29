@@ -19,7 +19,8 @@
 		"github-protocols": ["https"]
 	},
 	"require-dev": {
-    "codeception/c3": "^2.4.1",
-		"lucatume/wp-browser": "^2.6.1"
+		"codeception/c3": "^2.4.1",
+		"lucatume/wp-browser": "^2.6.1",
+		"myclabs/php-enum": "^1.7"
 	}
 }
