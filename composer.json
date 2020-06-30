@@ -17,7 +17,7 @@
   "require": {
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
-    "greenpeace/planet4-master-theme" : "v1.98",
+    "greenpeace/planet4-master-theme" : "v1.98.1",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
     "greenpeace/planet4-plugin-gutenberg-blocks": "v0.35",
     "greenpeace/planet4-plugin-gutenberg-engagingnetworks": "v0.22",
