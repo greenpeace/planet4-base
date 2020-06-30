@@ -284,10 +284,17 @@ workflows:
           filters:
             branches:
               only: master
+      - hold-changelog:
+          type: approval
+          requires:
+            - trigger-sites
+          filters:
+            branches:
+              only: master
       - changelog:
           context: org-global
           requires:
-            - trigger-sites
+            - hold-changelog
           filters:
             branches:
               only: master
