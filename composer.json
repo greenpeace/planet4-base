@@ -1,6 +1,5 @@
 {
   "name": "greenpeace/planet4-base",
-  "version": "develop",
   "description": "Core Greenpeace Planet4 application",
   "license": "GPL-3.0-or-later",
   "repositories": [
