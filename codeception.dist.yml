@@ -11,7 +11,6 @@ coverage:
     include:
         - public/wp-content/themes/planet4-master-theme/*.php
         - public/wp-content/plugins/planet4-plugin-gutenberg-blocks/*.php
-        - public/wp-content/plugins/planet4-plugin-gutenberg-engagingnetworks/*.php
         - public/wp-content/plugins/planet4-plugin-medialibrary/*.php
     remote_context_options:
         ssl:
