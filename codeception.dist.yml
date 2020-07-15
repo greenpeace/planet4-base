@@ -29,5 +29,7 @@ extensions:
         - Codeception\Command\GenerateWPAjax
         - Codeception\Command\GenerateWPCanonical
         - Codeception\Command\GenerateWPXMLRPC
+        - Command\Selectors
+        - Command\Steps
 params:
     - .env.codeception
