@@ -6,7 +6,7 @@ npm run build
 composer install
 popd || exit
 
-for plugin in gutenberg-blocks gutenberg-engagingnetworks
+for plugin in gutenberg-blocks
 do
 	pushd /app/source/public/wp-content/plugins/planet4-plugin-${plugin} || exit
 	npm install
