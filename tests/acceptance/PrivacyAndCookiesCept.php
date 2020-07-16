@@ -4,9 +4,6 @@ $I->wantTo('check Privacy And Cookies page');
 
 $I->amOnPage('/privacy-and-cookies');
 
-// Ensure the submenu block is visible
-$I->seeElement('.submenu-block');
-
 // I see the cookie notice
 $I->seeElement('.cookie-notice');
 
