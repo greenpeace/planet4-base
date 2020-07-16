@@ -18,6 +18,7 @@ class Navigation
         'Posts > Tags' => '/wp-admin/edit-tags.php?taxonomy=post_tag',
         'Posts > Post Types' => '/wp-admin/edit-tags.php?taxonomy=p4-page-type',
         'Posts > Posts Report' => '/wp-admin/edit.php?taxonomy=posts-report',
+        'Tools > Import' => '/wp-admin/admin.php?import=wordpress',
     ];
 
     public function __construct(\AcceptanceTester $I)
