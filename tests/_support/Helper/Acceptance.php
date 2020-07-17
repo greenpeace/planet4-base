@@ -2,6 +2,8 @@
 
 namespace Helper;
 
+use Codeception\Module\WPWebDriver;
+
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
@@ -59,5 +61,16 @@ class Acceptance extends \Codeception\Module
 		$result .= json_encode($data);
 		$result .= ' /-->';
 		return $result;
+	}
+
+	/**
+	 * @param string $selector
+	 * @return bool
+	 */
+	public function checkIfElementExists(string $selector): bool
+	{
+		$wd = $this->getModule('WPWebDriver');
+		return $wd instanceof WPWebDriver
+			&& !empty($wd->_findElements($selector));
 	}
 }

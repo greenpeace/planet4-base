@@ -2,6 +2,9 @@
 
 use tad\WPBrowser\Generators\Date;
 
+/**
+ * AcceptanceTester: helpers for the AcceptanceTester actor
+ */
 class AcceptanceTester extends \Codeception\Actor
 {
 	use _generated\AcceptanceTesterActions;
@@ -23,6 +26,8 @@ class AcceptanceTester extends \Codeception\Actor
 	/**
 	 * Login to WordPress as the admin user saving the session as snapshot to make
 	 * subsequent admin logins reuse the session to save time.
+	 *
+	 * @Given I am logged in as administrator
 	 */
 	public function loginAsAdminCached()
 	{
@@ -93,5 +98,4 @@ class AcceptanceTester extends \Codeception\Actor
 		$I = $this;
 		$I->dontHaveCommentInDatabase(['comment_author_email' => $email]);
 	}
-
 }
