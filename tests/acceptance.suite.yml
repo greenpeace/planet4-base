@@ -56,3 +56,4 @@ gherkin:
             - AcceptanceTester
             - Step\Acceptance\Admin\NavigationSteps
             - Step\Acceptance\Admin\GutenbergEditorSteps
+            - Step\Acceptance\Admin\CampaignImportSteps

@@ -52,4 +52,13 @@ class NavigationSteps
         $I = $this->tester;
         $I->amOnPage(Navigation::pageLink('Posts > Add New'));
     }
+
+    /**
+     * @Given I am on a import campaign page
+     */
+    public function iAmOnAImportCampaignPage(): void
+    {
+      $I = $this->tester;
+      $I->amOnPage(Navigation::pageLink('Tools > Import'));
+    }
 }
