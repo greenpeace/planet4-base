@@ -42,5 +42,5 @@ $I->see( 'Tasks Columns', 'h2' );
 $I->see( 'Columns Block description', 'div' );
 $I->see( 'Column 1', '.step-info h5' );
 $I->see( 'Column 1 description', '.step-info p' );
-$I->seeElement( '.steps-action img' );
-$I->see( 'Explore', '.steps-action a.btn-secondary' );
+$I->seeElement( '.steps-action img, .step-info img' );
+$I->see( 'Explore', '.steps-action a.btn-secondary, .step-info a.btn-secondary' );
