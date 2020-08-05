@@ -10,5 +10,3 @@ $I->scrollTo('.split-two-column.block-wide');
 
 $I->see('Energy', 'a');
 $I->see('#renewables', '.split-two-column-item-tag');
-
-$I->scrollTo('#happy-point');
