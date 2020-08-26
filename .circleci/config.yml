@@ -255,27 +255,17 @@ workflows:
             branches:
               only: develop
 
-  master:
+  release:
     jobs:
-      - build:
-          context: org-global
-          filters:
-            branches:
-              only: master
-      - test:
-          context: org-global
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
       - hold-trigger:
           type: approval
           requires:
             - test
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^v.*/
       - trigger-sites:
           context: org-global
           pipeline: master
@@ -283,21 +273,27 @@ workflows:
             - hold-trigger
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^v.*/
       - hold-changelog:
           type: approval
           requires:
             - trigger-sites
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^v.*/
       - changelog:
           context: org-global
           requires:
             - hold-changelog
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^v.*/
 
   branch:
     jobs:
@@ -307,7 +303,6 @@ workflows:
             branches:
               ignore:
                 - develop
-                - master
       - test:
           context: org-global
           requires:
@@ -316,4 +311,3 @@ workflows:
             branches:
               ignore:
                 - develop
-                - master
