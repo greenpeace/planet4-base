@@ -185,6 +185,7 @@ jobs:
                 "switzerland" \
                 "thailand" \
                 "turkey" \
+                "ummah" \
               )
               for i in "${sites[@]}"
               do
