@@ -120,7 +120,7 @@ jobs:
       - store_artifacts:
           path: planet4-docker-compose/artifacts
 
-  trigger-sites:
+  release-sites:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
     environment:
@@ -135,58 +135,10 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: Trigger Planet 4 websites
+          name: Trigger sites release
           command: |
-              sites=(
-                "africa" \
-                "argentina" \
-                "belgium" \
-                "brasil" \
-                "bulgaria" \
-                "canada" \
-                "chile" \
-                "colombia" \
-                "croatia" \
-                "czech-republic" \
-                "defaultcontent" \
-                "denmark" \
-                "eastasia" \
-                "eu-unit" \
-                "finland" \
-                "greece" \
-                "greenland" \
-                "handbook" \
-                "hungary" \
-                "hongkong" \
-                "india" \
-                "indonesia" \
-                "international" \
-                "israel" \
-                "italy" \
-                "japan" \
-                "korea" \
-                "luxembourg" \
-                "malaysia" \
-                "mena" \
-                "mexico" \
-                "netherlands" \
-                "new-zealand" \
-                "norway" \
-                "peru" \
-                "philippines" \
-                "poland" \
-                "romania" \
-                "slovakia" \
-                "slovenia" \
-                "southeastasia" \
-                "storytelling" \
-                "sweden" \
-                "taiwan" \
-                "switzerland" \
-                "thailand" \
-                "turkey" \
-                "ummah" \
-              )
+              declare -a sites
+              mapfile -t sites < sites.txt
               for i in "${sites[@]}"
               do
                 trigger-build.sh git@github.com:greenpeace/planet4-$i.git << parameters.pipeline >>
@@ -220,6 +172,24 @@ jobs:
           include_project_field: false
           include_visit_job_action: false
 
+  rollback-sites:
+    docker:
+      - image: greenpeaceinternational/circleci-base:latest
+    working_directory: /tmp/workspace
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Trigger sites rollback
+          command: |
+              declare -a sites
+              mapfile -t sites < sites.txt
+              for i in "${sites[@]}"
+              do
+                ./scripts/rollback.sh planet4-$i ${CIRCLE_TOKEN}
+              done
+
 workflows:
   develop:
     jobs:
@@ -242,7 +212,7 @@ workflows:
           filters:
             branches:
               only: develop
-      - hold-trigger:
+      - hold-release:
           type: approval
           requires:
             - deploy
@@ -250,29 +220,28 @@ workflows:
           filters:
             branches:
               only: develop
-      - trigger-sites:
+      - release-sites:
           context: org-global
           pipeline: develop
           requires:
-            - hold-trigger
+            - hold-release
           filters:
             branches:
               only: develop
 
   release:
     jobs:
-      - hold-trigger:
+      - hold-release:
           type: approval
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - trigger-sites:
+      - release-sites:
           context: org-global
-          pipeline: master
           requires:
-            - hold-trigger
+            - hold-release
           filters:
             branches:
               ignore: /.*/
@@ -281,7 +250,7 @@ workflows:
       - hold-changelog:
           type: approval
           requires:
-            - trigger-sites
+            - release-sites
           filters:
             branches:
               ignore: /.*/
@@ -296,6 +265,25 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
+
+  rollback:
+    jobs:
+      - hold-rollback:
+          type: approval
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - rollback-sites:
+          context: org-global
+          requires:
+            - hold-rollback
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /rollback-v.*/
 
   branch:
     jobs:
