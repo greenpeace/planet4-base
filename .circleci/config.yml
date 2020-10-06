@@ -283,7 +283,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /rollback-v.*/
+              only: /rollback-v*/
 
   branch:
     jobs:
