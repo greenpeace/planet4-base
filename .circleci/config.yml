@@ -274,7 +274,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/
+              only: /rollback-v*/
       - rollback-sites:
           context: org-global
           requires:
