@@ -240,7 +240,7 @@ workflows:
               only: /^v.*/
       - release-sites:
           context: org-global
-          pipeline: production
+          pipeline: master
           requires:
             - hold-release
           filters:
