@@ -9,7 +9,7 @@ $I->amOnPage('/');
 $I->submitForm('#search_form', ['s' => 'climate']);
 
 // We get some results ...
-$I->see('for \'climate\'', 'h2');
+$I->see('for \'climate\'', 'h1');
 
 // ... and at least one #Climate tag to show up
 $I->see('#Climate', '.search-result-item-headline');
