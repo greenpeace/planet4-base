@@ -30,6 +30,6 @@ $postID = $I->havePostInDatabase([
 ]);
 
 // Navigate to the newly created post
-$I->amOnPage('/issues/people/' . $postID);
+$I->amOnPage('/story/' . $postID);
 
-$I->see('by FooBarAuthor', 'address');
+$I->see('FooBarAuthor', 'address');
