@@ -61,4 +61,13 @@ class NavigationSteps
       $I = $this->tester;
       $I->amOnPage(Navigation::pageLink('Tools > Import'));
     }
+
+    /**
+     * @Given I am on a new campaign page
+     */
+    public function iAmOnANewCampaignPage()
+    {
+      $I = $this->tester;
+      $I->amOnPage(Navigation::pageLink('Campaigns > Add New'));
+    }
 }

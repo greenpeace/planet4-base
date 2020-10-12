@@ -67,8 +67,9 @@ class GutenbergEditorSteps
     /**
      * @example I publish the post
      * @example I publish the page
+     * @example I publish the campaign
      * 
-     * @When /I publish the (post|page)/
+     * @When /I publish the (post|page|campaign)/
      */
     public function iPublishThePost(): void
     {
