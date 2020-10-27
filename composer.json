@@ -1,6 +1,6 @@
 {
   "name": "greenpeace/planet4-base",
-  "version": "2.42.1",
+  "version": "2.42.2",
   "description": "Core Greenpeace Planet4 application",
   "license": "GPL-3.0-or-later",
   "repositories": [
@@ -17,13 +17,12 @@
   "require": {
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
-    "greenpeace/planet4-master-theme" : "v1.121",
-    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.58",
+    "greenpeace/planet4-master-theme" : "v1.122",
+    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.59",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
     "greenpeace/planet4-plugin-medialibrary" : "1.14",
     "wikimedia/composer-merge-plugin": "1.4.1",
     "wpackagist-plugin/akismet": "4.*",
-    "wpackagist-plugin/cloudflare" : "3.*",
     "wpackagist-plugin/duplicate-post": "3.*",
     "wpackagist-plugin/elasticpress":"3.2.*",
     "wpackagist-plugin/gdpr-comments":"1.0.2",
