@@ -1,9 +1,15 @@
 ---
 version: 2.1
 
+docker_auth: &docker_auth
+  username: $DOCKERHUB_USERNAME
+  password: $DOCKERHUB_PASSWORD
+
 defaults: &defaults
   docker:
     - image: greenpeaceinternational/p4-builder:latest
+      auth:
+        <<: *docker_auth
   working_directory: /home/circleci/
 
 orbs:
@@ -24,6 +30,8 @@ jobs:
   lint:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
     steps:
       - checkout
       - run: make lint
@@ -123,6 +131,8 @@ jobs:
   release-sites:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
     environment:
       TYPE: "Trigger"
     working_directory: /tmp/workspace
@@ -147,6 +157,8 @@ jobs:
   changelog:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
     working_directory: /tmp/workspace/
     steps:
       - checkout
@@ -175,6 +187,8 @@ jobs:
   rollback-sites:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
     working_directory: /tmp/workspace
     steps:
       - checkout
