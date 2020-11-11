@@ -14,7 +14,7 @@ $I->performOn('.site-footer', function ($I) {
 	$I->seeLink('YouTube', 'https://www.youtube.com/greenpeace');
 	$I->seeLink('Instagram', 'https://www.instagram.com/greenpeace/');
 
-	$I->seeLink('NEWS', 'https://k8s.p4.greenpeace.org/defaultcontent/?s=&orderby=relevant&f%5Bctype%5D%5BPost%5D=3');
+	$I->seeLink('NEWS', 'https://www-dev.greenpeace.org/defaultcontent/?s=&orderby=relevant&f%5Bctype%5D%5BPost%5D=3');
 	$I->seeLink('JOBS', 'https://www.linkedin.com/jobs/greenpeace-jobs/');
 	$I->seeLink('PRESS CENTER', 'http://www.planet4.test/press-center/');
 	$I->seeLink('SITEMAP', 'http://www.planet4.test/sitemap/');
