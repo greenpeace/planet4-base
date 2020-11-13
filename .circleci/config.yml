@@ -243,6 +243,32 @@ workflows:
             branches:
               only: develop
 
+  cron-develop:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 6"
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - build:
+          context: org-global
+      - deploy:
+          context: org-global
+          requires:
+            - build
+      - test:
+          context: org-global
+          requires:
+            - build
+      - release-sites:
+          context: org-global
+          pipeline: develop
+          requires:
+            - deploy
+            - test
+
   release:
     jobs:
       - hold-release:
