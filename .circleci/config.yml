@@ -46,8 +46,6 @@ jobs:
       <<: *common_environment
       TYPE: "Build"
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: Configure
           command: |
@@ -250,7 +248,7 @@ workflows:
   cron-develop:
     triggers:
       - schedule:
-          cron: "0 0 * * 6"
+          cron: "0 0 * * 1"
           filters:
             branches:
               only:
