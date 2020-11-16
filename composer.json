@@ -34,7 +34,7 @@
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.0.*",
     "wpackagist-plugin/wp-sentry-integration":"3.*",
-    "wpackagist-plugin/wp-stateless": "2.*"
+    "wpackagist-plugin/wp-stateless": "3.1.*"
   },
 
   "config": {
