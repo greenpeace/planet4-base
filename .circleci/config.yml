@@ -17,14 +17,18 @@ orbs:
 
 job_environments:
   common_environment: &common_environment
-    APP_HOSTNAME: k8s.p4.greenpeace.org
-    APP_HOSTPATH: base
+    APP_ENVIRONMENT: development
+    APP_HOSTNAME: www-dev.greenpeace.org
+    APP_HOSTPATH: defaultcontent
+    WP_DB_NAME_PREFIX: planet4-defaultcontent_wordpress
     CLOUDSQL_INSTANCE: p4-develop-k8s
-    CONTAINER_PREFIX: planet4-base
     GOOGLE_PROJECT_ID: planet-4-151612
+    CONTAINER_PREFIX: planet4-defaultcontent
     HELM_NAMESPACE: develop
-    WP_DB_NAME: planet4-base_wordpress
-    WP_TITLE: Greenpeace Base Development
+    HELM_RELEASE: planet4-defaultcontent
+    NEWRELIC_APPNAME: P4 Defaultcontent Development
+    WP_DB_NAME: planet4-defaultcontent_wordpress
+    WP_STATELESS_BUCKET: planet4-defaultcontent-stateless-develop
 
 jobs:
   lint:
@@ -242,6 +246,32 @@ workflows:
           filters:
             branches:
               only: develop
+
+  cron-develop:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 1"
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - build:
+          context: org-global
+      - deploy:
+          context: org-global
+          requires:
+            - build
+      - test:
+          context: org-global
+          requires:
+            - build
+      - release-sites:
+          context: org-global
+          pipeline: develop
+          requires:
+            - deploy
+            - test
 
   release:
     jobs:
