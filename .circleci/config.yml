@@ -46,6 +46,8 @@ jobs:
       <<: *common_environment
       TYPE: "Build"
     steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Configure
           command: |
