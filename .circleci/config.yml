@@ -259,7 +259,7 @@ workflows:
   cron-develop:
     triggers:
       - schedule:
-          cron: "0 0 * * 1"
+          cron: "0 12 * * 0"
           filters:
             branches:
               only:
