@@ -8,7 +8,6 @@ chile
 colombia
 croatia
 czech-republic
-defaultcontent
 denmark
 eastasia
 eu-unit
