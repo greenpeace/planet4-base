@@ -15,17 +15,6 @@ defaults: &defaults
 orbs:
   slack: circleci/slack@3.4.2
 
-job_environments:
-  common_environment: &common_environment
-    APP_HOSTNAME: k8s.p4.greenpeace.org
-    APP_HOSTPATH: base
-    CLOUDSQL_INSTANCE: p4-develop-k8s
-    CONTAINER_PREFIX: planet4-base
-    GOOGLE_PROJECT_ID: planet-4-151612
-    HELM_NAMESPACE: develop
-    WP_DB_NAME: planet4-base_wordpress
-    WP_TITLE: Greenpeace Base Development
-
 jobs:
   lint:
     docker:
@@ -39,8 +28,13 @@ jobs:
   build:
     <<: *defaults
     environment:
-      <<: *common_environment
       TYPE: "Build"
+      APP_HOSTNAME: www-dev.greenpeace.org
+      APP_HOSTPATH: base
+      CONTAINER_PREFIX: planet4-base
+      GOOGLE_PROJECT_ID: planet-4-151612
+      HELM_NAMESPACE: develop
+      WP_TITLE: Greenpeace Base Development
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
@@ -55,35 +49,11 @@ jobs:
           name: Build containers
           working_directory: /home/circleci
           command: make
-      - run:
-          name: Notify failure
-          when: on_fail
-          command: notify-job-failure.sh
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
             - var
             - src
-
-  deploy:
-    <<: *defaults
-    environment:
-      <<: *common_environment
-      TYPE: "Deployment"
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Configure
-          command: activate-gcloud-account.sh
-      - run:
-          name: Deploy new containers
-          environment:
-            NEWRELIC_APPNAME: P4 base Development
-          command: |
-            export BUILD_TAG="build-$(cat /tmp/workspace/var/circle-build-num)"
-            make deploy
-          no_output_timeout: 20m
 
   test:
     <<: *defaults
@@ -225,13 +195,6 @@ workflows:
           filters:
             branches:
               only: develop
-      - deploy:
-          context: org-global
-          requires:
-            - build
-          filters:
-            branches:
-              only: develop
       - test:
           context: org-global
           requires:
@@ -242,7 +205,6 @@ workflows:
       - hold-release:
           type: approval
           requires:
-            - deploy
             - test
           filters:
             branches:
@@ -267,10 +229,6 @@ workflows:
     jobs:
       - build:
           context: org-global
-      - deploy:
-          context: org-global
-          requires:
-            - build
       - test:
           context: org-global
           requires:
@@ -279,7 +237,6 @@ workflows:
           context: org-global
           pipeline: develop
           requires:
-            - deploy
             - test
 
   release:
