@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Instantiate P4_Activator and run its functions.
 # This will trigger planet4-master-theme activation/deactivation hooks.
 # It is meant for running one-off actions like adding custom roles and capabilities.
 if ( wp theme is-active planet4-master-theme ) || ( wp theme status | grep -q 'P planet4-master-theme' )  then
