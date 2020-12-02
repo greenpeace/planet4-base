@@ -33,7 +33,7 @@
     "wpackagist-plugin/timber-library": "1.16.0",
     "wpackagist-plugin/wordfence": "7.*",
     "wpackagist-plugin/wordpress-importer": "0.*",
-    "wpackagist-plugin/wp-redis": "1.0.*",
+    "wpackagist-plugin/wp-redis": "1.1.*",
     "wpackagist-plugin/wp-sentry-integration":"3.*",
     "wpackagist-plugin/wp-stateless": "3.1.*"
   },
