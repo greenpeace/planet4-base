@@ -18,7 +18,7 @@
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
     "greenpeace/planet4-master-theme" : "v1.129",
-    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.68",
+    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.69",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
     "greenpeace/planet4-plugin-medialibrary" : "1.14",
     "wikimedia/composer-merge-plugin": "1.4.1",
