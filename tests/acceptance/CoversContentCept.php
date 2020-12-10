@@ -25,7 +25,7 @@ $I->amOnPage('/' . $slug);
 // Check the Covers block
 $I->see('Content', 'h2.page-section-header');
 $I->see('Description text', 'div.page-section-description');
-$I->see('Duis posuere', 'h4');
+$I->see('Duis posuere', 'h5');
 $I->seeElement('.publication-date');
 $I->seeElement('.content-covers-block-symbol img');
 
