@@ -10,6 +10,50 @@
     {
       "type": "composer",
       "url": "https://packagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wpml/multilingual-cms",
+        "version": "4.3.12",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.3.12.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wpml/translation-management",
+        "version": "2.9.6",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-translation-management.2.9.6.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wpml/string-translation",
+        "version": "3.0.9",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.0.9.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "ideapush/ideapush",
+        "version": "7.19",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/ideapush-v7.19.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
