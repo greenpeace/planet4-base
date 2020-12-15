@@ -15,7 +15,7 @@
     {
       "type": "package",
       "package": {
-        "name": "plugins/wpml-multilingual-cms",
+        "name": "plugins/sitepress-multilingual-cms",
         "version": "4.3.12",
         "dist": {
           "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.3.12.zip",
