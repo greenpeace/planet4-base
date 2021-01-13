@@ -608,6 +608,7 @@ class ENFormCest {
 				$user_form_data['supporter']['questions'][ 'question.' . $form_field['id'] ] = 'Lorem ipsum';
 			} else if ( 'Checkbox' === $field_type ) {
 				$user_form_data['supporter']['questions'][ 'question.' . $form_field['id'] ] = 'Y';
+				$I->scrollTo('.en__field--' . $form_field['id']);
 				$I->click('.en__field--' . $form_field['id'] . ' > .en__field__element--check');
 			}
 		}
