@@ -138,8 +138,8 @@
     "reset:plugins" : "rm -rf public/wp-content/plugins",
 
     "download:wordpress": "wp core download --version=5.0.3 --path=public --force",
-    "copy:plugins" : "rsync -ar vendor/plugins public/wp-content",
-    "copy:themes" : "rsync -ar vendor/themes public/wp-content",
+    "copy:plugins" : "rsync -arOJ vendor/plugins public/wp-content",
+    "copy:themes" : "rsync -arOJ vendor/themes public/wp-content",
 
     "redis:enable" : "wp redis enable",
 
