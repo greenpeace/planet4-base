@@ -7,8 +7,9 @@ use tad\WPBrowser\Generators\Date;
  */
 class AcceptanceTester extends \Codeception\Actor
 {
-	use _generated\AcceptanceTesterActions;
-
+  use _generated\AcceptanceTesterActions {
+    scrollTo as baseScrollTo;
+  }
 
 	/**
 	 * A simple helper to fill in a form without repetitively calling `$I->fillField()`
@@ -98,4 +99,13 @@ class AcceptanceTester extends \Codeception\Actor
 		$I = $this;
 		$I->dontHaveCommentInDatabase(['comment_author_email' => $email]);
 	}
+
+  /**
+   * Add 60 offset if not provided, to avoid fixed top nav covering the element and possibly obstructing clicks.
+   *
+   * @inheritDoc
+   */
+  public function scrollTo( $selector, $offsetX = null, $offsetY = null ) {
+    return $this->baseScrollTo($selector, $offsetX, $offsetY ?? -60);
+  }
 }
