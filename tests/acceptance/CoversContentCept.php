@@ -13,9 +13,9 @@ $I->havePageInDatabase([
 	'post_content' => $I->generateGutenberg('wp:planet4-blocks/covers', [
 		'cover_type'  => '3',
 		'title'       => 'Content',
-		'tags'        => '7',
+		'tags'        => [7],
 		'description' => 'Description text',
-		'covers_view' => '0'
+		'covers_view' => '1'
 	])
 ]);
 
