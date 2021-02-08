@@ -15,7 +15,7 @@ $I->havePageInDatabase([
 		'title'       => 'Take Action',
 		'tags'        => [6, 20],
 		'description' => 'Description text',
-		'covers_view' => '0'
+		'covers_view' => '1'
 	])
 ]);
 
