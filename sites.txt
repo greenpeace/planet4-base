@@ -1,4 +1,5 @@
 africa
+aotearoa
 argentina
 belgium
 brasil
@@ -29,7 +30,6 @@ malaysia
 mena
 mexico
 netherlands
-new-zealand
 norway
 peru
 philippines
