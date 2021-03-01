@@ -108,7 +108,7 @@ jobs:
     working_directory: /tmp/workspace
     parameters:
       pipeline:
-        default: "develop"
+        default: "main"
         type: string
     steps:
       - checkout
@@ -125,7 +125,7 @@ jobs:
               done
       - when:
           condition:
-            equal: [ "develop", << parameters.pipeline >> ]
+            equal: [ "main", << parameters.pipeline >> ]
           steps:
             - run:
                 name: Trigger dev sites release
@@ -194,29 +194,29 @@ workflows:
           context: org-global
           filters:
             branches:
-              only: develop
+              only: main
       - test:
           context: org-global
           requires:
             - build
           filters:
             branches:
-              only: develop
+              only: main
       - hold-release:
           type: approval
           requires:
             - test
           filters:
             branches:
-              only: develop
+              only: main
       - release-sites:
           context: org-global
-          pipeline: develop
+          pipeline: main
           requires:
             - hold-release
           filters:
             branches:
-              only: develop
+              only: main
 
   cron-develop:
     triggers:
@@ -225,7 +225,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - main
     jobs:
       - build:
           context: org-global
@@ -235,11 +235,11 @@ workflows:
             - build
       - release-sites:
           context: org-global
-          pipeline: develop
+          pipeline: main
           requires:
             - test
 
-  release:
+  production:
     jobs:
       - hold-release:
           type: approval
@@ -250,7 +250,7 @@ workflows:
               only: /^v.*/
       - release-sites:
           context: org-global
-          pipeline: master
+          pipeline: tag
           requires:
             - hold-release
           filters:
@@ -303,7 +303,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
+                - main
       - test:
           context: org-global
           requires:
@@ -311,4 +311,4 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
+                - main
