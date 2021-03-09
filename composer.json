@@ -73,7 +73,7 @@
     "wpackagist-plugin/google-apps-login": "3.4.3",
     "wpackagist-plugin/google-sitemap-generator": "4.*",
     "wpackagist-plugin/redirection": "4.*",
-    "wpackagist-plugin/timber-library": "1.16.0",
+    "wpackagist-plugin/timber-library": "1.18.*",
     "wpackagist-plugin/wordfence": "7.*",
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.1.*",
