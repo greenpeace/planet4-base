@@ -156,7 +156,7 @@ jobs:
       - run:
           name: Update Changelog and notify
           command: |
-            version=$(get-new-version.sh)
+            version=$(git describe --abbrev=0 --tags)
             changelog.sh "$version"
       - slack/notify:
           channel: C014UMRC4AJ
