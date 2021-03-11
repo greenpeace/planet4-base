@@ -63,7 +63,7 @@
     "greenpeace/planet4-master-theme" : "dev-master",
     "greenpeace/planet4-plugin-gutenberg-blocks": "dev-master",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
-    "greenpeace/planet4-plugin-medialibrary" : "dev-master",
+    "greenpeace/planet4-plugin-medialibrary" : "v1.14",
     "wikimedia/composer-merge-plugin": "1.4.1",
     "wpackagist-plugin/akismet": "4.*",
     "wpackagist-plugin/cloudflare" : "3.8.6",
