@@ -33,7 +33,7 @@ class CampaignGeneratorSteps
 	public function iSelectGlobalProject( $arg1 )
 	{
 		$I = $this->tester;
-		$I->click( '//button[@aria-label="Close panel"]' );
+		$I->click( '//button[@aria-label="Close panel"]|.//*[contains(concat(" ",normalize-space(@class)," ")," editor-post-publish-panel__header-cancel-button ")]//button ' );
 		$I->click( '//button[@data-label="Document"]' );
 		$I->appendField( '#p4_campaign_name', $arg1 );
 	}
