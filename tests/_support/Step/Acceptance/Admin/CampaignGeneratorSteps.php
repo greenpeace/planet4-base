@@ -33,8 +33,8 @@ class CampaignGeneratorSteps
 	public function iSelectGlobalProject( $arg1 )
 	{
 		$I = $this->tester;
-		$I->click( '//button[@aria-label="Close panel"]' );
-		$I->click( '//button[@data-label="Document"]' );
+		$I->click( '//div[contains(@class, "editor-post-publish-panel__header-cancel-button")]/button[contains(text(), "Cancel")]' );
+		$I->click( '//button[@data-label="Campaign"]' );
 		$I->appendField( '#p4_campaign_name', $arg1 );
 	}
 
