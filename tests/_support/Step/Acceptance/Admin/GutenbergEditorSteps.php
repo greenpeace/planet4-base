@@ -93,9 +93,9 @@ class GutenbergEditorSteps
         $I = $this->tester;
 
         $this->iAddABlockFromSection('YouTube', 'Embeds');
-        $I->waitForElement('.has-selected-ui[aria-label="Block: YouTube"] input[type="url"]', 1);
-        $I->pressKey('.has-selected-ui[aria-label="Block: YouTube"] input[type="url"]', $link);
-        $I->click('.has-selected-ui[aria-label="Block: YouTube"] button[type="submit"]');
+        $I->waitForElement('.is-selected[aria-label="Block: Embed"] input[type="url"]', 1);
+        $I->pressKey('.is-selected[aria-label="Block: Embed"] input[type="url"]', $link);
+        $I->click('.is-selected[aria-label="Block: Embed"] button[type="submit"]');
     }
 
     /**

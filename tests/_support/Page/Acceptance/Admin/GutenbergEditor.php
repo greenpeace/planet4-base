@@ -27,7 +27,7 @@ class GutenbergEditor
         $blockButton = (string) BlockSelector::BLOCK($blockName);
 
         $this->openBlockSelector();
-        $I->click((string) BlockSelector::SECTION($blockSection));
+        //$I->click((string) BlockSelector::SECTION($blockSection));
         $I->waitForElement($blockButton, 1);
         $I->click($blockButton);
     }
