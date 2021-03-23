@@ -35,6 +35,7 @@ class CampaignGeneratorSteps
 		$I = $this->tester;
 		$I->click( '//div[contains(@class, "editor-post-publish-panel__header-cancel-button")]/button[contains(text(), "Cancel")]' );
 		$I->click( '//button[@data-label="Campaign"]' );
+		$I->click( '//div[@id="p4_campaign_fields"]' );
 		$I->appendField( '#p4_campaign_name', $arg1 );
 	}
 
