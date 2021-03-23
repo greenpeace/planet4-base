@@ -13,9 +13,9 @@ use MyCLabs\Enum\Enum;
  */
 class BlockSelector extends Enum
 {
-    private const MAIN_BUTTON = '.components-button.block-editor-inserter__toggle';
-    private const SECTION = '//button[contains(@class, "components-button")][text()="%s"]';
-    private const BLOCK = '//ul[contains(@class, "block-editor-block-types-list")]//button/span[text()="%s"]';
+    private const MAIN_BUTTON = '//button[contains(@aria-label, "Add block")]';
+    private const SECTION = '//div[contains(@class, "block-editor-block-types-list")][contains(@aria-label, "%s")]';
+    private const BLOCK = '//div[contains(@class, "block-editor-block-types-list")]//button/span[text()="%s"]';
 
     public static function SECTION(BlockSection $sectionName): self
     {
