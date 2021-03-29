@@ -3,6 +3,5 @@ wp-cli.local.yml
 .DS_Store
 tests/c3.php
 secrets/
-composer\.lock
 vendor
 .install
