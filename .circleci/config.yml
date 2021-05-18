@@ -48,7 +48,8 @@ jobs:
       - run:
           name: Build containers
           working_directory: /home/circleci
-          command: make
+          command: |
+            GIT_REF=${CIRCLE_BRANCH} make
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
