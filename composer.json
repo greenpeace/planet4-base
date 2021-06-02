@@ -15,9 +15,9 @@
       "type": "package",
       "package": {
         "name": "plugins/sitepress-multilingual-cms",
-        "version": "4.3.12",
+        "version": "4.4.10",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.3.12.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.4.10.zip",
           "type": "zip"
         }
       }
@@ -26,9 +26,9 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-translation-management",
-        "version": "2.9.6",
+        "version": "2.10.6",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-translation-management.2.9.6.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-translation-management.2.10.6.zip",
           "type": "zip"
         }
       }
@@ -37,9 +37,20 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-string-translation",
-        "version": "3.0.9",
+        "version": "3.1.8",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.0.9.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.1.8.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/wpml-media-translation",
+        "version": "2.6.4",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-media-translation.2.6.4.zip",
           "type": "zip"
         }
       }
