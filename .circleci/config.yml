@@ -131,7 +131,7 @@ jobs:
               done
       - when:
           condition:
-            equal: [ "main", << parameters.pipeline >> ]
+            equal: ["main", << parameters.pipeline >>]
           steps:
             - run:
                 name: Trigger dev sites release
@@ -201,6 +201,15 @@ jobs:
     steps:
       - checkout
 
+workflow_definitions:
+  tag: &tag
+    context: org-global
+    filters:
+      branches:
+        ignore: /.*/
+      tags:
+        only: /^v.*/
+
 workflows:
   develop:
     jobs:
@@ -257,46 +266,28 @@ workflows:
     when: << pipeline.parameters.promote >>
     jobs:
       - promote:
-          context: org-global
+          <<: *tag
 
   production:
     unless: << pipeline.parameters.promote >>
     jobs:
       - hold-release:
+          <<: *tag
           type: approval
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
       - release-sites:
-          context: org-global
+          <<: *tag
           pipeline: tag
           requires:
             - hold-release
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
       - hold-changelog:
+          <<: *tag
           type: approval
           requires:
             - release-sites
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
       - changelog:
-          context: org-global
+          <<: *tag
           requires:
             - hold-changelog
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
 
   rollback:
     jobs:
