@@ -5,6 +5,9 @@ parameters:
   promote:
     type: boolean
     default: false
+  version:
+    type: string
+    default: ""
 
 docker_auth: &docker_auth
   username: $DOCKERHUB_USERNAME
@@ -198,10 +201,6 @@ jobs:
       - image: greenpeaceinternational/circleci-base:latest
         auth:
           <<: *docker_auth
-    parameters:
-      version:
-        default: ""
-        type: string
     steps:
       - checkout
 
