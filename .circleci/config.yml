@@ -203,7 +203,6 @@ jobs:
 
 workflows:
   develop:
-    unless: << pipeline.parameters.promote >>
     jobs:
       - build:
           context: org-global
@@ -261,6 +260,7 @@ workflows:
           context: org-global
 
   production:
+    unless: << pipeline.parameters.promote >>
     jobs:
       - hold-release:
           type: approval
