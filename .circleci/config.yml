@@ -198,10 +198,20 @@ jobs:
       - image: greenpeaceinternational/circleci-base:latest
         auth:
           <<: *docker_auth
+    parameters:
+      version:
+        default: ""
+        type: string
     steps:
       - checkout
 
 workflow_definitions:
+  develop: &develop
+    context: org-global
+    filters:
+      branches:
+        only: main
+
   tag: &tag
     context: org-global
     filters:
@@ -212,34 +222,24 @@ workflow_definitions:
 
 workflows:
   develop:
+    unless: << pipeline.parameters.promote >>
     jobs:
       - build:
-          context: org-global
-          filters:
-            branches:
-              only: main
+          <<: *develop
       - test:
-          context: org-global
+          <<: *develop
           requires:
             - build
-          filters:
-            branches:
-              only: main
       - hold-release:
+          <<: *develop
           type: approval
           requires:
             - test
-          filters:
-            branches:
-              only: main
       - release-sites:
-          context: org-global
+          <<: *develop
           pipeline: main
           requires:
             - hold-release
-          filters:
-            branches:
-              only: main
 
   cron-develop:
     triggers:
@@ -266,10 +266,9 @@ workflows:
     when: << pipeline.parameters.promote >>
     jobs:
       - promote:
-          <<: *tag
+          <<: *develop
 
   production:
-    unless: << pipeline.parameters.promote >>
     jobs:
       - hold-release:
           <<: *tag
