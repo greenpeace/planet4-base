@@ -1,6 +1,6 @@
 {
   "require": {
-    "greenpeace/planet4-plugin-gutenberg-blocks": "dev-new-themes",
+    "greenpeace/planet4-plugin-gutenberg-blocks": "dev-new-themes"
   },
   "extra": {
     "wp-version": "5.8-RC2"
