@@ -87,6 +87,7 @@
     "wpackagist-plugin/gdpr-comments":"1.0.2",
     "wpackagist-plugin/google-apps-login": "3.4.3",
     "wpackagist-plugin/google-sitemap-generator": "4.*",
+    "wpackagist-plugin/leadin": "8.*",
     "wpackagist-plugin/redirection": "4.*",
     "wpackagist-plugin/timber-library": "1.18.*",
     "wpackagist-plugin/wordfence": "7.*",
