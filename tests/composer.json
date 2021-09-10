@@ -20,7 +20,9 @@
 	},
 	"require-dev": {
 		"codeception/c3": "^2.4.1",
-		"lucatume/wp-browser": "^2.6.1",
-		"myclabs/php-enum": "^1.7"
+		"bordoni/phpass": "dev-main@dev",
+		"lucatume/wp-browser": ">=3.0.9",
+		"myclabs/php-enum": "^1.7",
+		"wp-cli/wp-cli-bundle": "^2.5"
 	}
 }
