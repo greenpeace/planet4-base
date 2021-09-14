@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00aa8e224d1dc95cb6db7d41be9377d8",
+    "content-hash": "1e0d4dad8dbbecec7f5fa6e81a8d15aa",
     "packages": [
         {
             "name": "behat/gherkin",
@@ -4218,7 +4218,7 @@
         },
         {
             "name": "bordoni/phpass",
-            "version": "dev-main",
+            "version": "0.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bordoni/phpass.git",
@@ -4236,7 +4236,6 @@
             "replace": {
                 "hautelook/phpass": "0.3.*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -4269,7 +4268,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bordoni/phpass/issues",
-                "source": "https://github.com/bordoni/phpass/tree/main"
+                "source": "https://github.com/bordoni/phpass/tree/0.3.5"
             },
             "time": "2012-08-31T00:00:00+00:00"
         },
@@ -5378,21 +5377,21 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.0.9",
+            "version": "3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "c84c7d984fb83dc2559b9ad435aa19b7d33d8c70"
+                "reference": "0754da8955c97762976379a9b2ab7175594ff815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/c84c7d984fb83dc2559b9ad435aa19b7d33d8c70",
-                "reference": "c84c7d984fb83dc2559b9ad435aa19b7d33d8c70",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/0754da8955c97762976379a9b2ab7175594ff815",
+                "reference": "0754da8955c97762976379a9b2ab7175594ff815",
                 "shasum": ""
             },
             "require": {
                 "antecedent/patchwork": "^2.0",
-                "bordoni/phpass": "dev-main",
+                "bordoni/phpass": "^0.3",
                 "codeception/codeception": "^2.5 || ^3.0 || ^4.0",
                 "dg/mysql-dump": "^1.3",
                 "ext-fileinfo": "*",
@@ -5460,7 +5459,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.0.9"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.0.10"
             },
             "funding": [
                 {
@@ -5468,20 +5467,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-10T09:21:52+00:00"
+            "time": "2021-09-13T18:16:58+00:00"
         },
         {
             "name": "mck89/peast",
-            "version": "v1.13.6",
+            "version": "v1.13.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mck89/peast.git",
-                "reference": "67566e6d594ffb70057fee7adceac9300998cc95"
+                "reference": "4f0423441ec557f3935b056d10987f2e1c7a3e76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mck89/peast/zipball/67566e6d594ffb70057fee7adceac9300998cc95",
-                "reference": "67566e6d594ffb70057fee7adceac9300998cc95",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/4f0423441ec557f3935b056d10987f2e1c7a3e76",
+                "reference": "4f0423441ec557f3935b056d10987f2e1c7a3e76",
                 "shasum": ""
             },
             "require": {
@@ -5493,7 +5492,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13.6-dev"
+                    "dev-master": "1.13.8-dev"
                 }
             },
             "autoload": {
@@ -5515,9 +5514,9 @@
             "description": "Peast is PHP library that generates AST for JavaScript code",
             "support": {
                 "issues": "https://github.com/mck89/peast/issues",
-                "source": "https://github.com/mck89/peast/tree/v1.13.6"
+                "source": "https://github.com/mck89/peast/tree/v1.13.8"
             },
-            "time": "2021-08-23T10:30:32+00:00"
+            "time": "2021-09-11T10:28:18+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -8719,9 +8718,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "bordoni/phpass": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
