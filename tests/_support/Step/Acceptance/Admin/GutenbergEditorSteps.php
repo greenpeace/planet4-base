@@ -31,7 +31,7 @@ class GutenbergEditorSteps
 
     /**
      * @example I add a title "My title !"
-     * 
+     *
      * @When I add a title :arg1
      */
     public function iAddATitle(string $title): void
@@ -47,17 +47,8 @@ class GutenbergEditorSteps
     {
         $I = $this->tester;
 
-        // New post starts with an empty paragraph block,
-        // if it is there, we use it
-        $firstParagraphExists = $I->checkIfElementExists(EditorSelector::FIRST_EDITABLE_PARAGRAPH());
-
-        if ($firstParagraphExists) {
-            $I->click(EditorSelector::FIRST_EDITABLE_PARAGRAPH());
-            $I->waitForElement(EditorSelector::EDITABLE_PARAGRAPH(), 1);
-        } else {
-            $this->iAddABlockFromSection('Paragraph', 'Common Blocks');
-            $I->waitForElement(EditorSelector::EDITABLE_PARAGRAPH(), 1);
-        }
+        $this->iAddABlockFromSection('Paragraph', 'Common Blocks');
+        $I->waitForElement(EditorSelector::EDITABLE_PARAGRAPH(), 1);
 
         if (null !== $text) {
             $I->pressKey(EditorSelector::EDITABLE_PARAGRAPH(), $text);
@@ -68,7 +59,7 @@ class GutenbergEditorSteps
      * @example I publish the post
      * @example I publish the page
      * @example I publish the campaign
-     * 
+     *
      * @When /I publish the (post|page|campaign)/
      */
     public function iPublishThePost(): void
@@ -85,7 +76,7 @@ class GutenbergEditorSteps
      * @todo: paste does not currently work
      * @see self::pasteText()
      * @example I paste a video link "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-     * 
+     *
      * @When I paste a video link :link
      */
     public function iPasteAYoutubeLink(string $link): void
@@ -93,19 +84,19 @@ class GutenbergEditorSteps
         $I = $this->tester;
 
         $this->iAddABlockFromSection('YouTube', 'Embeds');
-        $I->waitForElement('.is-selected[aria-label="Block: Embed"] input[type="url"]', 1);
+        $I->waitForElement('.is-selected[aria-label="Block: Embed"]', 1);
         $I->pressKey('.is-selected[aria-label="Block: Embed"] input[type="url"]', $link);
-        $I->click('.is-selected[aria-label="Block: Embed"] button[type="submit"]');
+        $I->pressKey('.is-selected[aria-label="Block: Embed"] input[type="url"]', \Facebook\WebDriver\WebDriverKeys::ENTER);
     }
 
     /**
      * @example I paste "Copy-pasta"
-     * 
+     *
      * @When I paste :text
      */
     public function iPasteText(string $text): void
     {
-        // @todo: paste does not currently work, 
+        // @todo: paste does not currently work,
         // @todo: try ctrl+c or find out why chrome arg doesn't work
         //$I = $this->tester;
         //$I->executeJS('navigator.clipboard.writeText(arguments[0])', [$text]);
@@ -116,7 +107,7 @@ class GutenbergEditorSteps
 
     /**
      * @example I add a block "YouTube" from section "Embeds"
-     * 
+     *
      * @When I add a block :blockname from section :blocksection
      */
     public function iAddABlockFromSection(string $blockName, string $blockSection): void
