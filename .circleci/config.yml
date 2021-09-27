@@ -39,6 +39,7 @@ jobs:
       TYPE: "Build"
       APP_HOSTNAME: www-dev.greenpeace.org
       APP_HOSTPATH: base
+      APP_ENVIRONMENT: development
       CONTAINER_PREFIX: planet4-base
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
