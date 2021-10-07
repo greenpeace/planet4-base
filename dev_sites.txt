@@ -2,5 +2,4 @@ defaultcontent
 dmptest
 gutenberg
 training
-test-quizzes
 test-forms
