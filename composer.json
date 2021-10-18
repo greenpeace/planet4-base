@@ -5,11 +5,13 @@
   "repositories": [
     {
       "type": "artifact",
-      "url": "/app/source/artifacts/"
+      "url": "/app/source/artifacts/",
+      "canonical": false
     },
     {
       "type": "composer",
-      "url": "https://wpackagist.org"
+      "url": "https://wpackagist.org",
+      "canonical": false
     },
     {
       "type": "composer",
