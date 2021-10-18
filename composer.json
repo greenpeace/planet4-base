@@ -13,7 +13,8 @@
     },
     {
       "type": "composer",
-      "url": "https://packagist.org"
+      "url": "https://packagist.org",
+      "canonical": false
     },
     {
       "type": "package",
