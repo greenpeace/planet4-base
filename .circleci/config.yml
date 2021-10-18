@@ -23,30 +23,46 @@ defaults: &defaults
 orbs:
   slack: circleci/slack@3.4.2
 
-jobs:
-  lint:
-    docker:
-      - image: greenpeaceinternational/circleci-base:latest
-        auth:
-          <<: *docker_auth
-    steps:
-      - checkout
-      - run: make lint
+job_environments:
+  common_environment: &common_environment
+    TYPE: "Build"
+    APP_HOSTNAME: www-dev.greenpeace.org
+    APP_HOSTPATH: base
+    CONTAINER_PREFIX: planet4-base
+    GOOGLE_PROJECT_ID: planet-4-151612
+    HELM_NAMESPACE: develop
+    WP_TITLE: Greenpeace Base Development
+  develop_environment: &develop_environment
+    APP_ENVIRONMENT: development
+  production_environment: &production_environment
+    APP_ENVIRONMENT: production
 
-  build:
-    <<: *defaults
-    environment:
-      TYPE: "Build"
-      APP_HOSTNAME: www-dev.greenpeace.org
-      APP_HOSTPATH: base
-      APP_ENVIRONMENT: development
-      CONTAINER_PREFIX: planet4-base
-      GOOGLE_PROJECT_ID: planet-4-151612
-      HELM_NAMESPACE: develop
-      WP_TITLE: Greenpeace Base Development
+job_definitions:
+  build_steps: &build_steps
+    parameters:
+      is_prod:
+        type: boolean
+        default: false
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
+      - unless:
+          condition: << parameters.is_prod >>
+          steps:
+            - run:
+                name: Checkout
+                command: |
+                  mkdir -p /tmp/src/
+                  cd /tmp/src/
+                  git clone --branch "${CIRCLE_BRANCH}" --single-branch "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
+            - run:
+                name: Check if this is a release commit
+                command: |
+                  cd /tmp/src/
+                  commit_message=$(git log -1 HEAD --pretty=format:%s)
+                  if [[ $commit_message == *"[release]"* ]]; then
+                    exit 0;
+                  fi
       - run:
           name: Configure
           command: |
@@ -64,6 +80,30 @@ jobs:
           paths:
             - var
             - src
+
+jobs:
+  lint:
+    docker:
+      - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
+    steps:
+      - checkout
+      - run: make lint
+
+  build:
+    <<: *defaults
+    environment:
+      <<: *common_environment
+      <<: *develop_environment
+    <<: *build_steps
+
+  build-production:
+    <<: *defaults
+    environment:
+      <<: *common_environment
+      <<: *production_environment
+    <<: *build_steps
 
   test:
     <<: *defaults
@@ -270,9 +310,18 @@ workflows:
 
   production:
     jobs:
+      - build-production:
+          <<: *tag
+          is_prod: true
+      - test:
+          <<: *tag
+          requires:
+            - build-production
       - hold-release:
           <<: *tag
           type: approval
+          requires:
+            - test
       - release-sites:
           <<: *tag
           pipeline: tag
