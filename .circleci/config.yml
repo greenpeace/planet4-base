@@ -8,6 +8,9 @@ parameters:
   version:
     type: string
     default: ""
+  is_prod:
+    type: boolean
+    default: false
 
 docker_auth: &docker_auth
   username: $DOCKERHUB_USERNAME
@@ -39,30 +42,9 @@ job_environments:
 
 job_definitions:
   build_steps: &build_steps
-    parameters:
-      is_prod:
-        type: boolean
-        default: false
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
-      - unless:
-          condition: << parameters.is_prod >>
-          steps:
-            - run:
-                name: Checkout
-                command: |
-                  mkdir -p /tmp/src/
-                  cd /tmp/src/
-                  git clone --branch "${CIRCLE_BRANCH}" --single-branch "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
-            - run:
-                name: Check if this is a release commit
-                command: |
-                  cd /tmp/src/
-                  commit_message=$(git log -1 HEAD --pretty=format:%s)
-                  if [[ $commit_message == *"[release]"* ]]; then
-                    exit 0;
-                  fi
       - run:
           name: Configure
           command: |
@@ -81,32 +63,7 @@ job_definitions:
             - var
             - src
 
-jobs:
-  lint:
-    docker:
-      - image: greenpeaceinternational/circleci-base:latest
-        auth:
-          <<: *docker_auth
-    steps:
-      - checkout
-      - run: make lint
-
-  build:
-    <<: *defaults
-    environment:
-      <<: *common_environment
-      <<: *develop_environment
-    <<: *build_steps
-
-  build-production:
-    <<: *defaults
-    environment:
-      <<: *common_environment
-      <<: *production_environment
-    <<: *build_steps
-
-  test:
-    <<: *defaults
+  test_steps: &test_steps
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
@@ -148,13 +105,11 @@ jobs:
       - store_artifacts:
           path: planet4-docker-compose/artifacts
 
-  release-sites:
+  release_steps: &release_steps
     docker:
       - image: greenpeaceinternational/circleci-base:latest
         auth:
           <<: *docker_auth
-    environment:
-      TYPE: "Trigger"
     working_directory: /tmp/workspace
     parameters:
       pipeline:
@@ -186,6 +141,50 @@ jobs:
                     do
                       trigger-build.sh git@github.com:greenpeace/planet4-$i.git << parameters.pipeline >>
                     done
+
+jobs:
+  lint:
+    docker:
+      - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
+    steps:
+      - checkout
+      - run: make lint
+
+  build:
+    <<: *defaults
+    environment:
+      <<: *common_environment
+      <<: *develop_environment
+    <<: *build_steps
+
+  build-production:
+    <<: *defaults
+    environment:
+      <<: *common_environment
+      <<: *production_environment
+    <<: *build_steps
+
+  test:
+    <<: *defaults
+    <<: *test_steps
+
+  test-production:
+    <<: *defaults
+    <<: *test_steps
+
+  release-dev-sites:
+    environment:
+      TYPE: "Trigger"
+      <<: *develop_environment
+    <<: *release_steps
+
+  release-prod-sites:
+    environment:
+      TYPE: "Trigger"
+      <<: *production_environment
+    <<: *release_steps
 
   changelog:
     docker:
@@ -234,19 +233,56 @@ jobs:
               mapfile -t sites < sites.txt
               for i in "${sites[@]}"
               do
-                ./scripts/rollback.sh planet4-$i ${CIRCLE_TOKEN}
+                ./bin/rollback.sh planet4-$i ${CIRCLE_TOKEN}
               done
 
-  promote:
+  tag:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Create new tag
+          command: |
+            commit_message=$(git log -1 HEAD --pretty=format:%s)
+            ./bin/tag.py "${commit_message}"
+
+  trigger-production:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
         auth:
           <<: *docker_auth
     steps:
       - checkout
+      - run:
+          name: Check if this is a release commit
+          command: |
+            commit_message=$(git log -1 HEAD --pretty=format:%s)
+            if [[ "$commit_message" != *"[release]"* ]]; then
+              echo "Not a release commit"
+              circleci-agent step halt
+            fi
+      - run:
+          name: Trigger production pipeline
+          command: ./bin/production.sh
+
+  promote:
+    <<: *defaults
+    parameters:
+      version:
+        default: ""
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Promote version
+          command: ./bin/promote.py << parameters.version >>
 
 workflow_definitions:
-  develop: &develop
+  main: &main
     context: org-global
     filters:
       branches:
@@ -262,24 +298,48 @@ workflow_definitions:
 
 workflows:
   develop:
-    unless: << pipeline.parameters.promote >>
+    unless:
+      or:
+        - << pipeline.parameters.promote >>
+        - << pipeline.parameters.is_prod >>
     jobs:
       - build:
-          <<: *develop
+          context: org-global
       - test:
-          <<: *develop
+          context: org-global
           requires:
             - build
-      - hold-release:
-          <<: *develop
+      - hold-dev-sites:
+          <<: *main
           type: approval
           requires:
             - test
-      - release-sites:
-          <<: *develop
+      - release-dev-sites:
+          <<: *main
           pipeline: main
           requires:
-            - hold-release
+            - hold-dev-sites
+      - trigger-production:
+          <<: *main
+
+  production:
+    when: << pipeline.parameters.is_prod >>
+    jobs:
+      - build-production:
+          <<: *main
+      - test-production:
+          <<: *main
+          requires:
+            - build-production
+      - hold-tag:
+          <<: *main
+          type: approval
+          requires:
+            - test-production
+      - tag:
+          <<: *main
+          requires:
+            - hold-tag
 
   cron-develop:
     triggers:
@@ -296,7 +356,7 @@ workflows:
           context: org-global
           requires:
             - build
-      - release-sites:
+      - release-dev-sites:
           context: org-global
           pipeline: main
           requires:
@@ -306,23 +366,15 @@ workflows:
     when: << pipeline.parameters.promote >>
     jobs:
       - promote:
-          <<: *develop
+          <<: *main
+          version: << pipeline.parameters.version >>
 
-  production:
+  release:
     jobs:
-      - build-production:
-          <<: *tag
-          is_prod: true
-      - test:
-          <<: *tag
-          requires:
-            - build-production
       - hold-release:
           <<: *tag
           type: approval
-          requires:
-            - test
-      - release-sites:
+      - release-prod-sites:
           <<: *tag
           pipeline: tag
           requires:
@@ -331,7 +383,7 @@ workflows:
           <<: *tag
           type: approval
           requires:
-            - release-sites
+            - release-prod-sites
       - changelog:
           <<: *tag
           requires:
@@ -355,20 +407,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /rollback-v*/
-
-  branch:
-    jobs:
-      - build:
-          context: org-global
-          filters:
-            branches:
-              ignore:
-                - main
-      - test:
-          context: org-global
-          requires:
-            - build
-          filters:
-            branches:
-              ignore:
-                - main
