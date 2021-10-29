@@ -369,9 +369,14 @@ workflows:
   promote:
     when: << pipeline.parameters.promote >>
     jobs:
+      - hold-promote:
+          <<: *main
+          type: approval
       - promote:
           <<: *main
           version: << pipeline.parameters.version >>
+          requires:
+            - hold-promote
 
   release:
     jobs:
