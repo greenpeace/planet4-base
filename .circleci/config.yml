@@ -270,7 +270,11 @@ jobs:
           command: ./bin/production.sh
 
   promote:
-    <<: *defaults
+    docker:
+      - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
+    working_directory: /tmp/workspace/
     parameters:
       version:
         default: ""
