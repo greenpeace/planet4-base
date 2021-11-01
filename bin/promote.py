@@ -5,6 +5,7 @@ import requests
 from git import Repo, Actor
 import semver
 import sys
+from time import sleep
 
 GITHUB_API = 'https://api.github.com'
 GITHUB_REPO_PREFIX = 'git@github.com:'
@@ -69,6 +70,28 @@ def create_new_tag(repo):
     return new_tag
 
 
+def check_assets(repo, tag):
+    repo_endpoint = '{0}/repos/{1}/releases/tags/{2}'.format(
+        GITHUB_API,
+        repo,
+        tag
+    )
+    response = requests.get(repo_endpoint, headers=HEADERS)
+    assets = response.json()['assets']
+
+    if not len(assets):
+        print('Assets not uploaded yet')
+        return False
+
+    size = assets[0]['size']
+    if not (1000000 <= size <= 5000000):
+        print('Assets size is invalid: {0}'.format(size))
+        return False
+
+    print('Assets are ready')
+    return True
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('Verson argument is missing.\n Syntax: {0} <version>'.format(sys.argv[0]))
@@ -87,6 +110,11 @@ if __name__ == '__main__':
         print('Creating new tag on {0}'.format(repo))
         new_tag = create_new_tag(repo)
         requirements['require'][repo] = new_tag
+        assets = False
+        while not assets:
+            print('Checking for assets...')
+            sleep(30)
+            assets = check_assets(repo, new_tag)
 
     with open('{0}/{1}'.format(BASE_FOLDER, BASE_APPS), 'w') as prod_file:
         json.dump(requirements, prod_file, indent=2)
