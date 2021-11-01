@@ -307,8 +307,11 @@ workflows:
         - << pipeline.parameters.promote >>
         - << pipeline.parameters.is_prod >>
     jobs:
+      - lint
       - build:
           context: org-global
+          requires:
+            - lint
       - test:
           context: org-global
           requires:

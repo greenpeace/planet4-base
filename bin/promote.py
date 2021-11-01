@@ -131,5 +131,3 @@ if __name__ == '__main__':
     origin.push()
 
     print('Promotion complete')
-
-

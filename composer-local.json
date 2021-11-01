@@ -3,6 +3,6 @@
   "description": "Dummy Greenpeace Planet4 NRO application",
   "license": "GPL-3.0-or-later",
   "require": {
-    "greenpeace/planet4-child-theme" : "*"
+    "greenpeace/planet4-child-theme" : "v0.*"
   }
 }

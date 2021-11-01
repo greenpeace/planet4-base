@@ -21,7 +21,7 @@ fi
 if [ -n "$3" ]; then
   TAG="$3"
 else
-  TAG="$(curl -s https://api.github.com/repos/greenpeace/${REPO}/tags | jq -r .[1].name)"
+  TAG=$(curl -s "https://api.github.com/repos/greenpeace/${REPO}/tags" | jq -r .[1].name)
 fi
 
 json=$(jq -n \
