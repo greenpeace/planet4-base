@@ -55,7 +55,7 @@ def create_new_tag(repo):
     print('Latest tag: {0}'.format(latest_tag))
 
     new_tag = bump_version(latest_tag)
-    print('New tag: {0}\n'.format(new_tag))
+    print('New tag: {0}'.format(new_tag))
 
     data = {
         'tag_name': new_tag,
@@ -88,7 +88,7 @@ def check_assets(repo, tag):
         print('Assets size is invalid: {0}'.format(size))
         return False
 
-    print('Assets are ready')
+    print('Assets are ready\n')
     return True
 
 
@@ -103,7 +103,8 @@ if __name__ == '__main__':
     base_repo = Repo.clone_from('{0}{1}.git'.format(GITHUB_REPO_PREFIX, BASE_REPO), BASE_FOLDER)
     with open('{0}/{1}'.format(BASE_FOLDER, BASE_APPS), 'r') as prod_file:
         requirements = json.load(prod_file)
-    print('Base repo cloned\n')
+    print('Base repo cloned ✔')
+    print('{0}\n'.format(requirements))
 
     # Bump app repos
     for repo in APP_REPOS:
@@ -124,10 +125,14 @@ if __name__ == '__main__':
     author = Actor(AUTHOR_NAME, AUTHOR_EMAIL)
 
     # Stage, commit, push
-    print('Commiting to base repo...\n')
-    base_repo.index.add(BASE_APPS)
-    base_repo.index.commit('[release] {0}'.format(version), author=author, committer=author)
+    print('Updating base repo...')
+    staged = base_repo.index.add(BASE_APPS)
+    print('Changes staged: {0}'.format(staged))
+    commit = base_repo.index.commit('[release] {0}'.format(version),
+                                    author=author, committer=author)
+    print('Changes commited: {0}'.format(commit.message))
     origin = base_repo.remotes['origin']
-    origin.push()
+    ref = origin.push()
+    print('Changes pushed to {0}\n'.format(ref[0].remote_ref.name))
 
     print('Promotion complete')

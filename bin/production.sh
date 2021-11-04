@@ -3,7 +3,7 @@
 set -eu
 
 json=$(jq -n \
-  --arg branch "planet-6384" \
+  --arg branch "main" \
   --argjson is_prod "true" \
   '{
 	"branch": $branch,
