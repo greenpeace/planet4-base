@@ -237,7 +237,11 @@ jobs:
               done
 
   tag:
-    <<: *defaults
+    docker:
+      - image: greenpeaceinternational/circleci-base:latest
+        auth:
+          <<: *docker_auth
+    working_directory: /tmp/workspace/
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -267,7 +271,7 @@ jobs:
             fi
       - run:
           name: Trigger production pipeline
-          command: ./bin/production.sh
+          command: ./bin/production.py
 
   promote:
     docker:

@@ -133,6 +133,8 @@ if __name__ == '__main__':
     print('Changes commited: {0}'.format(commit.message))
     origin = base_repo.remotes['origin']
     ref = origin.push()
-    print('Changes pushed to {0}\n'.format(ref[0].remote_ref.name))
+    print('Changes pushed to {0}'.format(ref[0].remote_ref.name))
+    print('Push flag: {0}\n'.format(ref[0].flags))
+    sleep(30)
 
     print('Promotion complete')
