@@ -241,7 +241,6 @@ jobs:
       - image: greenpeaceinternational/circleci-base:latest
         auth:
           <<: *docker_auth
-    working_directory: /tmp/workspace/
     steps:
       - attach_workspace:
           at: /tmp/workspace
