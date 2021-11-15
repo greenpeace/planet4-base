@@ -1,6 +1,0 @@
-{
-  "require": {
-    "greenpeace/planet4-master-theme" : "dev-new-post-design",
-    "greenpeace/planet4-plugin-gutenberg-blocks": "dev-new-post-design"
-  }
-}
