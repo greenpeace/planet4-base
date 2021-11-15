@@ -1,7 +1,7 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme" : "v1.187.0",
-    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.123.0",
+    "greenpeace/planet4-master-theme" : "v1.188.0",
+    "greenpeace/planet4-plugin-gutenberg-blocks": "v0.124.0",
     "wpackagist-plugin/cloudflare" : "4.6.0",
     "wpackagist-plugin/duplicate-post": "3.*",
     "wpackagist-plugin/google-apps-login": "3.4.3",
