@@ -72,6 +72,28 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityforms",
+        "version": "2.5.15",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.5.15.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformsquiz",
+        "version": "3.8",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsquiz_3.8.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
