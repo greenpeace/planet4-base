@@ -39,6 +39,7 @@ poland
 romania
 slovakia
 slovenia
+southasia
 southeastasia
 storytelling
 sweden
