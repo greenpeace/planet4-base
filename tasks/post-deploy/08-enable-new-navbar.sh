@@ -17,7 +17,7 @@ if [[ -n "${APP_HOSTPATH}" ]]; then
 fi
 
 # Other NRO websites with customized navbar
-excluded=(hongkong korea taiwan canada argentina japan belgium luxembourg denmark finland sweden norway)
+excluded=(canada japan belgium brasil luxembourg denmark finland greenland norway sweden)
 
 nro="${APP_HOSTPATH}"
 echo "NRO: ${nro}"
