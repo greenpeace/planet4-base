@@ -8,7 +8,6 @@ import sys
 from time import sleep
 
 GITHUB_API = 'https://api.github.com'
-GITHUB_REPO_PREFIX = 'git@github.com:'
 BASE_REPO = 'greenpeace/planet4-base'
 BASE_FOLDER = 'base'
 BASE_APPS = 'production.json'
@@ -17,6 +16,7 @@ APP_REPOS = {
     'greenpeace/planet4-plugin-gutenberg-blocks'
 }
 OAUTH_KEY = os.getenv('GITHUB_OAUTH_TOKEN')
+GITHUB_REPO_PREFIX = 'https://{0}@github.com/'.format(OAUTH_KEY)
 AUTHOR_NAME = 'CircleCI Bot'
 AUTHOR_EMAIL = os.getenv('GIT_USER_EMAIL')
 HEADERS = {
