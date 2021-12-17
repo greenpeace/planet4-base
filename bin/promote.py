@@ -15,6 +15,8 @@ APP_REPOS = {
     'greenpeace/planet4-master-theme',
     'greenpeace/planet4-plugin-gutenberg-blocks'
 }
+MAIN_BRANCH = 'main'
+RELEASE_BRANCH = 'release'
 OAUTH_KEY = os.getenv('GITHUB_OAUTH_TOKEN')
 GITHUB_REPO_PREFIX = 'https://{0}@github.com/'.format(OAUTH_KEY)
 AUTHOR_NAME = 'CircleCI Bot'
@@ -92,6 +94,21 @@ def check_assets(repo, tag):
     return True
 
 
+def create_pull_request(title):
+    repo_endpoint = '{0}/repos/{1}/pulls'.format(
+        GITHUB_API,
+        BASE_REPO
+    )
+    data = {
+        'head': RELEASE_BRANCH,
+        'base': MAIN_BRANCH,
+        'title': title
+    }
+    response = requests.post(repo_endpoint, headers=HEADERS, data=json.dumps(data))
+
+    return response.json()['url']
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('Verson argument is missing.\n Syntax: {0} <version>'.format(sys.argv[0]))
@@ -124,7 +141,10 @@ if __name__ == '__main__':
     # Prepare git
     author = Actor(AUTHOR_NAME, AUTHOR_EMAIL)
 
-    # Stage, commit, push
+    # Stage, commit, push and pull
+    print('Switch to branch {0}...'.format(RELEASE_BRANCH))
+    branch = base_repo.create_head(RELEASE_BRANCH)
+    base_repo.head.reference = branch
     print('Updating base repo...')
     staged = base_repo.index.add(BASE_APPS)
     print('Changes staged: {0}'.format(staged))
@@ -132,9 +152,10 @@ if __name__ == '__main__':
                                     author=author, committer=author)
     print('Changes commited: {0}'.format(commit.message))
     origin = base_repo.remotes['origin']
-    ref = origin.push()
+    ref = origin.push(RELEASE_BRANCH)
     print('Changes pushed to {0}'.format(ref[0].remote_ref.name))
     print('Push flag: {0}\n'.format(ref[0].flags))
-    sleep(30)
+    pull = create_pull_request('[release] {0}'.format(version))
+    print('Pull Request created at {0}'.format(pull))
 
     print('Promotion complete')

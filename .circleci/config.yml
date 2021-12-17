@@ -236,23 +236,6 @@ jobs:
                 ./bin/rollback.sh planet4-$i ${CIRCLE_TOKEN}
               done
 
-  tag:
-    docker:
-      - image: greenpeaceinternational/circleci-base:latest
-        auth:
-          <<: *docker_auth
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Create new tag
-          command: |
-            commit_message=$(git log -1 HEAD --pretty=format:%s)
-            ./bin/tag.py "${commit_message}"
-
   trigger-production:
     docker:
       - image: greenpeaceinternational/circleci-base:latest
@@ -263,14 +246,16 @@ jobs:
       - run:
           name: Check if this is a release commit
           command: |
-            commit_message=$(git log -1 HEAD --pretty=format:%s)
+            commit_message=$(git log -1 HEAD)
             if [[ "$commit_message" != *"[release]"* ]]; then
               echo "Not a release commit"
               circleci-agent step halt
             fi
       - run:
-          name: Trigger production pipeline
-          command: ./bin/production.py
+          name: Create new tag
+          command: |
+            commit_message=$(git log -1 HEAD)
+            ./bin/tag.py "${commit_message}"
 
   promote:
     docker:
@@ -294,6 +279,12 @@ workflow_definitions:
     filters:
       branches:
         only: main
+
+  rc: &rc
+    context: org-global
+    filters:
+      branches:
+        only: release
 
   tag: &tag
     context: org-global
@@ -332,24 +323,14 @@ workflows:
       - trigger-production:
           <<: *main
 
-  production:
-    when: << pipeline.parameters.is_prod >>
+  release-candidate:
     jobs:
       - build-production:
-          <<: *main
+          <<: *rc
       - test-production:
-          <<: *main
+          <<: *rc
           requires:
             - build-production
-      - hold-tag:
-          <<: *main
-          type: approval
-          requires:
-            - test-production
-      - tag:
-          <<: *main
-          requires:
-            - hold-tag
 
   cron-develop:
     triggers:
@@ -375,25 +356,15 @@ workflows:
   promote:
     when: << pipeline.parameters.promote >>
     jobs:
-      - hold-promote:
-          <<: *main
-          type: approval
       - promote:
           <<: *main
           version: << pipeline.parameters.version >>
-          requires:
-            - hold-promote
 
   release:
     jobs:
-      - hold-release:
-          <<: *tag
-          type: approval
       - release-prod-sites:
           <<: *tag
           pipeline: tag
-          requires:
-            - hold-release
       - hold-changelog:
           <<: *tag
           type: approval
