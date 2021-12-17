@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
-# Automatically update the DB if needed
+echo "Update DB schema if needed..."
 wp core update-db
