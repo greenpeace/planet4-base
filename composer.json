@@ -100,6 +100,7 @@
   "require": {
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
+    "google/apiclient": "^2.12",
     "greenpeace/planet4-master-theme" : "dev-master",
     "greenpeace/planet4-plugin-gutenberg-blocks": "dev-master",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
