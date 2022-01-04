@@ -274,6 +274,11 @@ jobs:
           command: ./bin/promote.py << parameters.version >>
 
 workflow_definitions:
+  branch: &branch
+    filters:
+      branches:
+        ignore: release
+
   main: &main
     context: org-global
     filters:
@@ -301,12 +306,15 @@ workflows:
         - << pipeline.parameters.promote >>
         - << pipeline.parameters.is_prod >>
     jobs:
-      - lint
+      - lint:
+          <<: *branch
       - build:
+          <<: *branch
           context: org-global
           requires:
             - lint
       - test:
+          <<: *branch
           context: org-global
           requires:
             - build
