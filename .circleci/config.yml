@@ -8,9 +8,6 @@ parameters:
   version:
     type: string
     default: ""
-  is_prod:
-    type: boolean
-    default: false
 
 docker_auth: &docker_auth
   username: $DOCKERHUB_USERNAME
@@ -275,6 +272,7 @@ jobs:
 
 workflow_definitions:
   branch: &branch
+    context: org-global
     filters:
       branches:
         ignore: release
@@ -304,20 +302,24 @@ workflows:
     unless:
       or:
         - << pipeline.parameters.promote >>
-        - << pipeline.parameters.is_prod >>
     jobs:
-      - lint:
-          <<: *branch
+      - lint
       - build:
           <<: *branch
-          context: org-global
           requires:
             - lint
       - test:
           <<: *branch
-          context: org-global
           requires:
             - build
+      - build-production:
+          <<: *rc
+          requires:
+            - lint
+      - test-production:
+          <<: *rc
+          requires:
+            - build-production
       - hold-dev-sites:
           <<: *main
           type: approval
@@ -330,15 +332,6 @@ workflows:
             - hold-dev-sites
       - trigger-production:
           <<: *main
-
-  release-candidate:
-    jobs:
-      - build-production:
-          <<: *rc
-      - test-production:
-          <<: *rc
-          requires:
-            - build-production
 
   cron-develop:
     triggers:
