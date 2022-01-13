@@ -12,3 +12,6 @@ if [ "$APP_ENV" = "development" ]; then
   wp user delete ltitus@greenpeace.org --reassign=1 --yes
   wp user delete tzetterl@greenpeace.org --reassign=1 --yes
 fi
+
+wp user create gmintoco gmintoco@greenpeace.org --first_name="Gus" --last_name="Minto Cowcher - P4 team" --role=administrator --porcelain || true
+wp user create tcavalca tcavalca@greenpeace.org --first_name="Tenorio" --last_name="Cavalcante - P4 team" --role=administrator --porcelain || true
