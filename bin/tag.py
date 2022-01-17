@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     commit_msg = sys.argv[1]
     try:
-        version = commit_msg.split('] ')[1]
+        version = commit_msg.split('] ')[1].split(' ')[0]
     except IndexError:
         print('No version detected in commit message: {0}'.format(commit_msg))
         exit(1)
