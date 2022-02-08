@@ -54,17 +54,6 @@
     {
       "type": "package",
       "package": {
-        "name": "plugins/wpml-media-translation",
-        "version": "2.6.4",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-media-translation.2.6.4.zip",
-          "type": "zip"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
         "name": "plugins/ideapush",
         "version": "7.19",
         "dist": {
