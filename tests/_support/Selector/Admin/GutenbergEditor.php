@@ -8,7 +8,7 @@ use MyCLabs\Enum\Enum;
 
 /**
  * Selectors in the post content editor
- * 
+ *
  * @method static GutenbergEditor TITLE_FIELD()
  * @method static GutenbergEditor EDITABLE_PARAGRAPH()
  * @method static GutenbergEditor FIRST_EDITABLE_PARAGRAPH()
@@ -19,7 +19,7 @@ use MyCLabs\Enum\Enum;
  */
 class GutenbergEditor extends Enum
 {
-    private const TITLE_FIELD = '#post-title-1';
+    private const TITLE_FIELD = '.wp-block-post-title';
     private const EDITABLE_PARAGRAPH = '.block-editor-rich-text__editable';
     private const FIRST_EDITABLE_PARAGRAPH = '.block-editor-block-list__layout [aria-label="Add block"]';
 
