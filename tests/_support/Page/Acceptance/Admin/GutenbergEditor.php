@@ -27,7 +27,11 @@ class GutenbergEditor
         $blockButton = BlockSelector::block($blockName);
 
         $this->openBlockSelector();
+        // Wait for panel to open
         $I->waitForElement('.block-editor-inserter__panel-header', 6);
+        // Wait for sections to load
+        $I->waitForElement($blockButton, 10);
+        // Scroll and click
         $I->scrollTo($blockButton);
         $I->click($blockButton);
     }

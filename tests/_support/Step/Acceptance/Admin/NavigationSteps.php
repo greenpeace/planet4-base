@@ -51,6 +51,7 @@ class NavigationSteps
     {
         $I = $this->tester;
         $I->amOnPage(Navigation::pageLink('Posts > Add New'));
+        $this->discardWelcomeGuide($I);
     }
 
     /**
@@ -69,5 +70,19 @@ class NavigationSteps
     {
       $I = $this->tester;
       $I->amOnPage(Navigation::pageLink('Campaigns > Add New'));
+      $this->discardWelcomeGuide($I);
+    }
+
+    protected function discardWelcomeGuide($I)
+    {
+        // Try closing welcome guide if it exists
+        try {
+          $I->click(
+            '//div[contains(@class, "edit-post-welcome-guide")]'
+            . '//button[contains(@aria-label, "Close dialog")]'
+          );
+        } catch (\Exception $e) {
+          // No welcome guide found
+        }
     }
 }
