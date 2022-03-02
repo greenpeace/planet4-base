@@ -37,7 +37,14 @@ class GutenbergEditorSteps
     public function iAddATitle(string $title): void
     {
         $I = $this->tester;
-        $I->fillField(EditorSelector::TITLE_FIELD(), $title);
+        try {
+          // Until 5.8.3
+          $I->fillField('#post-title-1', $title);
+        } catch (\Exception $e) {
+          // Since 5.9
+          $I->click(EditorSelector::TITLE_FIELD());
+          $I->type($title);
+        }
     }
 
     /**
