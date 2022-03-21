@@ -145,7 +145,7 @@
       "merge-extra-deep": false,
       "merge-scripts": true
     },
-    "wp-version": "5.8.4"
+    "wp-version": "5.9.2"
   },
 
   "scripts": {
