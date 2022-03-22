@@ -1,8 +1,5 @@
 {
   "require": {
     "greenpeace/planet4-master-theme": "dev-tag-page-redirection-6619"
-  },
-  "extra": {
-    "wp-version": "5.9.2"
   }
 }
