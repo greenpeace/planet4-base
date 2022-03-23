@@ -94,6 +94,17 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformswebhooks",
+        "version": "1.5",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformswebhooks_1.5.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
