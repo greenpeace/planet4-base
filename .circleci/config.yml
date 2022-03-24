@@ -124,6 +124,7 @@ job_definitions:
               for i in "${sites[@]}"
               do
                 trigger-build.sh git@github.com:greenpeace/planet4-$i.git << parameters.pipeline >>
+                sleep 30
               done
       - when:
           condition:
