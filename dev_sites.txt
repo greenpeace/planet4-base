@@ -1,5 +1,4 @@
 defaultcontent
-dmptest
 gutenberg
 training
 test-forms
