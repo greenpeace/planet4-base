@@ -1,5 +1,11 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme": "dev-feature/navigation_bar_drop_down_menus"
+    "greenpeace/planet4-master-theme": "dev-feature/navigation_bar_drop_down_menus",
+    "wpackagist-plugin/duplicate-post": "4.*",
+    "wpackagist-plugin/cloudflare" : "4.8.*",
+    "wpackagist-plugin/redirection": "5.*",
+    "wpackagist-plugin/timber-library": "1.19.*",
+    "wpackagist-plugin/wp-sentry-integration":"4.*",
+    "wpackagist-plugin/wp-redis": "1.2.*"
   }
 }
