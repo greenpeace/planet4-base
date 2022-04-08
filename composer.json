@@ -122,7 +122,6 @@
     "wpackagist-plugin/duplicate-post": "4.1.*",
     "wpackagist-plugin/elasticpress":"3.5.*",
     "wpackagist-plugin/google-apps-login": "3.4.4",
-    "wpackagist-plugin/google-sitemap-generator": "4.*",
     "wpackagist-plugin/leadin": "8.*",
     "wpackagist-plugin/post-type-switcher": "3.2.1",
     "wpackagist-plugin/redirection": "5.1.*",
