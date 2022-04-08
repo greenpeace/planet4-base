@@ -15,7 +15,6 @@ eu-unit
 finland
 gcefca
 greece
-greenland
 handbook
 history-aotearoa
 hongkong
