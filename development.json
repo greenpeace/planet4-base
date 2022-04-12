@@ -1,6 +1,6 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme": "dev-feature/navigation_bar_drop_down_menus",
+    "greenpeace/planet4-master-theme": "dev-split-post-css",
     "wpackagist-plugin/duplicate-post": "4.*",
     "wpackagist-plugin/cloudflare" : "4.8.*",
     "wpackagist-plugin/redirection": "5.*",
