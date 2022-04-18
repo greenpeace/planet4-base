@@ -204,7 +204,7 @@ jobs:
           name: Update Changelog and notify
           command: |
             version=$(git describe --abbrev=0 --tags)
-            ./bin/changelog.py --version << parameters.version >>
+            ./bin/changelog.py --version "$version"
       - slack/notify:
           channel: C014UMRC4AJ
           mentions: here
