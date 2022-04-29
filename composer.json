@@ -122,6 +122,8 @@
     "wpackagist-plugin/duplicate-post": "4.1.*",
     "wpackagist-plugin/elasticpress":"3.5.*",
     "wpackagist-plugin/google-apps-login": "3.4.4",
+    "plugins/gravityforms": "*",
+    "plugins/gravityformsquiz": "*",
     "wpackagist-plugin/leadin": "8.*",
     "wpackagist-plugin/post-type-switcher": "3.2.1",
     "wpackagist-plugin/redirection": "5.1.*",
@@ -191,7 +193,6 @@
     "reset:themes" : "rm -rf public/wp-content/themes",
     "reset:plugins" : "rm -rf public/wp-content/plugins",
 
-    "download:wordpress": "wp core download --version=5.0.3 --path=public --force",
     "copy:plugins" : "rsync -arOJ vendor/plugins public/wp-content",
     "copy:themes" : "rsync -arOJ vendor/themes public/wp-content",
 
