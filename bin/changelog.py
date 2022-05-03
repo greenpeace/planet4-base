@@ -41,6 +41,12 @@ def _is_feature_flag(flag):
     return ''
 
 
+def _is_feature_flag_md(flag):
+    if flag:
+        return ' 🔑'
+    return ''
+
+
 def get_release_tickets(version):
     api_endpoint = '{0}{1}{2}'.format(
         JIRA_API_QUERY,
@@ -107,8 +113,8 @@ def ticket_template(mail, md, ticket):
                 mail, ticket.number, ticket.summary,
                 _is_contributor(ticket.contributor), _is_feature_flag(ticket.feature_flag)))
 
-    md = '{0}- [{1}](https://jira.greenpeace.org/browse/{1}) - {2}\n'.format(
-        md, ticket.number, ticket.summary)
+    md = '{0}- [{1}](https://jira.greenpeace.org/browse/{1}) - {2}{3}\n'.format(
+        md, ticket.number, ticket.summary, _is_feature_flag_md(ticket.feature_flag))
 
     return mail, md
 
@@ -153,7 +159,7 @@ def commit_to_docs(version, md):
 
     with open('{0}/{1}'.format(DOCS_FOLDER, CHANGELOG_FILE), 'r+') as changelog:
         for line in lines:
-            if line.startswith('# Changelog'):
+            if line.startswith('{% endhint %}'):
                 line = '{0}\n{1}'.format(line, md)
             changelog.write(line)
 
