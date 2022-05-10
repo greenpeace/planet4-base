@@ -53,7 +53,7 @@ def get_release_tickets(version):
         version,
         JIRA_API_FIELDS
     )
-    response = requests.get(api_endpoint)
+    response = requests.get(api_endpoint, verify=False)
     try:
         tickets = response.json()['issues']
     except KeyError:
