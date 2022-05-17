@@ -89,9 +89,12 @@ def parse_tickets(jira_tickets):
         issue_type = fields['issuetype']['name']
         summary = fields['summary']
         contributor = False
-        if 'contributor' in fields['assignee']['name']:
-            contributor = True
-            had_contributions = True
+        try:
+            if 'contributor' in fields['assignee']['name']:
+                contributor = True
+                had_contributions = True
+        except TypeError:
+            pass
         feature_flag = False
         if 'featureflag' in fields['labels']:
             feature_flag = True
