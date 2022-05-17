@@ -205,11 +205,12 @@ jobs:
           command: |
             version=$(git describe --abbrev=0 --tags)
             ./bin/changelog.py --version "$version"
+            source $BASH_ENV
       - slack/notify:
           channel: C014UMRC4AJ
           mentions: here
           color: '#78c043'
-          message: "A new release is currently being deployed.\nCheck the <https://support.greenpeace.org/planet4/tech/changelog|Changelog> for the full list of changes"
+          message: "${CHANGELOG}"
           include_job_number_field: false
           include_project_field: false
           include_visit_job_action: false

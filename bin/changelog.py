@@ -27,6 +27,7 @@ HEADERS = {
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 EMAIL_FROM = os.getenv('RELEASE_EMAIL_FROM')
 EMAIL_TO = os.getenv('RELEASE_EMAIL_TO')
+BASH_ENV = os.getenv('BASH_ENV')
 
 
 def _is_contributor(flag):
@@ -44,6 +45,18 @@ def _is_feature_flag(flag):
 def _is_feature_flag_md(flag):
     if flag:
         return ' 🔑'
+    return ''
+
+
+def _is_feature_flag_slack(flag):
+    if flag:
+        return '_[Feature Flag]_ '
+    return ''
+
+
+def _is_contributor_slack(flag):
+    if flag:
+        return '_[Community Contributed]_ '
     return ''
 
 
@@ -81,7 +94,7 @@ def parse_tickets(jira_tickets):
     infras = []
 
     had_contributions = False
-    had_fearure_flags = False
+    had_feature_flags = False
 
     for ticket in jira_tickets:
         number = ticket['key']
@@ -98,7 +111,7 @@ def parse_tickets(jira_tickets):
         feature_flag = False
         if 'featureflag' in fields['labels']:
             feature_flag = True
-            had_fearure_flags = True
+            had_feature_flags = True
 
         if issue_type == 'Infra Task':
             infras.append(Ticket(number, issue_type, summary, contributor, feature_flag))
@@ -107,10 +120,10 @@ def parse_tickets(jira_tickets):
         else:
             features.append(Ticket(number, issue_type, summary, contributor, feature_flag))
 
-    return infras, bugs, features, had_contributions, had_fearure_flags
+    return infras, bugs, features, had_contributions, had_feature_flags
 
 
-def ticket_template(mail, md, ticket):
+def ticket_template(mail, md, slack, ticket):
     mail = ('{0}<li><a href="https://jira.greenpeace.org/browse/{1}">{1}'
             '</a> - {2}{3}{4}</li>'.format(
                 mail, ticket.number, ticket.summary,
@@ -119,7 +132,11 @@ def ticket_template(mail, md, ticket):
     md = '{0}- [{1}](https://jira.greenpeace.org/browse/{1}) - {2}{3}\n'.format(
         md, ticket.number, ticket.summary, _is_feature_flag_md(ticket.feature_flag))
 
-    return mail, md
+    slack = '{0}- <https://jira.greenpeace.org/browse/{1}|{1}> - {3}{4}{2}\n'.format(
+        slack, ticket.number, ticket.summary, _is_feature_flag_slack(ticket.feature_flag),
+        _is_contributor_slack(ticket.contributor))
+
+    return mail, md, slack
 
 
 def generate_templates(version, infras, bugs, features):
@@ -127,29 +144,36 @@ def generate_templates(version, infras, bugs, features):
     mail = ('Hi everyone,<br><br> A new Planet 4 release is being deployed today.'
             ' Below is the full list of changes.<br><h2>{0} - {1}</h2>'.format(version, today))
     md = '## {0} - {1}\n'.format(version, today)
+    slack = ('A new release is currently being deployed:'
+             '*<https://support.greenpeace.org/planet4/tech/changelog'
+             '|{0} - {1}>*\n'.format(version, today))
 
     if len(features):
         mail = '{0}<h3>🔧 Features</h3><ul>'.format(mail)
         md = '{0}\n### Features\n\n'.format(md)
+        slack = '{0}\n*:wrench: Features*\n\n'.format(slack)
         for ticket in features:
-            mail, md = ticket_template(mail, md, ticket)
+            mail, md, slack = ticket_template(mail, md, slack, ticket)
         mail = '{0}</ul>'.format(mail)
 
     if len(bugs):
         mail = '{0}<h3>🐞 Bug Fixes</h3><ul>'.format(mail)
         md = '{0}\n### Bug Fixes\n\n'.format(md)
+        slack = '{0}\n*:ladybug: Bugs*\n\n'.format(slack)
         for ticket in bugs:
-            mail, md = ticket_template(mail, md, ticket)
+            mail, md, slack = ticket_template(mail, md, slack, ticket)
         mail = '{0}</ul>'.format(mail)
 
     if len(infras):
         mail = '{0}<h3>👷 Infrastructure</h3><ul>'.format(mail)
         md = '{0}\n### Infrastructure\n\n'.format(md)
+        slack = '{0}\n:construction_worker: Infrastructure\n\n*'.format(slack)
+
         for ticket in infras:
-            mail, md = ticket_template(mail, md, ticket)
+            mail, md, slack = ticket_template(mail, md, slack, ticket)
         mail = '{0}</ul>'.format(mail)
 
-    return mail, md
+    return mail, md, slack
 
 
 def commit_to_docs(version, md):
@@ -215,19 +239,24 @@ if __name__ == '__main__':
     print('Get Jira release tickets for {0}...'.format(version))
     jira_tickets = get_release_tickets(version)
     print('Parse {0} tickets'.format(len(jira_tickets)))
-    infras, bugs, features, had_contributions, had_fearure_flags = parse_tickets(jira_tickets)
+    infras, bugs, features, had_contributions, had_feature_flags = parse_tickets(jira_tickets)
     print('Generate templates...')
-    mail, md = generate_templates(version, infras, bugs, features)
+    mail, md, slack = generate_templates(version, infras, bugs, features)
 
     # Add template footnotes
     if had_contributions:
         mail = '{0}<br><font size="1">⭐ Community contributed</font>'.format(mail)
-    if had_fearure_flags:
+    if had_feature_flags:
         mail = '{0}<br><font size="1">🔑 [Feature Flag] Not enabled by default</font>'.format(mail)
 
     # Add template footer
     mail = ('{0}<br><br><a href="https://support.greenpeace.org/planet4/tech/changelog">'
             '<font size="1">Release History</font></a><br><br>The P4 Bot 🤖'.format(mail))
+
+    output = 'export CHANGELOG="{0}"'.format(slack)
+
+    with open('{0}'.format(BASH_ENV), 'a+') as bash_env:
+        bash_env.write(output)
 
     # Commit to docs repo
     commit_to_docs(version, md)
