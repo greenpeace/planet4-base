@@ -144,7 +144,7 @@ def generate_templates(version, infras, bugs, features):
     mail = ('Hi everyone,<br><br> A new Planet 4 release is being deployed today.'
             ' Below is the full list of changes.<br><h2>{0} - {1}</h2>'.format(version, today))
     md = '## {0} - {1}\n'.format(version, today)
-    slack = ('A new release is currently being deployed:'
+    slack = ('A new release is currently being deployed: '
              '*<https://support.greenpeace.org/planet4/tech/changelog'
              '|{0} - {1}>*\n'.format(version, today))
 
@@ -167,7 +167,7 @@ def generate_templates(version, infras, bugs, features):
     if len(infras):
         mail = '{0}<h3>👷 Infrastructure</h3><ul>'.format(mail)
         md = '{0}\n### Infrastructure\n\n'.format(md)
-        slack = '{0}\n:construction_worker: Infrastructure\n\n*'.format(slack)
+        slack = '{0}\n*:construction_worker: Infrastructure*\n\n'.format(slack)
 
         for ticket in infras:
             mail, md, slack = ticket_template(mail, md, slack, ticket)
