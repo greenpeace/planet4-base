@@ -5,3 +5,4 @@
 
 echo "Sync default users..."
 wp user delete jmarubay@greenpeace.org --reassign=1 --yes
+wp user delete pvincent@greenpeace.org --reassign=1 --yes

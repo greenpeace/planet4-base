@@ -145,8 +145,7 @@ def generate_templates(version, infras, bugs, features):
             ' Below is the full list of changes.<br><h2>{0} - {1}</h2>'.format(version, today))
     md = '## {0} - {1}\n'.format(version, today)
     slack = ('A new release is currently being deployed: '
-             '*<https://support.greenpeace.org/planet4/tech/changelog'
-             '|{0} - {1}>*\n'.format(version, today))
+             '*<https://support.greenpeace.org/planet4/tech/changelog|{0}>*\n'.format(version))
 
     if len(features):
         mail = '{0}<h3>🔧 Features</h3><ul>'.format(mail)
