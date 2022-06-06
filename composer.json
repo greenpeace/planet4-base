@@ -105,17 +105,6 @@
           "type": "zip"
         }
       }
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "plugins/wp-stateless",
-        "version": "2.3.3",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wp-stateless-2.3.3.zip",
-          "type": "zip"
-        }
-      }
     }
   ],
 
@@ -142,7 +131,7 @@
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.1.*",
     "wpackagist-plugin/wp-sentry-integration":"3.*",
-    "plugins/wp-stateless": "*",
+    "wpackagist-plugin/wp-stateless": "2.*",
     "guzzlehttp/guzzle": "~6.0|~5.0|~4.0"
   },
 
