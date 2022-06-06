@@ -1,5 +1,8 @@
 {
   "require": {
     "wpackagist-plugin/wp-sentry-integration":"4.*"
+  },
+  "extra": {
+    "wp-version": "6.0"
   }
 }
