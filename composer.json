@@ -126,7 +126,11 @@
 
   "config": {
     "secure-http": false,
-    "github-protocols": ["https"]
+    "github-protocols": ["https"],
+    "allow-plugins": {
+      "composer/installers": true,
+      "wikimedia/composer-merge-plugin": true
+    }
   },
 
   "extra": {
