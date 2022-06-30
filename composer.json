@@ -32,17 +32,6 @@
     {
       "type": "package",
       "package": {
-        "name": "plugins/wpml-translation-management",
-        "version": "2.10.6",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-translation-management.2.10.6.zip",
-          "type": "zip"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
         "name": "plugins/wpml-string-translation",
         "version": "3.1.8",
         "dist": {
