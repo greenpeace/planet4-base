@@ -1,6 +1,5 @@
 {
   "require": {
-    "wpackagist-plugin/wp-sentry-integration":"4.*",
     "wpackagist-plugin/timber-library": "1.20.*"
   }
 }
