@@ -69,7 +69,7 @@ def create_new_tag(repo):
     )
     response = requests.post(repo_endpoint, headers=HEADERS, data=json.dumps(data))
 
-    return new_tag
+    return latest_tag, new_tag
 
 
 def check_assets(repo, tag):
@@ -94,7 +94,11 @@ def check_assets(repo, tag):
     return True
 
 
-def create_pull_request(title):
+def create_pull_request(title, diffs):
+    body = '**Changelog:**'
+    for repo in diffs:
+        body = '{0}<br>- https://github.com/{1}/compare/{2}'.format(body, repo, diffs[repo])
+
     repo_endpoint = '{0}/repos/{1}/pulls'.format(
         GITHUB_API,
         BASE_REPO
@@ -102,7 +106,8 @@ def create_pull_request(title):
     data = {
         'head': RELEASE_BRANCH,
         'base': MAIN_BRANCH,
-        'title': title
+        'title': title,
+        'body': body
     }
     response = requests.post(repo_endpoint, headers=HEADERS, data=json.dumps(data))
 
@@ -124,9 +129,11 @@ if __name__ == '__main__':
     print('{0}\n'.format(requirements))
 
     # Bump app repos
+    diffs = {}
     for repo in APP_REPOS:
         print('Creating new tag on {0}'.format(repo))
-        new_tag = create_new_tag(repo)
+        latest_tag, new_tag = create_new_tag(repo)
+        diffs[repo] = '{0}...{1}'.format(latest_tag, new_tag)
         requirements['require'][repo] = new_tag
         assets = False
         while not assets:
@@ -155,7 +162,7 @@ if __name__ == '__main__':
     ref = origin.push(RELEASE_BRANCH)
     print('Changes pushed to {0}'.format(ref[0].remote_ref.name))
     print('Push flag: {0}\n'.format(ref[0].flags))
-    pull = create_pull_request('[release] {0}'.format(version))
+    pull = create_pull_request('[release] {0}'.format(version), diffs)
     print('Pull Request created at {0}'.format(pull))
 
     print('Promotion complete')
