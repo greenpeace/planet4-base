@@ -94,6 +94,28 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformsstripe",
+        "version": "4.2.1",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_4.2.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformspaypal",
+        "version": "2.4",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.4.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
