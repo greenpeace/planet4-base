@@ -116,6 +116,17 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformsgoogleanalytics",
+        "version": "1.0",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.0.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
