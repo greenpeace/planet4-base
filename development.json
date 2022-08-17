@@ -1,4 +1,5 @@
 {
   "require": {
+    "wpackagist-plugin/akismet": "5.0"
   }
 }
