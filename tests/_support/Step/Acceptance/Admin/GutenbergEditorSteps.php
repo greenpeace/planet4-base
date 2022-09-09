@@ -143,7 +143,7 @@ class GutenbergEditorSteps
     {
         // @todo: check message content
         $I = $this->tester;
-        $I->waitForElement((string) EditorSelector::VALIDATION_MESSAGE(), 10);
+        $I->waitForElement((string) EditorSelector::VALIDATION_MESSAGE(), 30);
     }
 
     /**
