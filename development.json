@@ -1,5 +1,5 @@
 {
   "require": {
-    "wpackagist-plugin/akismet": "5.0"
+    "wpackagist-plugin/wp-sentry-integration":"6.*"
   }
 }
