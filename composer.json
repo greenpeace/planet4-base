@@ -127,6 +127,17 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformssurvey",
+        "version": "3.7",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_3.7.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
