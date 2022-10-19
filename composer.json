@@ -121,9 +121,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsgoogleanalytics",
-        "version": "1.0",
+        "version": "1.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.0.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.1.zip",
           "type": "zip"
         }
       }
