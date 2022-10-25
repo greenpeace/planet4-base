@@ -160,7 +160,6 @@
     "wpackagist-plugin/post-type-switcher": "3.2.1",
     "wpackagist-plugin/redirection": "5.*",
     "wpackagist-plugin/timber-library": "1.20.*",
-    "wpackagist-plugin/wordfence": "7.*",
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.2.*",
     "wpackagist-plugin/wp-sentry-integration":"5.*",
