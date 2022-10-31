@@ -138,6 +138,17 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/gravityformssendgrid",
+        "version": "1.5",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssendgrid_1.5.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
