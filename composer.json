@@ -22,9 +22,9 @@
       "type": "package",
       "package": {
         "name": "plugins/sitepress-multilingual-cms",
-        "version": "4.4.10",
+        "version": "4.5.12",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.5.8.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.5.12.zip",
           "type": "zip"
         }
       }
@@ -33,9 +33,9 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-string-translation",
-        "version": "3.1.8",
+        "version": "3.2.3",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.2.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.2.3.zip",
           "type": "zip"
         }
       }
