@@ -11,7 +11,7 @@ class BlockSelector
 {
     public const MAIN_BUTTON = '//button[contains(@aria-label, "Toggle block inserter")]';
     public const SECTION = '//div[contains(@class, "block-editor-block-types-list")][contains(@aria-label, "%s")]';
-    public const BLOCK = '//div[contains(@class, "block-editor-block-types-list")]//button/span[text()="%s"]';
+    public const BLOCK = '//div[contains(@class, "block-editor-block-types-list")]//button//span[text()="%s"]';
 
     public static function section(BlockSection $sectionName): string
     {
