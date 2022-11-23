@@ -149,17 +149,6 @@
           "type": "zip"
         }
       }
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "plugins/gravityformsakismet",
-        "version": "1.0",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsakismet_1.0.zip",
-          "type": "zip"
-        }
-      }
     }
   ],
 
