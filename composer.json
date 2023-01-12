@@ -57,7 +57,7 @@
         "name": "plugins/gravityforms",
         "version": "2.6.8",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.6.8.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.6.9.zip",
           "type": "zip"
         }
       }
@@ -68,7 +68,7 @@
         "name": "plugins/gravityformsquiz",
         "version": "3.9",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsquiz_3.9.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsquiz_4.0.zip",
           "type": "zip"
         }
       }
@@ -112,7 +112,7 @@
         "name": "plugins/gravityformspaypal",
         "version": "2.4",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.4.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.4.1.zip",
           "type": "zip"
         }
       }
@@ -123,7 +123,7 @@
         "name": "plugins/gravityformsgoogleanalytics",
         "version": "1.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.2.zip",
           "type": "zip"
         }
       }
@@ -134,18 +134,7 @@
         "name": "plugins/gravityformssurvey",
         "version": "3.7",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_3.7.zip",
-          "type": "zip"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "plugins/gravityformssendgrid",
-        "version": "1.5",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssendgrid_1.5.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_3.8.zip",
           "type": "zip"
         }
       }
