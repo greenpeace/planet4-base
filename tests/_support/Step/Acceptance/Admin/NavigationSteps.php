@@ -26,7 +26,7 @@ class NavigationSteps
 
     /**
      * @example I navigate to "Posts > Add new"
-     * 
+     *
      * @When I navigate to :pagepath
      */
     public function iNavigateTo(string $pagepath): void
@@ -71,6 +71,20 @@ class NavigationSteps
       $I = $this->tester;
       $I->amOnPage(Navigation::pageLink('Campaigns > Add New'));
       $this->discardWelcomeGuide($I);
+      $this->discardPageCreationModal($I);
+    }
+
+    protected function discardPageCreationModal($I)
+    {
+      // Try closing page creation modal if it exists
+      try {
+        $I->click(
+          '//div[contains(@class, "edit-post-start-page-options__modal")]'
+          . '//button[contains(@aria-label, "Close dialog")]'
+        );
+      } catch (\Exception $e) {
+        // No page creation modal found
+      }
     }
 
     protected function discardWelcomeGuide($I)
