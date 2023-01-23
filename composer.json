@@ -148,7 +148,7 @@
     "greenpeace/planet4-master-theme" : "dev-main",
     "greenpeace/planet4-plugin-gutenberg-blocks": "dev-main",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
-    "greenpeace/planet4-plugin-medialibrary" : "v1.15",
+    "greenpeace/planet4-plugin-medialibrary" : "v1.16",
     "wikimedia/composer-merge-plugin": "2.0.*",
     "wpackagist-plugin/akismet": "5.*",
     "wpackagist-plugin/cloudflare" : "4.*",
