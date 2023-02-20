@@ -86,7 +86,7 @@ def check_assets(repo, tag):
         return False
 
     size = assets[0]['size']
-    if not (1000000 <= size <= 5000000):
+    if not (1000000 <= size <= 9000000):
         print('Assets size is invalid: {0}'.format(size))
         return False
 
