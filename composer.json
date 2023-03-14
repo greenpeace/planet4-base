@@ -57,7 +57,7 @@
         "name": "plugins/gravityforms",
         "version": "2.7.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.2.2.zip",
           "type": "zip"
         }
       }
@@ -79,7 +79,7 @@
         "name": "plugins/gravityformshubspot",
         "version": "1.8.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_1.8.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_1.8.3.zip",
           "type": "zip"
         }
       }
