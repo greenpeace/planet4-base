@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.7.1",
+        "version": "2.7.3",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.2.2.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.3.zip",
           "type": "zip"
         }
       }
@@ -66,7 +66,7 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsquiz",
-        "version": "3.9",
+        "version": "4.0",
         "dist": {
           "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsquiz_4.0.zip",
           "type": "zip"
@@ -77,9 +77,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "1.8.1",
+        "version": "1.8.4",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_1.8.3.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_1.8.4.zip",
           "type": "zip"
         }
       }
@@ -99,7 +99,7 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsstripe",
-        "version": "4.2.1",
+        "version": "4.3",
         "dist": {
           "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_4.3.zip",
           "type": "zip"
@@ -110,7 +110,7 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformspaypal",
-        "version": "2.4",
+        "version": "2.5",
         "dist": {
           "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.5.zip",
           "type": "zip"
@@ -121,9 +121,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsgoogleanalytics",
-        "version": "1.1",
+        "version": "1.2.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.2.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsgoogleanalytics_1.2.1.zip",
           "type": "zip"
         }
       }
@@ -132,7 +132,7 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformssurvey",
-        "version": "3.7",
+        "version": "3.8",
         "dist": {
           "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_3.8.zip",
           "type": "zip"
