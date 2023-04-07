@@ -157,6 +157,7 @@
     "wpackagist-plugin/google-apps-login": "3.4.6",
     "plugins/gravityforms": "*",
     "plugins/gravityformsquiz": "*",
+    "plugins/gravityformshubspot": "*",
     "wpackagist-plugin/post-type-switcher": "3.2.1",
     "wpackagist-plugin/redirection": "5.*",
     "wpackagist-plugin/timber-library": "1.22.*",
