@@ -192,7 +192,7 @@
       "merge-extra-deep": false,
       "merge-scripts": true
     },
-    "wp-version": "6.1.1"
+    "wp-version": "6.2"
   },
 
   "scripts": {
