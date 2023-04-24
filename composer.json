@@ -153,7 +153,7 @@
     "wpackagist-plugin/akismet": "5.*",
     "wpackagist-plugin/cloudflare" : "4.*",
     "wpackagist-plugin/duplicate-post": "4.*",
-    "wpackagist-plugin/elasticpress":"3.5.*",
+    "wpackagist-plugin/elasticpress":"4.5.*",
     "wpackagist-plugin/google-apps-login": "3.4.6",
     "plugins/gravityforms": "*",
     "plugins/gravityformsquiz": "*",
