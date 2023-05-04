@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.7.3",
+        "version": "2.7.5",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.3.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.5.zip",
           "type": "zip"
         }
       }
@@ -77,9 +77,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "1.8.4",
+        "version": "1.9",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_1.8.4.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_1.9.zip",
           "type": "zip"
         }
       }
@@ -110,9 +110,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformspaypal",
-        "version": "2.5",
+        "version": "2.5.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.5.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.5.1.zip",
           "type": "zip"
         }
       }
