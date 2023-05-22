@@ -1,5 +1,0 @@
-{
-  "require": {
-    "wpackagist-plugin/wp-redis": "1.4.*"
-  }
-}
