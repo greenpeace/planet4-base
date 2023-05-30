@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.7.6",
+        "version": "2.7.7",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.6.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.7.zip",
           "type": "zip"
         }
       }
@@ -110,9 +110,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformspaypal",
-        "version": "2.5.1",
+        "version": "2.5.2",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.5.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_2.5.2.zip",
           "type": "zip"
         }
       }
