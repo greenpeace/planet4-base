@@ -85,7 +85,6 @@ job_definitions:
           name: Run tests
           command: |
             cd planet4-docker-compose
-            docker-compose exec php-fpm rsync -a --delete public/wp-content/themes/planet4-master-theme/tests/acceptance/ public/wp-content/plugins/planet4-plugin-gutenberg-blocks/tests/acceptance/ tests/acceptance/
             docker-compose exec php-fpm rsync -a --delete public/wp-content/themes/planet4-master-theme/tests/data/ tests/_data/
             docker-compose exec php-fpm tests/vendor/bin/codecept run acceptance --no-redirect --xml=junit.xml --html
       - run:
@@ -174,6 +173,60 @@ jobs:
   test-production:
     <<: *defaults
     <<: *test_steps
+
+  test-e2e:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    environment:
+      - WP_ENV_VERSION: "8.0.0"
+    parameters:
+      notify:
+        type: boolean
+        default: false
+    working_directory: ~/planet4-develop
+    steps:
+      - run:
+          name: Checkout planet4-develop repo
+          command: |
+            git clone https://github.com/greenpeace/planet4-develop .
+      - run:
+          name: Set current branch
+          command: |
+            echo $(jq ".planet4.repos[\"planet4-base\"] = \"${CIRCLE_BRANCH}\"" .p4-env.json) > .p4-env.json
+            cat .p4-env.json
+      - run:
+          name: Install dependencies
+          command: |
+              nvm install 16
+              npm -g i @wordpress/env@${WP_ENV_VERSION}
+      - run:
+          name: Install environment
+          command: |
+              nvm use
+              npm install
+              npm run env:requirements
+              VERBOSE=true npm run env:install
+      - run:
+          name: E2E tests
+          command: |
+              echo -e "\n# Planet4 local development environment\n127.0.0.1\twww.planet4.test" | sudo tee -a /etc/hosts;
+              nvm use
+              npm run env:e2e-install -- --with-deps
+              npm run env:e2e
+      - run:
+          name: Extract tests artifacts
+          when: always
+          command: |
+            mkdir -p /home/circleci/artifacts/playwright/themes /home/circleci/artifacts/playwright/plugins
+            cp -r planet4/themes/planet4-master-theme/e2e-* /home/circleci/artifacts/playwright/themes || true
+            cp planet4/themes/planet4-master-theme/results.xml /home/circleci/artifacts/playwright/themes || true
+            cp -r planet4/plugins/planet4-plugin-gutenberg-blocks/e2e-* /home/circleci/artifacts/playwright/plugins || true
+            cp planet4/plugins/planet4-plugin-gutenberg-blocks/results.xml /home/circleci/artifacts/playwright/plugins || true
+      - store_test_results:
+          path: /home/circleci/artifacts
+      - store_artifacts:
+          path: /home/circleci/artifacts
+
 
   release-dev-sites:
     environment:
@@ -317,6 +370,8 @@ workflows:
           <<: *branch
           requires:
             - build
+      - test-e2e:
+          <<: *branch
       - build-production:
           <<: *rc
           requires:
