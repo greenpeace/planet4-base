@@ -43,17 +43,6 @@
     {
       "type": "package",
       "package": {
-        "name": "plugins/ideapush",
-        "version": "7.19",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/ideapush-v7.19.zip",
-          "type": "zip"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
         "name": "plugins/gravityforms",
         "version": "2.7.7",
         "dist": {
