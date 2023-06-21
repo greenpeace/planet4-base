@@ -153,7 +153,7 @@
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.4.*",
     "wpackagist-plugin/wp-sentry-integration":"6.*",
-    "wpackagist-plugin/wp-stateless":"3.2.*",
+    "wpackagist-plugin/wp-stateless":"3.2.2",
     "guzzlehttp/guzzle": "~6.0|~5.0|~4.0"
   },
 
