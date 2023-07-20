@@ -38,6 +38,7 @@ jobs:
   test:
     machine:
       image: ubuntu-2204:2023.02.1
+    resource_class: large
     environment:
       - WP_ENV_VERSION: "8.0.0"
     working_directory: ~/planet4-develop
@@ -78,18 +79,24 @@ jobs:
               npm -g i @wordpress/env@${WP_ENV_VERSION}
       - run:
           name: Install environment
+          environment:
+            VERBOSE: true
           command: |
-              nvm use
-              npm install
-              npm run env:requirements
-              VERBOSE=true npm run env:install
+            nvm use
+            npm install
+            npm run env:requirements
+            npm run env:install
       - run:
           name: E2E tests
+          environment:
+            CI:
+            PW_RETRIES: 1
+            PW_WORKERS: 3
           command: |
-              echo -e "\n# Planet4 local development environment\n127.0.0.1\twww.planet4.test" | sudo tee -a /etc/hosts;
-              nvm use
-              npm run env:e2e-install -- --with-deps
-              npm run env:e2e
+            echo -e "\n# Planet4 local development environment\n127.0.0.1\twww.planet4.test" | sudo tee -a /etc/hosts;
+            nvm use
+            npm run env:e2e-install -- --with-deps
+            npm run env:e2e
       - run:
           name: Extract tests artifacts
           when: always
