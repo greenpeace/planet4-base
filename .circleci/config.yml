@@ -20,32 +20,23 @@ defaults: &defaults
         <<: *docker_auth
   working_directory: /tmp/workspace/
 
+test_defaults: &test_defaults
+  machine:
+    image: ubuntu-2204:2023.02.1
+  resource_class: large
+  environment:
+    - WP_ENV_VERSION: "8.0.0"
+  working_directory: ~/planet4-develop
+  parameters:
+    pipeline:
+      default: "develop"
+      type: string
+
 orbs:
   slack: circleci/slack@3.4.2
 
 job_definitions:
   test_steps: &test_steps
-    steps:
-
-
-jobs:
-  lint:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: make lint
-
-  test:
-    machine:
-      image: ubuntu-2204:2023.02.1
-    resource_class: large
-    environment:
-      - WP_ENV_VERSION: "8.0.0"
-    working_directory: ~/planet4-develop
-    parameters:
-      pipeline:
-        default: "develop"
-        type: string
     steps:
       - run:
           name: Checkout planet4-develop repo
@@ -110,6 +101,21 @@ jobs:
           path: /home/circleci/artifacts
       - store_artifacts:
           path: /home/circleci/artifacts
+
+jobs:
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: make lint
+
+  test:
+    <<: *test_defaults
+    <<: *test_steps
+
+  test-release:
+    <<: *test_defaults
+    <<: *test_steps
 
   release-sites:
     <<: *defaults
@@ -252,8 +258,7 @@ workflows:
       or:
         - << pipeline.parameters.promote >>
     jobs:
-      - lint:
-          <<: *branch
+      - lint
       - test:
           <<: *branch
           pipeline: develop
@@ -271,12 +276,7 @@ workflows:
             - hold-dev-sites
       - trigger-production:
           <<: *main
-
-  prepare-release:
-    jobs:
-      - lint:
-          <<: *rc
-      - test:
+      - test-release:
           <<: *rc
           pipeline: prepare-release
           requires:
