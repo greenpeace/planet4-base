@@ -56,7 +56,7 @@ job_definitions:
             - run:
                 name: Set production app tags
                 command: |
-                  curl -o production.json https://raw.githubusercontent.com/greenpeace/planet4-base/main/production.json
+                  curl -o production.json https://raw.githubusercontent.com/greenpeace/planet4-base/release/production.json
                   theme_version=$(jq -r '.[] | ."greenpeace/planet4-master-theme"' production.json)
                   plugin_version=$(jq -r '.[] | ."greenpeace/planet4-plugin-gutenberg-blocks"' production.json)
                   echo $(jq ".planet4.repos[\"planet4-master-theme\"] = \"${theme_version}\"" .p4-env.json) > .p4-env.json
