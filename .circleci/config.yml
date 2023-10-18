@@ -24,8 +24,6 @@ test_defaults: &test_defaults
   machine:
     image: ubuntu-2204:2023.02.1
   resource_class: large
-  environment:
-    - WP_ENV_VERSION: "8.0.0"
   working_directory: ~/planet4-develop
   parameters:
     pipeline:
@@ -60,14 +58,13 @@ job_definitions:
                 command: |
                   curl -o production.json https://raw.githubusercontent.com/greenpeace/planet4-base/main/production.json
                   theme_version=$(jq -r '.[] | ."greenpeace/planet4-master-theme"' production.json)
-                  plugin_version=$(jq -r '.[] | ."greenpeace/planet4-plugin_version"' production.json)
+                  plugin_version=$(jq -r '.[] | ."greenpeace/planet4-plugin-gutenberg-blocks"' production.json)
                   echo $(jq ".planet4.repos[\"planet4-master-theme\"] = \"${theme_version}\"" .p4-env.json) > .p4-env.json
-                  echo $(jq ".planet4.repos[\"planet4-plugin_version\"] = \"${plugin_version}\"" .p4-env.json) > .p4-env.json
+                  echo $(jq ".planet4.repos[\"planet4-plugin-gutenberg-blocks\"] = \"${plugin_version}\"" .p4-env.json) > .p4-env.json
       - run:
           name: Install dependencies
           command: |
               nvm install 16
-              npm -g i @wordpress/env@${WP_ENV_VERSION}
       - run:
           name: Install environment
           environment:
