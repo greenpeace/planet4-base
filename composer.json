@@ -44,9 +44,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.7.15.1",
+        "version": "2.7.16",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.15.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.16.zip",
           "type": "zip"
         }
       }
