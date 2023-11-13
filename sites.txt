@@ -1,6 +1,7 @@
 africa
 aotearoa
 argentina
+australiapacific
 belgium
 brasil
 bulgaria
