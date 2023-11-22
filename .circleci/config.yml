@@ -81,6 +81,7 @@ job_definitions:
             CI:
             PW_RETRIES: 1
             PW_WORKERS: 3
+            PW_TEST_HTML_REPORT_OPEN: "never"
           command: |
             echo -e "\n# Planet4 local development environment\n127.0.0.1\twww.planet4.test" | sudo tee -a /etc/hosts;
             nvm use

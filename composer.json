@@ -22,9 +22,9 @@
       "type": "package",
       "package": {
         "name": "plugins/sitepress-multilingual-cms",
-        "version": "4.5.12",
+        "version": "4.6.6",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.5.12.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.6.6.zip",
           "type": "zip"
         }
       }
@@ -155,7 +155,7 @@
   "require": {
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
-    "google/apiclient": "^2.12",
+    "google/apiclient": "^2.15",
     "greenpeace/planet4-master-theme" : "dev-main",
     "greenpeace/planet4-plugin-gutenberg-blocks": "dev-main",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
@@ -175,8 +175,7 @@
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.4.*",
     "wpackagist-plugin/wp-sentry-integration":"6.*",
-    "wpackagist-plugin/wp-stateless":"3.2.2",
-    "guzzlehttp/guzzle": "~6.0|~5.0|~4.0"
+    "wpackagist-plugin/wp-stateless":"3.2.2"
   },
 
   "config": {
