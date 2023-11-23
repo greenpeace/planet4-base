@@ -44,9 +44,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.7.16",
+        "version": "2.7.17.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.16.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.7.17.1.zip",
           "type": "zip"
         }
       }
@@ -88,9 +88,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsstripe",
-        "version": "5.2.2",
+        "version": "5.3.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.2.2.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.3.0.zip",
           "type": "zip"
         }
       }
