@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+from base64 import b64decode
 from datetime import date
 from git import Repo, Actor
 import requests
@@ -207,7 +208,8 @@ def commit_to_docs(version, md):
 
 
 def send_mail(version, mail):
-    sg = SendGridAPIClient(SENDGRID_API_KEY)
+    token = b64decode(SENDGRID_API_KEY).decode('utf-8').replace('\n', '')
+    sg = SendGridAPIClient(token)
 
     print('Sending email...')
     message = Mail(
