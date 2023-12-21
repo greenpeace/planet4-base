@@ -155,7 +155,7 @@
   "require": {
     "cmb2/cmb2": "2.*",
     "composer/installers": "~1.0",
-    "google/apiclient": "^2.15",
+    "google/apiclient": "2.15.3",
     "greenpeace/planet4-master-theme" : "dev-main",
     "greenpeace/planet4-plugin-gutenberg-blocks": "dev-main",
     "greenpeace/planet4-nginx-helper" : "2.2.*",
@@ -171,12 +171,12 @@
     "plugins/gravityformsquiz": "*",
     "wpackagist-plugin/post-type-switcher": "3.2.2",
     "wpackagist-plugin/redirection": "5.*",
-    "wpackagist-plugin/timber-library": "1.22.*",
+    "wpackagist-plugin/timber-library": "1.23.*",
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.4.*",
-    "wpackagist-plugin/wp-sentry-integration":"6.*",
-    "wpackagist-plugin/wp-stateless":"3.2.2",
-    "psr/http-message": "1.1",
+    "wpackagist-plugin/wp-sentry-integration":"7.*",
+    "wpackagist-plugin/wp-stateless":"3.4.0",
+    "psr/log": "1.*",
     "monolog/monolog": "^2.9"
   },
 
