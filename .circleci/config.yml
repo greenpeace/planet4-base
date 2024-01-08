@@ -70,6 +70,7 @@ job_definitions:
           environment:
             VERBOSE: true
           command: |
+            echo '{"config": {"WP_DEBUG": false}}' | tee -a .wp-env.override.json
             nvm use
             npm install
             npm run env:requirements
