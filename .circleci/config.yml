@@ -308,9 +308,14 @@ workflows:
 
   release:
     jobs:
+      - hold-release:
+          <<: *tag
+          type: approval
       - release-sites:
           <<: *tag
           pipeline: tag
+          requires:
+            - hold-release
       - hold-changelog:
           <<: *tag
           type: approval
