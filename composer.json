@@ -171,13 +171,14 @@
     "plugins/gravityformsquiz": "*",
     "wpackagist-plugin/post-type-switcher": "3.3.0",
     "wpackagist-plugin/redirection": "5.*",
-    "wpackagist-plugin/timber-library": "1.23.*",
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.4.*",
     "wpackagist-plugin/wp-sentry-integration":"7.*",
     "wpackagist-plugin/wp-stateless":"3.4.0",
     "psr/log": "1.*",
-    "monolog/monolog": "^2.9"
+    "monolog/monolog": "^2.9",
+    "wpackagist-plugin/timber-library": "1.23.*",
+    "timber/timber": "1.24.0"
   },
 
   "config": {
