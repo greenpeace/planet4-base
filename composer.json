@@ -44,9 +44,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.8.4",
+        "version": "2.8.6",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.8.4.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.8.6.zip",
           "type": "zip"
         }
       }
@@ -66,9 +66,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.0.0.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.1.0.zip",
           "type": "zip"
         }
       }
@@ -88,9 +88,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsstripe",
-        "version": "5.4.6",
+        "version": "5.5.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.4.6.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.5.1.zip",
           "type": "zip"
         }
       }
@@ -99,9 +99,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformspaypal",
-        "version": "3.0.0",
+        "version": "3.1.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_3.0.0.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsppcp_3.1.0.zip",
           "type": "zip"
         }
       }
@@ -132,9 +132,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsakismet",
-        "version": "1.0",
+        "version": "1.0.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsakismet_1.0.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsakismet_1.0.1.zip",
           "type": "zip"
         }
       }
