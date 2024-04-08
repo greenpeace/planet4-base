@@ -175,7 +175,7 @@
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.4.*",
     "wpackagist-plugin/wp-sentry-integration":"7.*",
-    "wpackagist-plugin/wp-stateless":"3.4.0",
+    "wpackagist-plugin/wp-stateless":"3.4.1",
     "psr/log": "1.*",
     "monolog/monolog": "^2.9"
   },
