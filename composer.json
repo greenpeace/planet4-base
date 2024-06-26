@@ -32,6 +32,17 @@
     {
       "type": "package",
       "package": {
+        "name": "plugins/wpml-elasticpress",
+        "version": "2.0.3",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-elasticpress.2.0.3.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "plugins/wpml-string-translation",
         "version": "3.2.3",
         "dist": {
