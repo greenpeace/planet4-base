@@ -8,3 +8,4 @@ wp user delete dgracian@greenpeace.org --reassign=1 --yes
 wp user delete eberger@greenpeace.org --reassign=1 --yes
 wp user delete tcavalca@greenpeace.org --reassign=1 --yes
 wp user delete amelekou@greenpeace.org --reassign=1 --yes
+wp user create pfiguero pfiguero@greenpeace.org --first_name="Pedro" --last_name="Figueroa - P4 team" --role=administrator --porcelain || true
