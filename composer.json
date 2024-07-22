@@ -216,7 +216,7 @@
       "merge-extra-deep": false,
       "merge-scripts": true
     },
-    "wp-version": "6.5.5"
+    "wp-version": "6.6"
   },
 
   "scripts": {
