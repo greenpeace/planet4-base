@@ -1,5 +1,5 @@
 {
   "require": {
-    "wpackagist-plugin/elasticpress":"4.7.*"
+    "wpackagist-plugin/elasticpress":"5.1.*"
   }
 }
