@@ -285,7 +285,7 @@ workflows:
   cron-develop:
     triggers:
       - schedule:
-          cron: "0 6 * * *"
+          cron: "0 3 * * *"
           filters:
             branches:
               only:
