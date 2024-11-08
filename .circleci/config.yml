@@ -8,6 +8,12 @@ parameters:
   version:
     type: string
     default: ""
+  flag-ticket:
+    type: boolean
+    default: false
+  ticket:
+    type: string
+    default: ""
 
 docker_auth: &docker_auth
   username: $DOCKERHUB_USERNAME
@@ -170,8 +176,8 @@ jobs:
             ./bin/changelog.py --version "$version"
             source $BASH_ENV
       - slack/notify:
-          channel: C014UMRC4AJ
-          mentions: here
+          channel: D01433MK3AQ
+          #mentions: here
           color: '#78c043'
           message: "${CHANGELOG}"
           include_job_number_field: false
@@ -225,6 +231,29 @@ jobs:
           name: Promote version
           command: ./bin/promote.py << parameters.version >>
 
+  flag-ticket:
+    <<: *defaults
+    working_directory: /tmp/workspace/
+    parameters:
+      ticket:
+        default: ""
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Send notification
+          command: |
+            ./bin/flag-ticket.py << parameters.ticket >>
+            source $BASH_ENV
+      - slack/notify:
+          channel: D01433MK3AQ
+          #mentions: here, p4devs
+          color: '#78c043'
+          message: "${SLACK_MSG}"
+          include_job_number_field: false
+          include_project_field: false
+          include_visit_job_action: false
+
 workflow_definitions:
   branch: &branch
     context: org-global
@@ -257,6 +286,7 @@ workflows:
     unless:
       or:
         - << pipeline.parameters.promote >>
+        - << pipeline.parameters.flag-ticket >>
     jobs:
       - lint
       - test:
@@ -305,6 +335,17 @@ workflows:
       - promote:
           <<: *main
           version: << pipeline.parameters.version >>
+
+  flag-ticket:
+    when: << pipeline.parameters.flag-ticket >>
+    jobs:
+      - hold-notification:
+          type: approval
+      - flag-ticket:
+          <<: *main
+          requires:
+            - hold-notification
+          ticket: << pipeline.parameters.ticket >>
 
   release:
     jobs:
