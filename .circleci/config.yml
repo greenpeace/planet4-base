@@ -176,8 +176,8 @@ jobs:
             ./bin/changelog.py --version "$version"
             source $BASH_ENV
       - slack/notify:
-          channel: D01433MK3AQ
-          #mentions: here
+          channel: C014UMRC4AJ
+          mentions: here
           color: '#78c043'
           message: "${CHANGELOG}"
           include_job_number_field: false
@@ -246,8 +246,8 @@ jobs:
             ./bin/flag-ticket.py << parameters.ticket >>
             source $BASH_ENV
       - slack/notify:
-          channel: D01433MK3AQ
-          #mentions: here, p4devs
+          channel: C014UMRC4AJ
+          mentions: here, p4devs
           color: '#78c043'
           message: "${SLACK_MSG}"
           include_job_number_field: false

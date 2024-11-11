@@ -45,7 +45,7 @@ def get_ticket_meta(ticket_key):
 def generate_slack_msg(ticket_key, summary):
     msg = ('An important ticket was just completed!'
            ' This will be released on all dev sites in a few hours.'
-           ' Please report any bug you see there in this thread and <@p4devs> will have a look.\n'
+           ' Please report any bug you see there in this thread and P4 team will have a look.\n'
            ':wrench: *<{0}{1}|{1}: {2}>*\n'.format(JIRA_BASE_URL, ticket_key, summary))
 
     return msg
