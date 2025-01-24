@@ -22,9 +22,9 @@
       "type": "package",
       "package": {
         "name": "plugins/sitepress-multilingual-cms",
-        "version": "4.6.6",
+        "version": "4.6.15",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.6.6.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.6.15.zip",
           "type": "zip"
         }
       }
@@ -33,9 +33,9 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-elasticpress",
-        "version": "2.0.3",
+        "version": "2.0.4",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-elasticpress.2.0.3.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-elasticpress.2.0.4.zip",
           "type": "zip"
         }
       }
@@ -44,9 +44,9 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-string-translation",
-        "version": "3.2.3",
+        "version": "3.2.18",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.2.3.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.2.18.zip",
           "type": "zip"
         }
       }
