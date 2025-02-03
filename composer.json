@@ -131,6 +131,17 @@
     {
       "type": "package",
       "package": {
+        "name": "plugins/gravityformspipe",
+        "version": "1.4.0",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformspipe_1.4.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "plugins/google-profile-avatars",
         "version": "1.5",
         "dist": {
