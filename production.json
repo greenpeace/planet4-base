@@ -1,6 +1,6 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme": "v1.310.1",
-    "greenpeace/planet4-plugin-gutenberg-blocks": "v1.106.0"
+    "greenpeace/planet4-master-theme": "v1.311.0",
+    "greenpeace/planet4-plugin-gutenberg-blocks": "v1.107.0"
   }
 }
