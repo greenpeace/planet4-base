@@ -67,9 +67,7 @@ job_definitions:
                 command: |
                   curl -o production.json https://raw.githubusercontent.com/greenpeace/planet4-base/release/production.json
                   theme_version=$(jq -r '.[] | ."greenpeace/planet4-master-theme"' production.json)
-                  plugin_version=$(jq -r '.[] | ."greenpeace/planet4-plugin-gutenberg-blocks"' production.json)
                   echo $(jq ".planet4.repos[\"planet4-master-theme\"] = \"${theme_version}\"" .p4-env.json) > .p4-env.json
-                  echo $(jq ".planet4.repos[\"planet4-plugin-gutenberg-blocks\"] = \"${plugin_version}\"" .p4-env.json) > .p4-env.json
       - run:
           name: Install dependencies
           command: |
@@ -101,11 +99,9 @@ job_definitions:
           name: Extract tests artifacts
           when: always
           command: |
-            mkdir -p /home/circleci/artifacts/playwright/themes /home/circleci/artifacts/playwright/plugins
-            cp -r planet4/themes/planet4-master-theme/e2e-* /home/circleci/artifacts/playwright/themes || true
-            cp planet4/themes/planet4-master-theme/results.xml /home/circleci/artifacts/playwright/themes || true
-            cp -r planet4/plugins/planet4-plugin-gutenberg-blocks/e2e-* /home/circleci/artifacts/playwright/plugins || true
-            cp planet4/plugins/planet4-plugin-gutenberg-blocks/results.xml /home/circleci/artifacts/playwright/plugins || true
+            mkdir -p /home/circleci/artifacts/playwright
+            cp -r planet4/themes/planet4-master-theme/e2e-* /home/circleci/artifacts/playwright || true
+            cp planet4/themes/planet4-master-theme/results.xml /home/circleci/artifacts/playwright || true
       - store_test_results:
           path: /home/circleci/artifacts
       - store_artifacts:
