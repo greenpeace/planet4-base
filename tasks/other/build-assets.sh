@@ -5,7 +5,3 @@
 pushd /app/source/public/wp-content/themes/planet4-master-theme || exit
 npm run build
 popd || exit
-
-pushd /app/source/public/wp-content/plugins/planet4-plugin-gutenberg-blocks || exit
-npm run build
-popd || exit

@@ -11,10 +11,7 @@ GITHUB_API = 'https://api.github.com'
 BASE_REPO = 'greenpeace/planet4-base'
 BASE_FOLDER = 'base'
 BASE_APPS = 'production.json'
-APP_REPOS = {
-    'greenpeace/planet4-master-theme',
-    'greenpeace/planet4-plugin-gutenberg-blocks'
-}
+THEME_REPO = 'greenpeace/planet4-master-theme'
 MAIN_BRANCH = 'main'
 RELEASE_BRANCH = 'release'
 OAUTH_KEY = os.getenv('GITHUB_OAUTH_TOKEN')
@@ -128,18 +125,17 @@ if __name__ == '__main__':
     print('Base repo cloned ✔')
     print('{0}\n'.format(requirements))
 
-    # Bump app repos
+    # Bump theme repo
     diffs = {}
-    for repo in APP_REPOS:
-        print('Creating new tag on {0}'.format(repo))
-        latest_tag, new_tag = create_new_tag(repo)
-        diffs[repo] = '{0}...{1}'.format(latest_tag, new_tag)
-        requirements['require'][repo] = new_tag
-        assets = False
-        while not assets:
-            print('Checking for assets...')
-            sleep(30)
-            assets = check_assets(repo, new_tag)
+    print('Creating new tag on {0}'.format(THEME_REPO))
+    latest_tag, new_tag = create_new_tag(THEME_REPO)
+    diffs[THEME_REPO] = '{0}...{1}'.format(latest_tag, new_tag)
+    requirements['require'][THEME_REPO] = new_tag
+    assets = False
+    while not assets:
+        print('Checking for assets...')
+        sleep(30)
+        assets = check_assets(THEME_REPO, new_tag)
 
     with open('{0}/{1}'.format(BASE_FOLDER, BASE_APPS), 'w') as prod_file:
         json.dump(requirements, prod_file, indent=2)
