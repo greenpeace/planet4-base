@@ -71,7 +71,7 @@ job_definitions:
       - run:
           name: Install dependencies
           command: |
-              nvm install 18
+              nvm install 20
       - run:
           name: Install environment
           environment:
