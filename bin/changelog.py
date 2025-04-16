@@ -4,15 +4,16 @@ import argparse
 from base64 import b64decode
 from datetime import date
 from git import Repo, Actor
-import requests
+from jira import JIRA
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import sys
 
-JIRA_API_QUERY = ('https://jira.greenpeace.org/rest/api/latest/search?'
-                  'jql=project%20%3D%20PLANET%20AND%20fixVersion%20%3D%20')
-JIRA_API_FIELDS = '&fields=summary,issuetype,customfield_12201,issuetype,assignee,labels'
+JIRA_SERVER = 'https://greenpeace-planet4.atlassian.net/'
+JQL = 'project = "PLANET" and fixVersion = '
+JIRA_USER = os.getenv('JIRA_USER')
+JIRA_TOKEN = os.getenv('JIRA_TOKEN')
 GITHUB_API = 'https://api.github.com'
 DOCS_REPO = 'greenpeace/planet4-docs'
 DOCS_FOLDER = 'docs'
@@ -62,16 +63,17 @@ def _is_contributor_slack(flag):
 
 
 def get_release_tickets(version):
-    api_endpoint = '{0}{1}{2}'.format(
-        JIRA_API_QUERY,
-        version,
-        JIRA_API_FIELDS
-    )
-    response = requests.get(api_endpoint, verify=False)
+    token = b64decode(JIRA_TOKEN).decode('utf-8').replace('\n', '')
+    jira = JIRA(server=JIRA_SERVER, basic_auth=(JIRA_USER, token))
+
     try:
-        tickets = response.json()['issues']
-    except KeyError:
-        print('No issues. Wrong release number?')
+        tickets = jira.search_issues('{0}{1}'.format(JQL, version))
+    except:  # noqa: E722
+        print('No such release')
+        sys.exit(1)
+
+    if not tickets:
+        print('No such release')
         sys.exit(1)
 
     return tickets
@@ -103,12 +105,9 @@ def parse_tickets(jira_tickets):
         issue_type = fields['issuetype']['name']
         summary = fields['summary']
         contributor = False
-        try:
-            if 'contributor' in fields['assignee']['name']:
-                contributor = True
-                had_contributions = True
-        except TypeError:
-            pass
+        if 'contribution' in fields['labels']:
+            contributor = True
+            had_contributions = True
         feature_flag = False
         if 'featureflag' in fields['labels']:
             feature_flag = True
