@@ -340,8 +340,12 @@ workflows:
   promote:
     when: << pipeline.parameters.promote >>
     jobs:
+      - hold-promote:
+          type: approval
       - promote:
           <<: *main
+          requires:
+            - hold-promote
           version: << pipeline.parameters.version >>
 
   flag-ticket:

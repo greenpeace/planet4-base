@@ -1,43 +1,42 @@
 #!/usr/bin/env python3
+from base64 import b64decode
+from jira import JIRA
 import os
-import requests
 import sys
 
-JIRA_API_QUERY = 'https://jira.greenpeace.org/rest/api/latest/issue/'
-JIRA_API_FIELDS = '?fields=summary,issuetype,status,issuetype,assignee,labels'
-JIRA_BASE_URL = 'https://jira.greenpeace.org/browse/'
-
+JIRA_SERVER = 'https://greenpeace-planet4.atlassian.net/'
+JIRA_API_URL = 'rest/api/latest/issue/'
+JIRA_TICKET_URL = 'browse/'
+JIRA_USER = os.getenv('JIRA_USER')
+JIRA_TOKEN = os.getenv('JIRA_TOKEN')
 BASH_ENV = os.getenv('BASH_ENV')
 
 
 def get_ticket_meta(ticket_key):
-    api_endpoint = '{0}{1}{2}'.format(
-        JIRA_API_QUERY,
-        ticket_key,
-        JIRA_API_FIELDS
-    )
-    response = requests.get(api_endpoint, verify=False)
+    token = b64decode(JIRA_TOKEN).decode('utf-8').replace('\n', '')
+    jira = JIRA(server=JIRA_SERVER, basic_auth=(JIRA_USER, token))
 
     try:
-        fields = response.json()['fields']
-    except KeyError:
+        ticket = jira.issue(ticket_key)
+    except:  # noqa: E722
         print('Not a valid ticket. Wrong ticket key?')
         sys.exit(1)
 
-    try:
-        status = fields['status']['name']
-    except (KeyError, TypeError):
-        raise Exception('Not a valid ticket status')
+    status = ticket.fields['status']['name']
 
-    if status == 'CLOSED':
-        labels = fields['labels']
-        if 'FLAG' not in labels:
-            print('Not a FLAG ticket')
-            sys.exit(0)
+    if status != 'CLOSED':
+        print('Not a closed ticket.')
+        sys.exit(0)
 
-    summary = fields['summary']
+    labels = ticket.fields['labels']
+    if 'FLAG' not in labels:
+        print('Not a FLAG ticket')
+        sys.exit(0)
 
-    print('We found a FLAG ticket: <{0}{1}|{2}>'.format(JIRA_BASE_URL, ticket_key, summary))
+    summary = ticket.fields['summary']
+
+    print('We found a FLAG ticket: <{0}{1}{2}|{3}>'.format(JIRA_SERVER, JIRA_TICKET_URL,
+                                                           ticket_key, summary))
 
     return summary
 
@@ -46,7 +45,8 @@ def generate_slack_msg(ticket_key, summary):
     msg = (':planet4: An important ticket was just completed!'
            ' This will be released on all dev sites in a few hours.'
            ' Please report any bug you see there in this thread and P4 team will have a look.\n'
-           ':gear: *<{0}{1}|{1}: {2}>*\n'.format(JIRA_BASE_URL, ticket_key, summary))
+           ':gear: *<{0}{1}{2}|{2}: {3}>*\n'.format(JIRA_SERVER, JIRA_TICKET_URL,
+                                                    ticket_key, summary))
 
     return msg
 
