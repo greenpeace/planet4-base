@@ -1,5 +1,6 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme": "v1.319.0"
+    "greenpeace/planet4-master-theme": "v1.319.0",
+    "wpackagist-plugin/elasticpress":"5.1.*"
   }
 }
