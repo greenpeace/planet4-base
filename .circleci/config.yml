@@ -49,6 +49,7 @@ job_definitions:
           name: Checkout planet4-develop repo
           command: |
             git clone https://github.com/greenpeace/planet4-develop .
+            git checkout v0.19.0
       - when:
           condition:
             equal: ["develop", << parameters.pipeline >>]
