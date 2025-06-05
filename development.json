@@ -1,7 +1,6 @@
 {
   "require": {
     "timber/timber": "2.1.*",
-    "greenpeace/planet4-master-theme": "dev-feat/timber-2",
-    "greenpeace/planet4-plugin-gutenberg-blocks": "dev-feat/timber-2"
+    "greenpeace/planet4-master-theme": "dev-feat/timber-2"
   }
 }
