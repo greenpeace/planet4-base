@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.9.8",
+        "version": "2.9.11.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.8.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.11.1.zip",
           "type": "zip"
         }
       }
@@ -66,9 +66,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsquiz",
-        "version": "4.2.1",
+        "version": "4.3.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsquiz_4.2.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsquiz_4.3.0.zip",
           "type": "zip"
         }
       }
@@ -77,9 +77,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.2.0.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.3.0.zip",
           "type": "zip"
         }
       }
@@ -99,9 +99,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsstripe",
-        "version": "5.9.0",
+        "version": "5.9.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.9.0.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.9.1.zip",
           "type": "zip"
         }
       }
@@ -110,9 +110,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformssurvey",
-        "version": "4.1.1",
+        "version": "4.2.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_4.1.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_4.2.1.zip",
           "type": "zip"
         }
       }
