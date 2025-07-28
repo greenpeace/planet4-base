@@ -100,16 +100,16 @@ def parse_tickets(jira_tickets):
     had_feature_flags = False
 
     for ticket in jira_tickets:
-        number = ticket['key']
-        fields = ticket['fields']
-        issue_type = fields['issuetype']['name']
-        summary = fields['summary']
+        number = ticket.key
+        fields = ticket.fields
+        issue_type = fields.issuetype.name
+        summary = fields.summary
         contributor = False
-        if 'contribution' in fields['labels']:
+        if 'contribution' in fields.labels:
             contributor = True
             had_contributions = True
         feature_flag = False
-        if 'featureflag' in fields['labels']:
+        if 'featureflag' in fields.labels:
             feature_flag = True
             had_feature_flags = True
 
@@ -124,17 +124,17 @@ def parse_tickets(jira_tickets):
 
 
 def ticket_template(mail, md, slack, ticket):
-    mail = ('{0}<li><a href="https://jira.greenpeace.org/browse/{1}">{1}'
-            '</a> - {2}{3}{4}</li>'.format(
-                mail, ticket.number, ticket.summary,
+    mail = ('{0}<li><a href="{1}/browse/{2}">{2}'
+            '</a> - {3}{4}{5}</li>'.format(
+                mail, JIRA_SERVER, ticket.number, ticket.summary,
                 _is_contributor(ticket.contributor), _is_feature_flag(ticket.feature_flag)))
 
-    md = '{0}- [{1}](https://jira.greenpeace.org/browse/{1}) - {2}{3}\n'.format(
-        md, ticket.number, ticket.summary, _is_feature_flag_md(ticket.feature_flag))
+    md = '{0}- [{1}]({2}/browse/{1}) - {3}{4}\n'.format(
+        md, ticket.number, JIRA_SERVER, ticket.summary, _is_feature_flag_md(ticket.feature_flag))
 
-    slack = '{0}- <https://jira.greenpeace.org/browse/{1}|{1}> - {3}{4}{2}\n'.format(
-        slack, ticket.number, ticket.summary, _is_feature_flag_slack(ticket.feature_flag),
-        _is_contributor_slack(ticket.contributor))
+    slack = '{0}- <{1}/browse/{2}|{2}> - {4}{5}{3}\n'.format(
+        slack, JIRA_SERVER, ticket.number, ticket.summary,
+        _is_feature_flag_slack(ticket.feature_flag), _is_contributor_slack(ticket.contributor))
 
     return mail, md, slack
 
