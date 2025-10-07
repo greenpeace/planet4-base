@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.9.14.1",
+        "version": "2.9.19",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.14.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.19.zip",
           "type": "zip"
         }
       }
@@ -124,17 +124,6 @@
         "version": "1.1.0",
         "dist": {
           "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsakismet_1.1.0.zip",
-          "type": "zip"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "plugins/gravityformspipe",
-        "version": "1.4.0",
-        "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformspipe_1.4.0.zip",
           "type": "zip"
         }
       }
