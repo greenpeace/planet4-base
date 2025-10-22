@@ -1,6 +1,6 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme": "v1.346.0",
+    "greenpeace/planet4-master-theme": "v1.348.0",
     "wpackagist-plugin/timber-library": "1.23.*",
     "timber/timber": "1.24.0"
   }
