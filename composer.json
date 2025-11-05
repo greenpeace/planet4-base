@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.9.19",
+        "version": "2.9.21.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.19.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.21.1.zip",
           "type": "zip"
         }
       }
@@ -110,9 +110,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformssurvey",
-        "version": "4.2.1",
+        "version": "4.2.2",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_4.2.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssurvey_4.2.2.zip",
           "type": "zip"
         }
       }
