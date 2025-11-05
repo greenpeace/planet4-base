@@ -131,6 +131,17 @@
     {
       "type": "package",
       "package": {
+        "name": "plugins/gravityformszapier",
+        "version": "4.5.1",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformszapier_4.5.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "plugins/google-profile-avatars",
         "version": "1.5",
         "dist": {
