@@ -162,7 +162,7 @@
     "wpackagist-plugin/akismet": "5.*",
     "wpackagist-plugin/cloudflare" : "4.*",
     "wpackagist-plugin/duplicate-post": "4.*",
-    "wpackagist-plugin/elasticpress":"5.2.*",
+    "wpackagist-plugin/elasticpress":"5.3.*",
     "wpackagist-plugin/google-apps-login": "3.4.6",
     "plugins/google-profile-avatars": "1.5",
     "plugins/gravityforms": "*",
