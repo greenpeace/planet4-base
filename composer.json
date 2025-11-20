@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.9.21.1",
+        "version": "2.9.22",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.21.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.22.zip",
           "type": "zip"
         }
       }
@@ -77,9 +77,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "2.3.1",
+        "version": "2.3.2",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.3.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.3.2.zip",
           "type": "zip"
         }
       }
@@ -175,7 +175,7 @@
     "wpackagist-plugin/wp-redis": "1.4.*",
     "wpackagist-plugin/wp-sentry-integration":"7.*",
     "wpackagist-plugin/wp-stateless":"4.*",
-    "wpackagist-plugin/wp-stateless-gravity-forms-addon":"0.0.2",
+    "wpackagist-plugin/wp-stateless-gravity-forms-addon":"0.0.3",
     "psr/log": "1.*",
     "monolog/monolog": "^2.9",
     "timber/timber": "2.*"
