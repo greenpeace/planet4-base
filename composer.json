@@ -169,7 +169,7 @@
     "plugins/gravityformshubspot": "*",
     "plugins/gravityformsquiz": "*",
     "plugins/gravityformssurvey": "*",
-    "wpackagist-plugin/post-type-switcher": "3.3.0",
+    "wpackagist-plugin/post-type-switcher": "4.*",
     "wpackagist-plugin/redirection": "5.*",
     "wpackagist-plugin/wordpress-importer": "0.*",
     "wpackagist-plugin/wp-redis": "1.4.*",
