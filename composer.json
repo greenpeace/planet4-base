@@ -22,9 +22,9 @@
       "type": "package",
       "package": {
         "name": "plugins/sitepress-multilingual-cms",
-        "version": "4.6.15",
+        "version": "4.8.6",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.6.15.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.8.6.zip",
           "type": "zip"
         }
       }
@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.9.23.2",
+        "version": "2.9.24",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.23.2.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.24.zip",
           "type": "zip"
         }
       }
