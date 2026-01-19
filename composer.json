@@ -77,9 +77,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "2.3.2",
+        "version": "3.0.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_2.3.2.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_3.0.1.zip",
           "type": "zip"
         }
       }
