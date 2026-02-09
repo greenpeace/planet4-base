@@ -29,7 +29,7 @@ defaults: &defaults
 test_defaults: &test_defaults
   machine:
     image: ubuntu-2204:2023.02.1
-  resource_class: large
+  resource_class: xlarge
   working_directory: ~/planet4-develop
   parameters:
     pipeline:
