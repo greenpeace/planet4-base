@@ -22,9 +22,9 @@
       "type": "package",
       "package": {
         "name": "plugins/sitepress-multilingual-cms",
-        "version": "4.8.6",
+        "version": "4.9.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.8.6.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/sitepress-multilingual-cms.4.9.0.zip",
           "type": "zip"
         }
       }
@@ -33,9 +33,9 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-elasticpress",
-        "version": "2.0.4",
+        "version": "2.1.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-elasticpress.2.0.4.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-elasticpress.2.1.0.zip",
           "type": "zip"
         }
       }
@@ -44,9 +44,9 @@
       "type": "package",
       "package": {
         "name": "plugins/wpml-string-translation",
-        "version": "3.2.18",
+        "version": "3.5.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.2.18.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/wpml-string-translation.3.5.0.zip",
           "type": "zip"
         }
       }
@@ -55,9 +55,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityforms",
-        "version": "2.9.24",
+        "version": "2.9.27",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.24.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityforms_2.9.27.zip",
           "type": "zip"
         }
       }
@@ -77,9 +77,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformshubspot",
-        "version": "3.0.1",
+        "version": "3.0.1.1",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_3.0.1.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformshubspot_3.0.1.1.zip",
           "type": "zip"
         }
       }
