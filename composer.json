@@ -131,6 +131,17 @@
     {
       "type": "package",
       "package": {
+        "name": "plugins/gravityformssalesforce",
+        "version": "1.1.1",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformssalesforce_1.1.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "plugins/gravityformszapier",
         "version": "4.5.1",
         "dist": {
