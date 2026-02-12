@@ -22,18 +22,18 @@ def get_ticket_meta(ticket_key):
         print('Not a valid ticket. Wrong ticket key?')
         sys.exit(1)
 
-    status = ticket.fields['status']['name']
+    status = ticket.fields.status.name
 
-    if status != 'CLOSED':
+    if status != 'Closed':
         print('Not a closed ticket.')
         sys.exit(0)
 
-    labels = ticket.fields['labels']
+    labels = ticket.fields.labels
     if 'FLAG' not in labels:
         print('Not a FLAG ticket')
         sys.exit(0)
 
-    summary = ticket.fields['summary']
+    summary = ticket.fields.summary
 
     print('We found a FLAG ticket: <{0}{1}{2}|{3}>'.format(JIRA_SERVER, JIRA_TICKET_URL,
                                                            ticket_key, summary))
