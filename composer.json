@@ -187,7 +187,6 @@
     "wpackagist-plugin/wp-sentry-integration":"8.*",
     "wpackagist-plugin/wp-stateless":"4.*",
     "wpackagist-plugin/wp-stateless-gravity-forms-addon":"0.0.3",
-    "psr/log": "1.*",
     "monolog/monolog": "^2.9",
     "timber/timber": "2.1.*"
   },
