@@ -160,6 +160,17 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "plugins/googleprofileavatar-premium",
+        "version": "1.6.0",
+        "dist": {
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/googleprofileavatar-premium-1.6.0.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
@@ -176,6 +187,7 @@
     "wpackagist-plugin/elasticpress":"5.*",
     "wpackagist-plugin/google-apps-login": "3.*",
     "plugins/google-profile-avatars": "1.5",
+    "plugins/googleprofileavatar-premium": "1.6.0",
     "plugins/gravityforms": "*",
     "plugins/gravityformshubspot": "*",
     "plugins/gravityformsquiz": "*",
