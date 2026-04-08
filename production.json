@@ -1,6 +1,6 @@
 {
   "require": {
-    "greenpeace/planet4-master-theme": "v1.364.0",
+    "greenpeace/planet4-master-theme": "v1.365.0",
     "wpackagist-plugin/wp-sentry-integration": "7.*"
   }
 }
