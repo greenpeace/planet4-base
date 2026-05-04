@@ -5,3 +5,4 @@ wp option set wp_attachment_pages_enabled 0
 
 echo "Force to redirect to Google login page..."
 wp option patch insert planet4_features enforce_sso on
+wp option patch insert galogin ga_auto_login 1
