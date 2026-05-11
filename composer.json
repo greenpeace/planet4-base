@@ -168,7 +168,7 @@
     "composer/installers": "~1.0",
     "google/apiclient": "2.*",
     "greenpeace/planet4-master-theme" : "dev-main",
-    "greenpeace/planet4-nginx-helper" : "2.3.*",
+    "greenpeace/planet4-nginx-helper" : "2.2.*",
     "wikimedia/composer-merge-plugin": "2.1.*",
     "wpackagist-plugin/akismet": "5.*",
     "wpackagist-plugin/cloudflare" : "4.*",
