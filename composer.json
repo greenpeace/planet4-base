@@ -154,9 +154,9 @@
       "type": "package",
       "package": {
         "name": "plugins/google-profile-avatars",
-        "version": "1.5",
+        "version": "1.6.0",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/google-profile-avatars-1.5.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/googleprofileavatar-premium-1.6.0.zip",
           "type": "zip"
         }
       }
@@ -176,7 +176,7 @@
     "wpackagist-plugin/duplicate-post": "4.*",
     "wpackagist-plugin/elasticpress":"5.*",
     "wpackagist-plugin/google-apps-login": "3.*",
-    "plugins/google-profile-avatars": "1.5",
+    "plugins/google-profile-avatars": "1.6.0",
     "plugins/gravityforms": "*",
     "plugins/gravityformshubspot": "*",
     "plugins/gravityformsquiz": "*",
