@@ -194,6 +194,11 @@
 
   "config": {
     "secure-http": false,
+    "policy": {
+      "advisories": {
+        "block": false
+      }
+    },
     "github-protocols": ["https"],
     "allow-plugins": {
       "composer/installers": true,
