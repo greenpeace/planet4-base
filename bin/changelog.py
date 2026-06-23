@@ -262,4 +262,4 @@ if __name__ == '__main__':
     commit_to_docs(version, md)
 
     # Send mail notification
-    send_mail(version, mail)
+    # send_mail(version, mail)
