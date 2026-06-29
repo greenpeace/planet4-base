@@ -99,9 +99,9 @@
       "type": "package",
       "package": {
         "name": "plugins/gravityformsstripe",
-        "version": "5.9.2",
+        "version": "6.0.3",
         "dist": {
-          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_5.9.2.zip",
+          "url": "https://storage.googleapis.com/planet4-3rdparty-plugins/gravityformsstripe_6.0.3.zip",
           "type": "zip"
         }
       }
