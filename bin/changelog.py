@@ -3,6 +3,7 @@
 import argparse
 from base64 import b64decode
 from datetime import date
+import shlex
 from git import Repo, Actor
 from jira import JIRA
 import os
@@ -253,7 +254,7 @@ if __name__ == '__main__':
     mail = ('{0}<br><br><a href="https://support.greenpeace.org/planet4/tech/changelog">'
             '<font size="1">Release History</font></a><br><br>The P4 Bot 🤖'.format(mail))
 
-    output = 'export CHANGELOG="{0}"'.format(slack)
+    output = 'export CHANGELOG={0}'.format(shlex.quote(slack))
 
     with open('{0}'.format(BASH_ENV), 'a+') as bash_env:
         bash_env.write(output)
